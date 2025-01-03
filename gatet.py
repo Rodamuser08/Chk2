@@ -11,8 +11,8 @@ def Tele(ccx):
 	r = requests.session()
 
 	proxies = {
-        'http': 'http://7d165d5dd6916b4481d6:c722f19754c2d55962735c996e4b03@delta.proxi.sh:1088',
-        'https': 'http://7d165d5dd6916b4481d6:c722f19754c2d55962735c996e4b03@delta.proxi.sh:1088',
+        'http': 'http://gzJwhw1tYL:3wf1q0rNVK@3.139.240.229:43036',
+        'https': 'http://gzJwhw1tYL:3wf1q0rNVK@3.139.240.229:43036',
 	}
 	
 	headers = {
