@@ -69,7 +69,7 @@ def Tele(ccx):
 	}
 	
 	data = {
-	    'data': '__fluent_form_embded_post_id=1053&_fluentform_19_fluentformnonce=ee402ad04b&_wp_http_referer=%2Fevents%2Faction-learning-in-retail-workshop%2F&names%5Bfirst_name%5D=Rodam&names%5Blast_name%5D=User&email=rodamuser07%40gmail.com&description=BA&checkbox%5B%5D=No&dropdown=Pay%20now%20with%20card&payment_input=1&payment_method=stripe&__stripe_payment_method_id='+str(pm)+'',
+	    'data': '__fluent_form_embded_post_id=1053&_fluentform_19_fluentformnonce=ee402ad04b&_wp_http_referer=%2Fevents%2Faction-learning-in-retail-workshop%2F&names%5Bfirst_name%5D=Rodam&names%5Blast_name%5D=User&email=rodamuser07%40gmail.com&description=BA&checkbox%5B%5D=No&dropdown=Pay%20now%20with%20card&payment_input=5&payment_method=stripe&__stripe_payment_method_id='+str(pm)+'',
 	    'action': 'fluentform_submit',
 	    'form_id': '19',
 	}
