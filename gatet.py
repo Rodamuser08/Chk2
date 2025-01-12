@@ -25,9 +25,9 @@ def Tele(ccx):
         'sec-fetch-site': 'same-site',
         'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Mobile Safari/537.36',
     }
-    
-    data = f'type=card&card[number]={n}&card[cvc]={cvc}&card[exp_month]={mm}&card[exp_year]={yy}&guid=NA&muid=NA&sid=NA&pasted_fields=number&payment_user_agent=stripe.js%2F44098e0890%3B+stripe-js-v3%2F44098e0890%3B+card-element&referrer=https%3A%2F%2Fnews.dpgazette.com&time_on_page=78156&key=pk_live_51Ozkr9P3o1jZ9Xie1YDNdVUOtcjO80GY4I825jJlYcPmvWZk1GhHloRVAtEFHsM6f7NqTbNv6Tlx2jbi5ANsjjWl00mcNhcCSK'
-    
+	
+	data = f'type=card&card[number]={n}&card[cvc]={cvc}&card[exp_month]={mm}&card[exp_year]={yy}&guid=NA&muid=NA&sid=NA&pasted_fields=number&payment_user_agent=stripe.js%2F44098e0890%3B+stripe-js-v3%2F44098e0890%3B+card-element&referrer=https%3A%2F%2Fnews.dpgazette.com&time_on_page=78156&key=pk_live_51Ozkr9P3o1jZ9Xie1YDNdVUOtcjO80GY4I825jJlYcPmvWZk1GhHloRVAtEFHsM6f7NqTbNv6Tlx2jbi5ANsjjWl00mcNhcCSK'
+	
     r1 = requests.post('https://api.stripe.com/v1/payment_methods', headers=headers, data=data)
     
     pm = r1.json()['id']
