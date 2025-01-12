@@ -9,7 +9,7 @@ def Tele(ccx):
 	if "20" in yy:#Mo3gza
 		yy = yy.split("20")[1]
 	r = requests.session()
-
+	
 	headers = {
         'authority': 'api.stripe.com',
         'accept': 'application/json',
@@ -92,5 +92,5 @@ def Tele(ccx):
         headers=headers,
         data=data,
     )
-
+	
 	return (r2.json())
