@@ -74,7 +74,7 @@ def Tele(ccx):
 	}
 	
 	data = {
-	    'data': '__fluent_form_embded_post_id=26737&_fluentform_16_fluentformnonce=e3c0793e29&_wp_http_referer=%2Fen%2Fladakh-rental-booking-bike%2F&names%5Bfirst_name%5D=&names%5Blast_name%5D=&phone=&email=lalil35434%40pariag.com&country-list=FR&bnr_people=2&nbr_bike=2&datetime=14%2F01%2F2025&nbr_day=5&dropdown_1=New%20Himalayan%20450%20-%203500%20INR%20%2F%20day&numeric_bike1_himalayan450=17500&dropdown_2=New%20Himalayan%20450%20-%203500%20INR%20%2F%20day&numeric_bike2_himalayan450=17500&input_radio_carrier=yes&numeric_field_carrier=1000&input_radio_InnerLinePermit=yes&numeric_field_InnerLinePermit=2000&input_radio_assistance=no&numeric_total_inr=38000&numeric_10_inr=3800&numeric-field_7=34200&input_text=&custom-payment-amount_1=0.50&payment_method=stripe&terms-n-condition_1=on&__stripe_payment_method_id='+str(pm)+'',
+	    'data': '__fluent_form_embded_post_id=26737&_fluentform_16_fluentformnonce=e3c0793e29&_wp_http_referer=%2Fen%2Fladakh-rental-booking-bike%2F&names%5Bfirst_name%5D=&names%5Blast_name%5D=&phone=&email=yoxivi1352%40pariag.com&country-list=FR&bnr_people=2&nbr_bike=2&datetime=14%2F01%2F2025&nbr_day=5&dropdown_1=New%20Himalayan%20450%20-%203500%20INR%20%2F%20day&numeric_bike1_himalayan450=17500&dropdown_2=New%20Himalayan%20450%20-%203500%20INR%20%2F%20day&numeric_bike2_himalayan450=17500&input_radio_carrier=yes&numeric_field_carrier=1000&input_radio_InnerLinePermit=yes&numeric_field_InnerLinePermit=2000&input_radio_assistance=no&numeric_total_inr=38000&numeric_10_inr=3800&numeric-field_7=34200&input_text=&custom-payment-amount_1=0.50&payment_method=stripe&terms-n-condition_1=on&__stripe_payment_method_id='+str(pm)+'',
 	    'action': 'fluentform_submit',
 	    'form_id': '16',
 	}
