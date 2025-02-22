@@ -68,7 +68,7 @@ def Tele(ccx):
 	}
 	
 	data = {
-	    'data': '__fluent_form_embded_post_id=730&_fluentform_4_fluentformnonce=b9534bcd7a&_wp_http_referer=%2Forder-certificate%2F&input_text=Neo&names%5Bfirst_name%5D=Rodam&names%5Blast_name%5D=User&email=rodamuser20%40gmail.com&phone=%2B66817480671&address_1%5Baddress_line_1%5D=&address_1%5Baddress_line_2%5D=&address_1%5Bcity%5D=&address_1%5Bstate%5D=&address_1%5Bzip%5D=&address_1%5Bcountry%5D=&payment_input%5B%5D=PDF%20Item&custom-payment-amount=0.2&payment_method=stripe&__stripe_payment_method_id='+str(pm)+'',
+	    'data': '__fluent_form_embded_post_id=730&_fluentform_4_fluentformnonce=b9534bcd7a&_wp_http_referer=%2Forder-certificate%2F&input_text=Neo&names%5Bfirst_name%5D=Rodam&names%5Blast_name%5D=User&email=rodamuser20%40gmail.com&phone=%2B66817480671&address_1%5Baddress_line_1%5D=&address_1%5Baddress_line_2%5D=&address_1%5Bcity%5D=&address_1%5Bstate%5D=&address_1%5Bzip%5D=&address_1%5Bcountry%5D=&payment_input%5B%5D=PDF%20Item&custom-payment-amount=0.5&payment_method=stripe&__stripe_payment_method_id='+str(pm)+'',
 	    'action': 'fluentform_submit',
 	    'form_id': '4',
 	}
