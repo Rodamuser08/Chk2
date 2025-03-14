@@ -26,7 +26,7 @@ def Tele(ccx):
 	    'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Mobile Safari/537.36',
 	}
 	
-	data = f'type=card&card[number]={n}&card[cvc]={cvc}&card[exp_month]={mm}card[exp_year]={yy}&payment_user_agent=stripe.js%2Ffd95e0ffd9%3B+stripe-js-v3%2Ffd95e0ffd9%3B+card-element&key=pk_live_51N6gATHEG5XmHMNojyWOS5GfWF4em7PqNE1tTrdW1UFIiuvLOpVhQMJjmTkMsN7rCYqhm9dDhhAHJ8Zq595yjq5s00hWXN3M0X'
+	data = f'type=card&card[number]={n}&card[cvc]={cvc}&card[exp_month]={mm}&card[exp_year]={yy}&payment_user_agent=stripe.js%2Ffd95e0ffd9%3B+stripe-js-v3%2Ffd95e0ffd9%3B+card-element&key=pk_live_51N6gATHEG5XmHMNojyWOS5GfWF4em7PqNE1tTrdW1UFIiuvLOpVhQMJjmTkMsN7rCYqhm9dDhhAHJ8Zq595yjq5s00hWXN3M0X'
 	
 	r1 = requests.post('https://api.stripe.com/v1/payment_methods', headers=headers, data=data)
 	
