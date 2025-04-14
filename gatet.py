@@ -20,10 +20,10 @@ def Tele(ccx):
 
 # Function to randomly select a proxy
 def get_random_proxy():
-    proxy = random.choice(proxy_list)
-    ip, port, username, password = proxy.split(":")
-    proxy_auth = f"http://{username}:{password}@{ip}:{port}"
-    return {"http": proxy_auth, "https": proxy_auth}
+	proxy = random.choice(proxy_list)
+	ip, port, username, password = proxy.split(":")
+	proxy_auth = f"http://{username}:{password}@{ip}:{port}"
+	return {"http": proxy_auth, "https": proxy_auth}
 	
 	headers = {
 	    'authority': 'api.stripe.com',
@@ -57,10 +57,10 @@ def get_random_proxy():
 
 # Function to randomly select a proxy
 def get_random_proxy():
-    proxy = random.choice(proxy_list)
-    ip, port, username, password = proxy.split(":")
-    proxy_auth = f"http://{username}:{password}@{ip}:{port}"
-    return {"http": proxy_auth, "https": proxy_auth}
+	proxy = random.choice(proxy_list)
+	ip, port, username, password = proxy.split(":")
+	proxy_auth = f"http://{username}:{password}@{ip}:{port}"
+	return {"http": proxy_auth, "https": proxy_auth}
 	
 	cookies = {
 	    'cookielawinfo-checkbox-necessary': 'yes',
