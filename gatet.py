@@ -79,6 +79,7 @@ def Tele(cc_data):
 	    'form_id': '7',
 	}
 	
-	r2 = requests.post('https://thehop-e.com/wp-admin/admin-ajax.php', params=params, cookies=cookies, headers=headers, data=data)
+	r2 = session.post('https://thehop-e.com/wp-admin/admin-ajax.php', params=params, cookies=cookies, headers=headers, data=data)
 	
-	return (r2.json())
+	result2 = r2.text
+	return result2
