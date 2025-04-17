@@ -3,7 +3,7 @@ import telebot,time
 from telebot import types
 from gatet import Tele
 import os
-token = '8181812070:AAE730BqIxuKpmikhYLKBawtSYZay5UaUts'
+token = '7492277219:AAGzBhICAWgwrX15iq7z9vi1cqBJjlB5uQg'
 bot=telebot.TeleBot(token,parse_mode="HTML")
 @bot.message_handler(commands=["start"])
 def start(message):
@@ -108,7 +108,6 @@ by ➜ @strawhatchannel96 ''', reply_markup=mes)
 				    	
 				else:
 					dd += 1
-					time.sleep(0)
 	except Exception as e:
 		print(e)
 	bot.edit_message_text(chat_id=message.chat.id, message_id=ko, text='CHECKED ✅\nBOT BY ➜ @strawhatchannel96')
