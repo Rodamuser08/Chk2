@@ -1,9 +1,6 @@
 import requests,re
-from proxy import reqproxy, make_request
 def Tele(ccx):
-	proxy_str = "brd.superproxy.io:33335:brd-customer-hl_306de257-zone-web_scrapping:e7l003m6w1ks"
-	session, ip = reqproxy(proxy_str)
-	#print(f"IP Address: {ip}")
+	import requests
 	ccx=ccx.strip()
 	n = ccx.split("|")[0]
 	mm = ccx.split("|")[1]
@@ -81,7 +78,7 @@ def Tele(ccx):
 	    'form_id': '3',
 	}
 	
-	r2 = session.post(
+	r2 = requests.post(
 	    'https://programs.terrimessenger.com/wp-admin/admin-ajax.php',
 	    params=params,
 	    cookies=cookies,
@@ -89,5 +86,4 @@ def Tele(ccx):
 	    data=data,
 	)
 	
-	result2 = r2.text
-	return result2
+	return (r2.json())
