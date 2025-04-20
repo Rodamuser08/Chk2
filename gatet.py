@@ -1,6 +1,9 @@
 import requests,re
+from proxy import reqproxy, make_request
 def Tele(ccx):
-	import requests
+	proxy_str = "brd.superproxy.io:33335:brd-customer-hl_306de257-zone-web_scrapping:e7l003m6w1ks"
+	session, ip = reqproxy(proxy_str)
+	#print(f"IP Address: {ip}")
 	ccx=ccx.strip()
 	n = ccx.split("|")[0]
 	mm = ccx.split("|")[1]
@@ -62,6 +65,7 @@ def Tele(ccx):
 	    ('amount_cents', '100'),
 	]
 	
-	r2 = requests.post('https://www.lakevilleloop.com/upgrade', params=params, headers=headers, data=data)
+	r2 = session.post('https://www.lakevilleloop.com/upgrade', params=params, headers=headers, data=data)
 	
-	return (r2.json())
+	result2 = r2.text
+	return result2
