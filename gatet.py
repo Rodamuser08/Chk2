@@ -62,6 +62,6 @@ def Tele(ccx):
 	
 	data = "action=wpf_submit_form&form_id=9982&payment_total=100&form_data=__wpf_form_id%3D9982%26__wpf_current_url%3Dhttps%253A%252F%252Fwfc.frclab.com%252Fdonate-now%26__wpf_current_page_id%3D6691%26donation_item_custom%3D1%26donation_item%3Dcustom%26donation_recurring_interval%3Dmonth%26customer_name%3DRodam%2520User%26customer_email%3Drodamuser08%2540gmail.com%26select%3DScholarships%2520for%2520girl's%2520education%26__wpf_valid_payment_methods_count%3D2%26__wpf_selected_payment_method%3Dstripe%26__paypal_payment_gateway%3Dpaypal%26__stripe_payment_method_id%3D"+str(pm)+"&tax_total=0&main_total=100"
 	
-	r2 = .post('https://wfc.frclab.com/wp-admin/admin-ajax.php', cookies=cookies, headers=headers, data=data)
+	r2 = requests.post('https://wfc.frclab.com/wp-admin/admin-ajax.php', cookies=cookies, headers=headers, data=data)
 	
 	return (r2.json())
