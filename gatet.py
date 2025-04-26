@@ -32,14 +32,6 @@ def Tele(ccx):
 	
 	pm = r1.json()['id']
 	
-	cookies = {
-	    '_ga': 'GA1.1.1372696206.1744538847',
-	    '__stripe_mid': 'ab0dbb48-1da1-464e-af6e-3ce01a5116b3078144',
-	    '_lscache_vary': '78bb02d9c957d5e27f252579e6901c6b',
-	    '__stripe_sid': '89de99bc-3fa1-4134-9db5-5a7bf81dd9f78883fd',
-	    '_ga_RBF17DZGXR': 'GS1.1.1745647265.7.1.1745647363.0.0.0',
-	}
-	
 	headers = {
 	    'authority': 'couqley.ae',
 	    'accept': '*/*',
@@ -68,6 +60,6 @@ def Tele(ccx):
 	    'form_id': '7',
 	}
 	
-	r2 = requests.post('https://couqley.ae/wp-admin/admin-ajax.php', params=params, cookies=cookies, headers=headers, data=data)
+	r2 = requests.post('https://couqley.ae/wp-admin/admin-ajax.php', params=params, headers=headers, data=data)
 	
 	return (r2.json())
