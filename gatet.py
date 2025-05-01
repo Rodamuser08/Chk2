@@ -10,7 +10,7 @@ def Tele(ccx):
 		yy = yy.split("20")[1]
 	r = requests.session()
 
-		headers = {
+	headers = {
 	    'authority': 'www.penfold.com.au',
 	    'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
 	    'accept-language': 'en-TH,en;q=0.9,th-DZ;q=0.8,th;q=0.7,en-GB;q=0.6,en-US;q=0.5',
