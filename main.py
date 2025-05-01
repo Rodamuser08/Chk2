@@ -90,7 +90,7 @@ by ➜ @strawhatchannel96 ''', reply_markup=mes)
 𝐓𝐢𝐦𝐞: <code>1{"{:.1f}".format(execution_time)} second</code> 
 𝐁𝐨𝐭 𝐀𝐛𝐨𝐮𝐭: @strawhatchannel96'''
 				print(last)
-				if 'charge_success' in last:
+				if 'approved' in last:
 					ch += 1
 					bot.reply_to(message, msg)
 					
