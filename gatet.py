@@ -106,4 +106,4 @@ def Tele(ccx):
 	result = re.search(r'"responseText":"(.*?)"', r)
 	result = result.group(1)
 
-	return ()
+	return (result)
