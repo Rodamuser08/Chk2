@@ -15,26 +15,6 @@ def Tele(ccx):
 	random_amount2 = random.randint(1, 99)
 	
 	headers = {
-	    'authority': 'www.penfold.com.au',
-	    'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
-	    'accept-language': 'en-TH,en;q=0.9,th-DZ;q=0.8,th;q=0.7,en-GB;q=0.6,en-US;q=0.5',
-	    'referer': 'https://www.google.com/',
-	    'sec-ch-ua': '"Not A(Brand";v="8", "Chromium";v="132"',
-	    'sec-ch-ua-mobile': '?1',
-	    'sec-ch-ua-platform': '"Android"',
-	    'sec-fetch-dest': 'document',
-	    'sec-fetch-mode': 'navigate',
-	    'sec-fetch-site': 'same-origin',
-	    'sec-fetch-user': '?1',
-	    'upgrade-insecure-requests': '1',
-	    'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Mobile Safari/537.36',
-	}
-	
-	response = requests.get('https://www.penfold.com.au/online-payment', headers=headers)
-	
-	merchant_id = re.search(r'\\"merchant_id\\":\\"(.*?)\\"', response.text).group(1)
-	
-	headers = {
 	    'authority': 'api.payway.com.au',
 	    'accept': 'application/json',
 	    'accept-language': 'en-TH,en;q=0.9,th-DZ;q=0.8,th;q=0.7,en-GB;q=0.6,en-US;q=0.5',
@@ -91,7 +71,7 @@ def Tele(ccx):
 	        'email': 'rodamuser08@gmail.com',
 	    },
 	    'token': f'{tok}',
-	    'merchant_id': f'{merchant_id}',
+	    'merchant_id': '6870786',
 	    'order': {
 	        'number': '1206732',
 	    },
