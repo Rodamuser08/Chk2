@@ -1,4 +1,5 @@
 import requests,re
+import random
 def Tele(ccx):
 	import requests
 	ccx=ccx.strip()
