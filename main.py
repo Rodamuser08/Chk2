@@ -7,13 +7,13 @@ token = '7492277219:AAGzBhICAWgwrX15iq7z9vi1cqBJjlB5uQg'
 bot=telebot.TeleBot(token,parse_mode="HTML")
 @bot.message_handler(commands=["start"])
 def start(message):
-	if not str(message.chat.id) == '7103090839':
+	if not str(message.chat.id) == '7210226118':
 		bot.reply_to(message, "You cannot use the bot to contact developers to purchase a bot subscription @strawhatchannel96")
 		return
 	bot.reply_to(message,"Send the file now")
 @bot.message_handler(content_types=["document"])
 def main(message):
-	if not str(message.chat.id) == '7103090839':
+	if not str(message.chat.id) == '7210226118':
 		bot.reply_to(message, "You cannot use the bot to contact developers to purchase a bot subscription @strawhatchannel96")
 		return
 	dd = 0
@@ -91,7 +91,7 @@ by ➜ @strawhatchannel96 ''', reply_markup=mes)
 𝐁𝐨𝐭 𝐀𝐛𝐨𝐮𝐭: @strawhatchannel96'''
 				
 				print(last)
-				if 'Thank' in last:
+				if 'succeeded' in last:
 					ch += 1
 					bot.reply_to(message, msg)
 					
