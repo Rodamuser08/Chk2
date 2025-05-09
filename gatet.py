@@ -66,4 +66,4 @@ def Tele(ccx):
 	    data=data,
 	)
 	
-	return (response.)
+	return (response.text)
