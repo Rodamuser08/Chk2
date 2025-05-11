@@ -91,7 +91,7 @@ by ➜ @strawhatchannel96 ''', reply_markup=mes)
 𝐁𝐨𝐭 𝐀𝐛𝐨𝐮𝐭: @strawhatchannel96'''
 				
 				print(last)
-				if 'successfully' in last:
+				if 'Thank' in last:
 					ch += 1
 					bot.reply_to(message, msg)
 					
