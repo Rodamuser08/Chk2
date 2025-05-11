@@ -25,6 +25,8 @@ def Tele(ccx):
 	n, mm, yy, cvc = ccx.split("|")
 	if "20" in yy:
 		yy = yy.split("20")[1]
+	if "0" in mm:
+		mm = mm.split("0")[1]
 
 	headers = {
 	    'authority': 'app.thebilling.company',
@@ -93,7 +95,7 @@ def Tele(ccx):
 	    'currency': 'USD',
 	    'number': f'{n}',
 	    'expiration_month': mm,
-	    'expiration_year': yy,
+	    'expiration_year': f'20{yy}',
 	    'security_code': f'{cvc}',
 	    'address': {
 	        'postal_code': '10080',
