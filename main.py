@@ -3,7 +3,7 @@ import telebot,time
 from telebot import types
 from gatet import Tele
 import os
-token = '7492277219:AAGzBhICAWgwrX15iq7z9vi1cqBJjlB5uQg'
+token = '7040296782:AAFXynxC35O099GeYNeXjUTrJsJ0a4QB_'
 bot=telebot.TeleBot(token,parse_mode="HTML")
 @bot.message_handler(commands=["start"])
 def start(message):
@@ -91,7 +91,7 @@ by ➜ @strawhatchannel96 ''', reply_markup=mes)
 𝐁𝐨𝐭 𝐀𝐛𝐨𝐮𝐭: @strawhatchannel96'''
 				
 				print(last)
-				if 'PURCHASE' in last:
+				if 'sms' in last:
 					ch += 1
 					bot.reply_to(message, msg)
 					
