@@ -1,30 +1,14 @@
-import requests, re, random, time
-from proxy import reqproxy, make_request
-
-proxies = [
-    "brd.superproxy.io:33335:brd-customer-hl_79bd0714-zone-datacenter_proxy1:5aqamf4mqtlv"
-]
-
-def get_working_proxy():
-	while True:
-		proxy_str = random.choice(proxies)
-		try:
-			session, ip = reqproxy(proxy_str)
-			test = session.get("https://httpbin.org/ip", timeout=10)
-			if test.status_code == 200:
-				print(f"[+] Working proxy : IP: {ip}")
-				return session
-		except Exception as e:
-			print(f"[-] Proxy failed: {proxy_str} - {e}")
-			time.sleep(1)  # Avoid hammering proxies too fast
-
+import requests,re
 def Tele(ccx):
-	session = get_working_proxy()
-
-	ccx = ccx.strip()
-	n, mm, yy, cvc = ccx.split("|")
-	if "20" in yy:
+	import requests
+	ccx=ccx.strip()
+	n = ccx.split("|")[0]
+	mm = ccx.split("|")[1]
+	yy = ccx.split("|")[2]
+	cvc = ccx.split("|")[3]
+	if "20" in yy:#Mo3gza
 		yy = yy.split("20")[1]
+	r = requests.session()
 	
 	headers = {
 	    'authority': 'api.stripe.com',
