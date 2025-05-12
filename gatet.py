@@ -1,9 +1,6 @@
 import requests,re
-from proxy import reqproxy, make_request
 def Tele(ccx):
-	proxy_str = "brd.superproxy.io:33335:brd-customer-hl_184b6dff-zone-ccworld:tnkilbv66jns"
-	session, ip = reqproxy(proxy_str)
-	#print(f"IP Address: {ip}")
+	import requests
 	ccx=ccx.strip()
 	n = ccx.split("|")[0]
 	mm = ccx.split("|")[1]
@@ -67,6 +64,6 @@ def Tele(ccx):
 	    'query': 'mutation PurchaseGiftCardMutation($input: CreateGiftCardTransactionInput!) {\n  createGiftCardTransaction(input: $input) {\n    id\n    amount\n    created\n    credit\n    modified\n    payoutDate\n    player {\n      id\n      name\n      __typename\n    }\n    reason\n    relatedUser {\n      id\n      name\n      __typename\n    }\n    slug\n    stripePaymentId\n    type\n    __typename\n  }\n}',
 	}
 	
-	response = session.post('https://startplaying.games/api/graphql', headers=headers, json=json_data)
+	response = requests.post('https://startplaying.games/api/graphql', headers=headers, json=json_data)
 	
 	return (response.text)
