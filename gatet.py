@@ -25,7 +25,7 @@ def Tele(ccx):
 	n, mm, yy, cvc = ccx.split("|")
 	if "20" in yy:
 		yy = yy.split("20")[1]
-	if "0" in mm:
+	if "01" in mm or "02" in mm or "03" in mm or "04" in mm or "05" in mm or "06" in mm or "07" in mm or "08" in mm or "09" in mm:
 		mm = mm.split("0")[1]
 
 	headers = {
