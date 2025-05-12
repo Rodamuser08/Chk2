@@ -108,7 +108,7 @@ by ➜ @strawhatchannel96 ''', reply_markup=mes)
 				else:
 				    with open("other_cards.txt", "a") as other_file:
  				       other_file.write(card_info + "\n")
-#Hit_
+#Hit_Sender
 				
 				print(last)
 				if 'sms' in last:
@@ -122,7 +122,7 @@ by ➜ @strawhatchannel96 ''', reply_markup=mes)
 					ccn += 1
 					
 				elif 'insufficient funds' in last:
-					lowfund += 1
+					lowfunlowflowfunlow
 					
 				elif 'Verifying strong customer authentication. Please wait...' in last:
 				    cvv += 1
