@@ -91,7 +91,7 @@ by ➜ @strawhatchannel96 ''', reply_markup=mes)
 𝐁𝐨𝐭 𝐀𝐛𝐨𝐮𝐭: @strawhatchannel96'''
 				
 				print(last)
-				if 'Thank' in last:
+				if 'Payment ' in last:
 					ch += 1
 					bot.reply_to(message, msg)
 					
@@ -109,6 +109,7 @@ by ➜ @strawhatchannel96 ''', reply_markup=mes)
 				    	
 				else:
 					dd += 1
+					time.sleep(3)
 	except Exception as e:
 		print(e)
 	bot.edit_message_text(chat_id=message.chat.id, message_id=ko, text='CHECKED ✅\nBOT BY ➜ @strawhatchannel96')
