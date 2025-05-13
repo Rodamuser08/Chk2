@@ -1,6 +1,9 @@
 import requests,re
+from proxy import reqproxy, make_request
 def Tele(ccx):
-	import requests
+	proxy_str = "brd.superproxy.io:33335:brd-customer-hl_184b6dff-zone-ccworld:tnkilbv66jns"
+	session, ip = reqproxy(proxy_str)
+	#print(f"IP Address: {ip}")
 	ccx=ccx.strip()
 	n = ccx.split("|")[0]
 	mm = ccx.split("|")[1]
@@ -78,6 +81,9 @@ def Tele(ccx):
 	    data=data,
 	)
 	
-	success = re.search(r"<h1>(.*?)!</h1>", response.text).group(1)
+	try:
+		result = re.search(r"<p class='error'>(.*?)</p>", response.text).group(1)
+	except:
+		result = re.search(r"<h1>(.*?)!</h1>", response.text).group(1)
 	
-	return (success)
+	return (result)
