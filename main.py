@@ -100,7 +100,7 @@ by ➜ @strawhatchannel96 ''', reply_markup=mes)
 				        thank_file.write(card_info + "\n")
 				    bot.send_message(owner_id, f"✅ Thank Result Found:\n💳 Card: {cc.strip()}")
 
-				elif "insufficient funds" in last.lower():
+				elif "insufficient funds" in last:
 				    with open("insufficient_cards.txt", "a") as insufficient_file:
  				       insufficient_file.write(card_info + "\n")
 				    bot.send_message(owner_id, f"⚠️ Insufficient Funds Card:\n💳 Card: {cc.strip()}")
