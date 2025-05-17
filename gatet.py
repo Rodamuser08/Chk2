@@ -10,9 +10,9 @@ def Tele(ccx):
 	yy = ccx.split("|")[2]
 	cvc = ccx.split("|")[3]
 	if n.startswith("4"):
-		Type = "1"
+		CType = "1"
 	if n.startswith("5"):
-		Type = "2"
+		CType = "2"
 	if "01" in mm or "02" in mm or "03" in mm or "04" in mm or "05" in mm or "06" in mm or "07" in mm or "08" in mm or "09" in mm:
 		mm = mm.split("0")[1]
 	if "20" in yy:
@@ -149,7 +149,7 @@ def Tele(ccx):
 	    '__EVENTVALIDATION': f'{EVENTVALIDATION}',
 	    'nif': '',
 	    'CHName': 'Dao Khao Saard',
-	    'CType': f'{Type}',
+	    'CType': f'{CType}',
 	    'PAN': f'{n}',
 	    'ExpMonth': f'{mm}',
 	    'ExpYear': f'20{yy}',
