@@ -84,8 +84,8 @@ def Tele(ccx):
 	  'billing_details[address][country]': "US",
 	  'card[number]': f"{n}",
 	  'card[cvc]': f"{cvc}",
-	  'card[exp_month]': "{mm}",
-	  'card[exp_year]': "{yy}",
+	  'card[exp_month]': f"{mm}",
+	  'card[exp_year]': f"{yy}",
 	  'payment_user_agent': "stripe.js/2b425ea933; stripe-js-v3/2b425ea933; card-element",
 	  'key': "pk_live_51K9BcCB8pyVHbV7QSUIPTC33ouoGeJB1GwwpW3JokvIerIN0WuJ5lpNBmEo6DCGNH53eeWoJ59KJ1kBYI7dbqEd900ZjSCliTr",
 	}
