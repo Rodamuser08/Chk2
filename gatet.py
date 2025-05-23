@@ -1,10 +1,6 @@
 import requests,re
-import random
-from proxy import reqproxy, make_request
 def Tele(ccx):
-	proxy_str = "ol-pro.porterproxies.com:7777:customer-PP_K3LIW0QTTL-cc-US:imv41dtg"
-	session, ip = reqproxy(proxy_str)
-	#print(f"IP Address: {ip}")
+	import requests
 	ccx=ccx.strip()
 	n = ccx.split("|")[0]
 	mm = ccx.split("|")[1]
@@ -66,7 +62,7 @@ def Tele(ccx):
 	    'form_id': '2',
 	}
 	
-	response = session.post(
+	response = requests.post(
 	    'https://community.interestofjustice.org/wp-admin/admin-ajax.php',
 	    params=params,
 	    headers=headers,
