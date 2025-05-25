@@ -15,172 +15,60 @@ def Tele(ccx):
 	random_amount2 = random.randint(1, 99)
 
 	headers = {
-	    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
-	    'Accept-Language': 'en-TH,en;q=0.9,th-DZ;q=0.8,th;q=0.7,en-GB;q=0.6,en-US;q=0.5',
-	    'Connection': 'keep-alive',
-	    'Referer': 'https://www.behindthename.com/random/',
-	    'Sec-Fetch-Dest': 'document',
-	    'Sec-Fetch-Mode': 'navigate',
-	    'Sec-Fetch-Site': 'same-origin',
-	    'Sec-Fetch-User': '?1',
-	    'Upgrade-Insecure-Requests': '1',
-	    'User-Agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Mobile Safari/537.36',
+	    'authority': 'api.stripe.com',
+	    'accept': 'application/json',
+	    'accept-language': 'en-TH,en;q=0.9,th-DZ;q=0.8,th;q=0.7,en-GB;q=0.6,en-US;q=0.5',
+	    'content-type': 'application/x-www-form-urlencoded',
+	    'origin': 'https://js.stripe.com',
+	    'referer': 'https://js.stripe.com/',
 	    'sec-ch-ua': '"Not A(Brand";v="8", "Chromium";v="132"',
 	    'sec-ch-ua-mobile': '?1',
 	    'sec-ch-ua-platform': '"Android"',
+	    'sec-fetch-dest': 'empty',
+	    'sec-fetch-mode': 'cors',
+	    'sec-fetch-site': 'same-site',
+	    'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Mobile Safari/537.36',
+	}
+	
+	data = f'type=card&card[number]={n}&card[cvc]={cvc}&card[exp_month]={mm}&card[exp_year]={yy}&payment_user_agent=stripe.js%2Fd13c85e5a9%3B+stripe-js-v3%2Fd13c85e5a9%3B+card-element&key=pk_live_51PRegF00TTHUs6jX6LXxmxDwrkbBQElrmJX4JVJBCwPqekhlkYKZkW4yUNMBgA7Ae8GggAsKdSACvG6QqnEXza8U00QlHuzENi'
+	
+	response = requests.post('https://api.stripe.com/v1/payment_methods', headers=headers, data=data)
+	
+	pm = response.json()['id']
+	
+	headers = {
+	    'authority': 'trainingedge.org',
+	    'accept': '*/*',
+	    'accept-language': 'en-TH,en;q=0.9,th-DZ;q=0.8,th;q=0.7,en-GB;q=0.6,en-US;q=0.5',
+	    'content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
+	    'origin': 'https://trainingedge.org',
+	    'referer': 'https://trainingedge.org/order-your-certificate/',
+	    'sec-ch-ua': '"Not A(Brand";v="8", "Chromium";v="132"',
+	    'sec-ch-ua-mobile': '?1',
+	    'sec-ch-ua-platform': '"Android"',
+	    'sec-fetch-dest': 'empty',
+	    'sec-fetch-mode': 'cors',
+	    'sec-fetch-site': 'same-origin',
+	    'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Mobile Safari/537.36',
+	    'x-requested-with': 'XMLHttpRequest',
 	}
 	
 	params = {
-	    'gender': 'both',
-	    'number': '2',
-	    'sets': '1',
-	    'surname': '',
-	    'all': 'yes',
+	    't': '1748164984411',
 	}
 	
-	response = requests.get('https://www.behindthename.com/random/random.php', params=params, headers=headers)
+	data = f'data=__fluent_form_embded_post_id%3D1037%26_fluentform_8_fluentformnonce%3D6117be38fa%26_wp_http_referer%3D%252Forder-your-certificate%252F%26input_text%3DCoach%26names%255Bfirst_name%255D%3DRodam%26names%255Blast_name%255D%3DUser%26email%3Drodamuser{random_amount1}{random_amount2}%2540gmail.com%26phone%3D%252B14303000850%26address_1%255Baddress_line_1%255D%3D%26address_1%255Baddress_line_2%255D%3D%26address_1%255Bcity%255D%3D%26address_1%255Bstate%255D%3D%26address_1%255Bzip%255D%3D%26address_1%255Bcountry%255D%3D%26payment_input_3%3DNone%26custom-payment-amount%3D0.508%26payment_method%3Dstripe%26names_1%255Bfirst_name%255D%3D%26names_1%255Blast_name%255D%3D%26__stripe_payment_method_id%3D{pm}&action=fluentform_submit&form_id=8'
 	
-	name = re.search(r'class="plain">(.*?)</a>', response.text).group(1)
-	#print(name)
-
-	headers = {
-	    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
-	    'Accept-Language': 'en-TH,en;q=0.9,th-DZ;q=0.8,th;q=0.7,en-GB;q=0.6,en-US;q=0.5',
-	    'Cache-Control': 'max-age=0',
-	    'Connection': 'keep-alive',
-	    'Referer': 'https://www.google.com/',
-	    'Sec-Fetch-Dest': 'document',
-	    'Sec-Fetch-Mode': 'navigate',
-	    'Sec-Fetch-Site': 'cross-site',
-	    'Sec-Fetch-User': '?1',
-	    'Upgrade-Insecure-Requests': '1',
-	    'User-Agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Mobile Safari/537.36',
-	    'sec-ch-ua': '"Not A(Brand";v="8", "Chromium";v="132"',
-	    'sec-ch-ua-mobile': '?1',
-	    'sec-ch-ua-platform': '"Android"',
-	}
+	response = requests.post(
+	    'https://trainingedge.org/wp-admin/admin-ajax.php',
+	    params=params,
+	    headers=headers,
+	    data=data,
+	)
 	
-	response = requests.get('https://www.mfpco.com/orders/gatherInfo.php', headers=headers)
+	try:
+		result = re.search(r'"errors":"Stripe Error: (.*?)"', response.text).group(1)
+	except:
+		result = response.text
 	
-	x_login = re.search(r'name="x_login" value="(.*?)"', response.text).group(1)
-	#print(x_login)
-	x_transaction_key = re.search(r'name="x_transaction_key" value="(.*?)"', response.text).group(1)
-	#print(x_transaction_key)
-	pmt = re.search(r'name="x_fp_sequence" value="(.*?)"', response.text).group(1)
-	#print(pmt)
-	
-	headers = {
-	    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
-	    'Accept-Language': 'en-TH,en;q=0.9,th-DZ;q=0.8,th;q=0.7,en-GB;q=0.6,en-US;q=0.5',
-	    'Cache-Control': 'max-age=0',
-	    'Connection': 'keep-alive',
-	    'Content-Type': 'application/x-www-form-urlencoded',
-	    'Origin': 'https://www.mfpco.com',
-	    'Referer': 'https://www.mfpco.com/orders/gatherInfo.php',
-	    'Sec-Fetch-Dest': 'document',
-	    'Sec-Fetch-Mode': 'navigate',
-	    'Sec-Fetch-Site': 'same-origin',
-	    'Sec-Fetch-User': '?1',
-	    'Upgrade-Insecure-Requests': '1',
-	    'User-Agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Mobile Safari/537.36',
-	    'sec-ch-ua': '"Not A(Brand";v="8", "Chromium";v="132"',
-	    'sec-ch-ua-mobile': '?1',
-	    'sec-ch-ua-platform': '"Android"',
-	}
-	
-	data = {
-	    'x_login': f'{x_login}',
-	    'x_transaction_key': f'{x_transaction_key}',
-	    'x_fp_hash': '',
-	    'x_fp_sequence': f'{pmt}',
-	    'x_fp_timestamp': '',
-	    'x_type': 'AUTH_CAPTURE',
-	    'x_amount': '0',
-	    'x_version': '3.1',
-	    'x_email': '',
-	    'x_phone': '',
-	    'x_cust_id': '',
-	    'x_delim_data': 'FALSE',
-	    'x_relay_response': 'TRUE',
-	    'x_relay_url': '',
-	    'pmtorderid': f'{pmt}',
-	    'x_invoice_num': f'{pmt}',
-	    'pmt_invoice_num': '1',
-	    'pmt_customer_num': '1',
-	    'pmt_amount': '1',
-	    'x_first_name': f'{name}',
-	    'x_last_Name': 'Chan',
-	    'x_address': 'Street 27',
-	    'x_city': 'New York',
-	    'x_state': 'NY',
-	    'x_zip': '10080',
-	    'x_card_num': f'{n}',
-	    'x_exp_date': '',
-	    'expmonth': f'{mm}',
-	    'expyear': f'20{yy}',
-	    'x_card_code': f'{cvc}',
-	}
-	
-	response = requests.post('https://www.mfpco.com/orders/createANRequest.php', headers=headers, data=data)
-	
-	
-	x_fp_hash = re.search(r'value\s*=\s*"([a-fA-F0-9]{32})"', response.text).group(1)
-	#print(x_fp_hash)
-	x_fp_timestamp = re.search(r"x_fp_timestamp'\]\.value\s*=\s*\"(\d{10})\"", response.text).group(1)
-	#print(x_fp_timestamp)
-	
-	headers = {
-	    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
-	    'Accept-Language': 'en-TH,en;q=0.9,th-DZ;q=0.8,th;q=0.7,en-GB;q=0.6,en-US;q=0.5',
-	    'Cache-Control': 'max-age=0',
-	    'Connection': 'keep-alive',
-	    'Content-Type': 'application/x-www-form-urlencoded',
-	    'Origin': 'https://www.mfpco.com',
-	    'Referer': 'https://www.mfpco.com/',
-	    'Sec-Fetch-Dest': 'document',
-	    'Sec-Fetch-Mode': 'navigate',
-	    'Sec-Fetch-Site': 'cross-site',
-	    'Upgrade-Insecure-Requests': '1',
-	    'User-Agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Mobile Safari/537.36',
-	    'sec-ch-ua': '"Not A(Brand";v="8", "Chromium";v="132"',
-	    'sec-ch-ua-mobile': '?1',
-	    'sec-ch-ua-platform': '"Android"',
-	}
-	
-	data = {
-	    'x_login': f'{x_login}',
-	    'x_transaction_key': f'{x_transaction_key}',
-	    'x_fp_hash': f'{x_fp_hash}',
-	    'x_fp_sequence': f'{pmt}',
-	    'x_fp_timestamp': f'{x_fp_timestamp}',
-	    'x_type': 'AUTH_CAPTURE',
-	    'x_amount': '1',
-	    'x_version': '3.1',
-	    'x_email': '',
-	    'x_phone': '',
-	    'x_cust_id': '1',
-	    'x_delim_data': 'FALSE',
-	    'x_relay_response': 'TRUE',
-	    'x_relay_url': 'https://mfpco.com/orders/processANResponse.php',
-	    'pmtorderid': f'{pmt}',
-	    'x_invoice_num': '1',
-	    'pmt_invoice_num': '1',
-	    'pmt_customer_num': '1',
-	    'pmt_amount': '1',
-	    'x_first_name': f'{name}',
-	    'x_last_Name': 'Chan',
-	    'x_address': 'Street 27',
-	    'x_city': 'New York',
-	    'x_state': 'NY',
-	    'x_zip': '10080',
-	    'x_card_num': f'{n}',
-	    'x_exp_date': f'{mm}{yy}',
-	    'expmonth': f'{mm}',
-	    'expyear': f'20{yy}',
-	    'x_card_code': f'{cvc}',
-	}
-	
-	response = requests.post('https://secure.authorize.net/gateway/transact.dll', headers=headers, data=data)
-	
-	result = re.search(r'name="x_response_reason_text" value="(.*?)"', response.text).group(1)
 	return (result)
