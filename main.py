@@ -3,7 +3,7 @@ import telebot,time
 from telebot import types
 from gatet import Tele
 import os
-token = '8181812070:AAE730BqIxuKpmikhYLKBawtSYZay5UaUts'
+token = '7040296782:AAFXynxC35O099GeYNeXjUTrJsJ0a4QB_Qs'
 bot=telebot.TeleBot(token,parse_mode="HTML")
 @bot.message_handler(commands=["start"])
 def start(message):
@@ -111,7 +111,7 @@ by ➜ @strawhatchannel96 ''', reply_markup=mes)
 #Hit_Sender
 				
 				print(last)
-				if 'payment successful' in last:
+				if 'Thank' in last:
 					ch += 1
 					bot.reply_to(message, msg)
 					
@@ -121,7 +121,7 @@ by ➜ @strawhatchannel96 ''', reply_markup=mes)
 				elif 'security code is incorrect' in last or 'security code is invalid' in last:
 					ccn += 1
 					
-				elif 'Not sufficient funds' in last:
+				elif 'insufficient funds' in last:
 					msg = f'''			
 𝐂𝐀𝐑𝐃: <code>{cc}</code>
 𝐑𝐞𝐬𝐩𝐨𝐧𝐬𝐞: <code>INSUFFICIENT FUNDS 🔥</code>
