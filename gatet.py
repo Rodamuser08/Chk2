@@ -85,6 +85,6 @@ def Tele(ccx):
 	try:
 		result = re.search(r'<br>Response Text : (.*?)      </div>', response.text).group(1)
 	except:
-		result = response.text
+		result = re.search(r'<strong>PayWay (.*?)<', response.text).group(1)
 		
 	return (result)
