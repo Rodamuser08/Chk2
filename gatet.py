@@ -10,6 +10,9 @@ def Tele(ccx):
 		yy = yy.split("20")[1]
 	r = requests.session()
 	
+	random_amount1 = random.randint(1, 9)
+	random_amount2 = random.randint(1, 99)
+	
 	headers = {
 	    'authority': 'api.payway.com.au',
 	    'accept': 'application/json',
@@ -69,7 +72,7 @@ def Tele(ccx):
 	    'orderNumber': '1000',
 	    'customerName': 'Dao Khao Saard',
 	    'customerNumber': '1',
-	    'principalAmount': '2.00',
+	    'principalAmount': f'{random_amount1}.{random_amount2}',
 	    'singleUseTokenId': f'{tok}',
 	}
 	
