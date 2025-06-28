@@ -17,61 +17,6 @@ def Tele(ccx):
 	random_amount1 = random.randint(1, 9)
 	random_amount2 = random.randint(1, 99)
 	
-	url = "https://billygraham.org.au/wp-json/gf/v2/forms/2/submissions"
-	
-	payload = {
-	  'input_5': "$ 0.00",
-	  'input_1.3': "",
-	  'input_1.6': "",
-	  'input_9.1': "",
-	  'input_9.2': "",
-	  'input_9.3': "",
-	  'input_9.4': "",
-	  'input_9.5': "",
-	  'input_9.6': "Australia",
-	  'gpaa_place_9': "",
-	  'input_2': "",
-	  'input_2_2': "",
-	  'input_18': "",
-	  'input_13': "",
-	  'input_11.1': "",
-	  'input_11.2': "",
-	  'input_12.2': "I have read and agree to the <a target=\"_blank\" href=\"https://billygraham.org.au/terms-conditions-privacy-policy/\">website terms and conditions*</a>",
-	  'input_12.3': "1",
-	  'input_17': "",
-	  'input_22': "",
-	  'gform_submission_method': "postback",
-	  'gform_theme': "orbital",
-	  'gform_style_settings': "{\"theme\":\"orbital\",\"inputPrimaryColor\":\"#204ce5\"}",
-	  'is_submit_2': "1",
-	  'gform_submit': "2",
-	  'gform_unique_id': "",
-	  'state_2': "WyJ7XCIzXCI6W1wiMmYxYThlMWZmM2ZlYjViZDMxZTBjNjc0YmU4NDVkMGJcIixcIjJhZTcyMmY3NjFkYjliZTY3MTAyOTZiMzk0ZDE3NDNlXCIsXCI4YjQ2ODU4ZDZmYTYwODQ4YTQ5OGUzOTQyN2U5YmY3MlwiLFwiZGU1ZGY2MmZhMjIzNGNhYzY2OWJjZjA2MjZmZmIzY2JcIl0sXCIxMi4xXCI6XCI1OWU3ZDY2MjA4M2EyYWVmMDk5ZTk2Y2JiZWViYTM5OVwiLFwiMTIuMlwiOlwiMzExMjE1MjBkZjhjNjI0NjBiMmZkNDUyZTQ3ZDlmZjNcIixcIjEyLjNcIjpcIjU5ZTdkNjYyMDgzYTJhZWYwOTllOTZjYmJlZWJhMzk5XCJ9IiwiMzVhN2ZiNDYwZGFhYTI1NGMzZDc3NDYyNDljODA4YjMiXQ==",
-	  'gform_target_page_number_2': "0",
-	  'gform_source_page_number_2': "1",
-	  'gform_field_values': "",
-	  'gform_save': "true"
-	}
-	
-	headers = {
-	  'User-Agent': "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Mobile Safari/537.36",
-	  'authority': "billygraham.org.au",
-	  'accept-language': "en-TH,en;q=0.9,th-DZ;q=0.8,th;q=0.7,en-GB;q=0.6,en-US;q=0.5",
-	  'origin': "https://billygraham.org.au",
-	  'referer': "https://billygraham.org.au/donate/your-gift-to-where-most-needed/",
-	  'sec-ch-ua': "\"Not A(Brand\";v=\"8\", \"Chromium\";v=\"132\"",
-	  'sec-ch-ua-mobile': "?1",
-	  'sec-ch-ua-platform': "\"Android\"",
-	  'sec-fetch-dest': "empty",
-	  'sec-fetch-mode': "cors",
-	  'sec-fetch-site': "same-origin",
-	  'x-requested-with': "XMLHttpRequest"
-	}
-	
-	response = session.post(url, data=payload, headers=headers)
-	
-	resume_token = re.search(r'"resume_token":"(.*?)"', response.text).group(1)
-	
 	url = "https://api.payway.com.au/rest/v1/single-use-tokens"
 	
 	payload = {
@@ -105,9 +50,9 @@ def Tele(ccx):
 	
 	response = session.post(url, data=payload, headers=headers)
 	
-	token = response.json()['singleUseTokenId']
+	tok = response.json()['singleUseTokenId']
 	
-	url = "https://billygraham.org.au/donate/your-gift-to-where-most-needed/"
+	url = "https://billygraham.org.au/donate/your-gift-to-rapid-response-team/"
 	
 	payload = {
 	  'input_3': 'Other amount|0',
@@ -127,24 +72,23 @@ def Tele(ccx):
 	  'input_18': '',
 	  'input_13': '',
 	  'input_11.1': '',
-	  'input_11.2': token,
+	  'input_11.2': tok,
 	  'input_12.1': '1',
 	  'input_12.2': 'I have read and agree to the <a target="_blank" href="https://billygraham.org.au/terms-conditions-privacy-policy/">website terms and conditions*</a>',
-	  'input_12.3': '1',
+	  'input_12.3': '4',
 	  'input_17': '',
 	  'input_22': '',
 	  'gform_submission_method': 'postback',
-	  'gform_theme': 'orbital',
-	  'gform_style_settings': '{"theme":"orbital","inputPrimaryColor":"#204ce5"}',
-	  'is_submit_2': '1',
-	  'gform_submit': '2',
+	  'gform_theme': 'gravity-theme',
+	  'gform_style_settings': '{"inputPrimaryColor":"#204ce5"}',
+	  'is_submit_10': '1',
+	  'gform_submit': '10',
 	  'gform_unique_id': '',
-	  'state_2': 'WyJ7XCIzXCI6W1wiMmYxYThlMWZmM2ZlYjViZDMxZTBjNjc0YmU4NDVkMGJcIixcIjJhZTcyMmY3NjFkYjliZTY3MTAyOTZiMzk0ZDE3NDNlXCIsXCI4YjQ2ODU4ZDZmYTYwODQ4YTQ5OGUzOTQyN2U5YmY3MlwiLFwiZGU1ZGY2MmZhMjIzNGNhYzY2OWJjZjA2MjZmZmIzY2JcIl0sXCIxMi4xXCI6XCI1OWU3ZDY2MjA4M2EyYWVmMDk5ZTk2Y2JiZWViYTM5OVwiLFwiMTIuMlwiOlwiMzExMjE1MjBkZjhjNjI0NjBiMmZkNDUyZTQ3ZDlmZjNcIixcIjEyLjNcIjpcIjU5ZTdkNjYyMDgzYTJhZWYwOTllOTZjYmJlZWJhMzk5XCJ9IiwiMzVhN2ZiNDYwZGFhYTI1NGMzZDc3NDYyNDljODA4YjMiXQ==',
-	  'gform_target_page_number_2': '0',
-	  'gform_source_page_number_2': '1',
+	  'state_10': 'WyJ7XCIzXCI6W1wiMmYxYThlMWZmM2ZlYjViZDMxZTBjNjc0YmU4NDVkMGJcIixcIjJhZTcyMmY3NjFkYjliZTY3MTAyOTZiMzk0ZDE3NDNlXCIsXCI4YjQ2ODU4ZDZmYTYwODQ4YTQ5OGUzOTQyN2U5YmY3MlwiLFwiZGU1ZGY2MmZhMjIzNGNhYzY2OWJjZjA2MjZmZmIzY2JcIl0sXCIxMi4xXCI6XCI1OWU3ZDY2MjA4M2EyYWVmMDk5ZTk2Y2JiZWViYTM5OVwiLFwiMTIuMlwiOlwiMzExMjE1MjBkZjhjNjI0NjBiMmZkNDUyZTQ3ZDlmZjNcIixcIjEyLjNcIjpcImRiMDAwODI5ZDJjMzQyZmEyYjM2YWIzN2NlM2JlMDM1XCJ9IiwiYjQ2YzQwYTk5NTVhNzZlOTI3NTM4MzFjZWQ5Y2NiMmMiXQ==',
+	  'gform_target_page_number_10': '0',
+	  'gform_source_page_number_10': '1',
 	  'gform_field_values': '',
-	  'resume_token': resume_token,
-	  'version_hash': 'c06e4e53ddd3d70df325d5d991ac585b'
+	  'version_hash': '427f05281b954394d96085c37c6d7882'
 	}
 	
 	headers = {
@@ -154,7 +98,7 @@ def Tele(ccx):
 	  'accept-language': "en-TH,en;q=0.9,th-DZ;q=0.8,th;q=0.7,en-GB;q=0.6,en-US;q=0.5",
 	  'cache-control': "max-age=0",
 	  'origin': "https://billygraham.org.au",
-	  'referer': "https://billygraham.org.au/donate/your-gift-to-where-most-needed/",
+	  'referer': "https://billygraham.org.au/donate/your-gift-to-rapid-response-team/",
 	  'sec-ch-ua': "\"Not A(Brand\";v=\"8\", \"Chromium\";v=\"132\"",
 	  'sec-ch-ua-mobile': "?1",
 	  'sec-ch-ua-platform': "\"Android\"",
@@ -168,7 +112,7 @@ def Tele(ccx):
 	response = session.post(url, data=payload, headers=headers)
 	
 	try:
-		result = re.search(r'#8211; (.*?)<\/div>', response.text).group(1)
+		result = re.search(r'#8211; (.*?)<\/a><\/li><\/ol><\/div>', response.text).group(1)
 	except:
 		result = re.search(r'<h4>(.*?)<\/h4>', response.text).group(1)
 		
