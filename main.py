@@ -81,7 +81,7 @@ def main(message):
 by ➜ @strawhatchannel96 ''', reply_markup=mes)
 				msg = f''' 
 𝐂𝐀𝐑𝐃: <code>{cc}</code>
-𝐑𝐞𝐬𝐩𝐨𝐧𝐬𝐞: <code>Payment successful 🔥</code>
+𝐑𝐞𝐬𝐩𝐨𝐧𝐬𝐞: <code>AVS Approved 🔥</code>
 
 𝐁𝐢𝐧 𝐈𝐧𝐟𝐨: <code>{cc[:6]}-{card_type} - {brand}</code>
 𝐁𝐚𝐧𝐤: <code>{bank}</code>
@@ -111,7 +111,7 @@ by ➜ @strawhatchannel96 ''', reply_markup=mes)
 #Hit_Sender
 				
 				print(last)
-				if 'Thank you for your donation!' in last:
+				if 'AVS' in last:
 					ch += 1
 					bot.reply_to(message, msg)
 					
