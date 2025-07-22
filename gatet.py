@@ -1,10 +1,6 @@
 import requests,re
 import random
-from proxy import reqproxy, make_request
 def Tele(ccx):
-	proxy_str = "brd.superproxy.io:33335:brd-customer-hl_d4a33102-zone-scrapping:brgtmv5nyk7u"
-	session, ip = reqproxy(proxy_str)
-	#print(f"IP Address: {ip}")
 	ccx=ccx.strip()
 	n = ccx.split("|")[0]
 	mm = ccx.split("|")[1]
