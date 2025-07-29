@@ -81,7 +81,7 @@ def main(message):
 by ➜ @strawhatchannel96 ''', reply_markup=mes)
 				msg = f''' 
 𝐂𝐀𝐑𝐃: <code>{cc}</code>
-𝐑𝐞𝐬𝐩𝐨𝐧𝐬𝐞: <code>Donation Successful! 🔥</code>
+𝐑𝐞𝐬𝐩𝐨𝐧𝐬𝐞: <code>Completed $1.00 🔥</code>
 
 𝐁𝐢𝐧 𝐈𝐧𝐟𝐨: <code>{cc[:6]}-{card_type} - {brand}</code>
 𝐁𝐚𝐧𝐤: <code>{bank}</code>
@@ -111,7 +111,7 @@ by ➜ @strawhatchannel96 ''', reply_markup=mes)
 #Hit_Sender
 				
 				print(last)
-				if 'Donation Successful!' in last:
+				if 'Payment Successful!' in last:
 					ch += 1
 					bot.reply_to(message, msg)
 					
@@ -135,12 +135,12 @@ by ➜ @strawhatchannel96 ''', reply_markup=mes)
 					lowfund += 1
 					bot.reply_to(message, msg)
 					
-				elif 'Verifying strong customer authentication. Please wait...' in last:
+				elif 'The payment needs additional action before completion!' in last:
 				    cvv += 1
 				    	
 				else:
 					dd += 1
-					time.sleep(3)
+					time.sleep(5)
 	except Exception as e:
 		print(e)
 	bot.edit_message_text(chat_id=message.chat.id, message_id=ko, text='CHECKED ✅\nBOT BY ➜ @strawhatchannel96')
