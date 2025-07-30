@@ -111,7 +111,7 @@ by ➜ @strawhatchannel96 ''', reply_markup=mes)
 #Hit_Sender
 				
 				print(last)
-				if 'Payment Successful!' in last:
+				if 'true' in last:
 					ch += 1
 					bot.reply_to(message, msg)
 					
