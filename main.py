@@ -136,7 +136,18 @@ by ➜ @strawhatchannel96 ''', reply_markup=mes)
 					bot.reply_to(message, msg)
 					
 				elif 'The payment needs additional action before completion!' in last:
+					msg = f'''			
+𝐂𝐀𝐑𝐃: <code>{cc}</code>
+𝐑𝐞𝐬𝐩𝐨𝐧𝐬𝐞: <code>Insufficient funds 🔥</code>
+
+𝐁𝐢𝐧 𝐈𝐧𝐟𝐨: <code>{cc[:6]}-{card_type} - {brand}</code>
+𝐁𝐚𝐧𝐤: <code>{bank}</code>
+𝐂𝐨𝐮𝐧𝐭𝐫𝐲: <code>{country} - {country_flag}</code>
+
+𝐓𝐢𝐦𝐞: <code>1{"{:.1f}".format(execution_time)} second</code> 
+𝐁𝐨𝐭 𝐀𝐛𝐨𝐮𝐭: @strawhatchannel96'''
 				    cvv += 1
+					bot.reply_to(message, msg)
 				    	
 				else:
 					dd += 1
@@ -149,4 +160,5 @@ def menu_callback(call):
 	with open("stop.stop", "w") as file:
 		pass
 bot.polling()
+
 
