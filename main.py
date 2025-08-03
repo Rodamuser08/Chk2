@@ -111,7 +111,7 @@ by ➜ @strawhatchannel96 ''', reply_markup=mes)
 #Hit_Sender
 				
 				print(last)
-				if 'true' in last:
+				if 'Thank' in last:
 					ch += 1
 					bot.reply_to(message, msg)
 					
@@ -149,3 +149,4 @@ def menu_callback(call):
 	with open("stop.stop", "w") as file:
 		pass
 bot.polling()
+
