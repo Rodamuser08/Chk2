@@ -111,7 +111,7 @@ by ➜ @strawhatchannel96 ''', reply_markup=mes)
 #Hit_Sender
 				
 				print(last)
-				if 'Thank' in last:
+				if 'Payment Successful!' in last:
 					ch += 1
 					bot.reply_to(message, msg)
 					
@@ -138,7 +138,7 @@ by ➜ @strawhatchannel96 ''', reply_markup=mes)
 				elif 'The payment needs additional action before completion!' in last:
 					msg = f'''			
 𝐂𝐀𝐑𝐃: <code>{cc}</code>
-𝐑𝐞𝐬𝐩𝐨𝐧𝐬𝐞: <code>Insufficient funds 🔥</code>
+𝐑𝐞𝐬𝐩𝐨𝐧𝐬𝐞: <code>3ds ✅</code>
 
 𝐁𝐢𝐧 𝐈𝐧𝐟𝐨: <code>{cc[:6]}-{card_type} - {brand}</code>
 𝐁𝐚𝐧𝐤: <code>{bank}</code>
@@ -160,6 +160,7 @@ def menu_callback(call):
 	with open("stop.stop", "w") as file:
 		pass
 bot.polling()
+
 
 
 
