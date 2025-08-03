@@ -146,7 +146,7 @@ by ➜ @strawhatchannel96 ''', reply_markup=mes)
 
 𝐓𝐢𝐦𝐞: <code>1{"{:.1f}".format(execution_time)} second</code> 
 𝐁𝐨𝐭 𝐀𝐛𝐨𝐮𝐭: @strawhatchannel96'''
-				    cvv += 1
+					cvv += 1
 					bot.reply_to(message, msg)
 				    	
 				else:
@@ -160,5 +160,6 @@ def menu_callback(call):
 	with open("stop.stop", "w") as file:
 		pass
 bot.polling()
+
 
 
