@@ -13,7 +13,7 @@ def reqproxy(proxy_str):
         session.proxies.update(proxies)
 
         # Replace the test URL with your target endpoint
-        url = "https://httpbin.org/get"  
+        url = "https://httpbin.org/ip"  
         response = session.get(url, timeout=5)
 
         if response.status_code == 200:
