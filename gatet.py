@@ -1,10 +1,6 @@
 import requests,re
 import random
-from proxy import reqproxy, make_request
 def Tele(ccx):
-	proxy_str = "la.residential.rayobyte.com:8000:bright69cc_gmail_com:Yaegyi224"
-	session, ip = reqproxy(proxy_str)
-	#print(f"IP Address: {ip}")
 	ccx=ccx.strip()
 	n = ccx.split("|")[0]
 	mm = ccx.split("|")[1]
@@ -34,7 +30,7 @@ def Tele(ccx):
 	    'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Mobile Safari/537.36',
 	}
 	
-	response = session.get('https://kidsbankchester.com/campaigns/donate-to-kids-bank-3/', headers=headers)
+	response = requests.get('https://kidsbankchester.com/campaigns/donate-to-kids-bank-3/', headers=headers)
 	
 	form_id = re.search(r'name="charitable_form_id" value="(.*?)"', response.text).group(1)
 	donation_nonce = re.search(r'name="_charitable_donation_nonce" value="(.*?)"', response.text).group(1)
@@ -102,7 +98,7 @@ def Tele(ccx):
 	    'form_action': 'make_donation',
 	}
 	
-	response = session.post('https://kidsbankchester.com/wp-admin/admin-ajax.php', headers=headers, data=data)
+	response = requests.post('https://kidsbankchester.com/wp-admin/admin-ajax.php', headers=headers, data=data)
 	
 	try:
 		scrt = response.json().get('secret')
@@ -136,7 +132,7 @@ def Tele(ccx):
 	    'client_secret': f'{scrt}',
 	}
 	
-	response = session.post(
+	response = requests.post(
 	    f'https://api.stripe.com/v1/payment_intents/{pi}/confirm',
 	    headers=headers,
 	    data=data,
